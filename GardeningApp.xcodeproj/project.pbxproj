@@ -9,21 +9,47 @@
 /* Begin PBXBuildFile section */
 		4630C75B2B2619B40008AE2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C75A2B2619B40008AE2C /* AppDelegate.swift */; };
 		4630C75D2B2619B40008AE2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C75C2B2619B40008AE2C /* SceneDelegate.swift */; };
-		4630C75F2B2619B40008AE2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C75E2B2619B40008AE2C /* ViewController.swift */; };
-		4630C7622B2619B40008AE2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4630C7602B2619B40008AE2C /* Main.storyboard */; };
 		4630C7642B2619B50008AE2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4630C7632B2619B50008AE2C /* Assets.xcassets */; };
 		4630C7672B2619B50008AE2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4630C7652B2619B50008AE2C /* LaunchScreen.storyboard */; };
+		4630C7772B2623FD0008AE2C /* HomeModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7722B2623FD0008AE2C /* HomeModuleBuilder.swift */; };
+		4630C7782B2623FD0008AE2C /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7732B2623FD0008AE2C /* HomePresenter.swift */; };
+		4630C7792B2623FD0008AE2C /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7742B2623FD0008AE2C /* HomeRouter.swift */; };
+		4630C77A2B2623FD0008AE2C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7752B2623FD0008AE2C /* HomeViewController.swift */; };
+		4630C77B2B2623FD0008AE2C /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7762B2623FD0008AE2C /* HomeInteractor.swift */; };
+		4630C77F2B262A460008AE2C /* ImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C77E2B262A460008AE2C /* ImageProvider.swift */; };
+		4630C7822B2633AE0008AE2C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4630C7812B2633AE0008AE2C /* SnapKit */; };
+		4630C7882B2755F40008AE2C /* GreetingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7872B2755F40008AE2C /* GreetingProvider.swift */; };
+		4630C78D2B2757720008AE2C /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C78C2B2757720008AE2C /* Extension+UIFont.swift */; };
+		4630C78F2B275A4F0008AE2C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C78E2B275A4F0008AE2C /* CustomButton.swift */; };
+		4630C7912B275AB70008AE2C /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7902B275AB70008AE2C /* CustomLabel.swift */; };
+		4630C7932B27638B0008AE2C /* WeatherInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7922B27638B0008AE2C /* WeatherInfoView.swift */; };
+		4630C7992B2767E50008AE2C /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7982B2767E50008AE2C /* Endpoints.swift */; };
+		4630C79B2B276ED40008AE2C /* WeatherApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C79A2B276ED40008AE2C /* WeatherApiManager.swift */; };
+		4630C79E2B276FBE0008AE2C /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C79D2B276FBE0008AE2C /* WeatherData.swift */; };
+		4630C7A52B2774F30008AE2C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4630C7A42B2774F30008AE2C /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4630C7572B2619B40008AE2C /* GardeningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GardeningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4630C75A2B2619B40008AE2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4630C75C2B2619B40008AE2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4630C75E2B2619B40008AE2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4630C7612B2619B40008AE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4630C7632B2619B50008AE2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4630C7662B2619B50008AE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4630C7682B2619B50008AE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4630C7722B2623FD0008AE2C /* HomeModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleBuilder.swift; sourceTree = "<group>"; };
+		4630C7732B2623FD0008AE2C /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		4630C7742B2623FD0008AE2C /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		4630C7752B2623FD0008AE2C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4630C7762B2623FD0008AE2C /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		4630C77E2B262A460008AE2C /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
+		4630C7872B2755F40008AE2C /* GreetingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingProvider.swift; sourceTree = "<group>"; };
+		4630C78C2B2757720008AE2C /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
+		4630C78E2B275A4F0008AE2C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		4630C7902B275AB70008AE2C /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		4630C7922B27638B0008AE2C /* WeatherInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoView.swift; sourceTree = "<group>"; };
+		4630C7982B2767E50008AE2C /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
+		4630C79A2B276ED40008AE2C /* WeatherApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApiManager.swift; sourceTree = "<group>"; };
+		4630C79D2B276FBE0008AE2C /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4630C7822B2633AE0008AE2C /* SnapKit in Frameworks */,
+				4630C7A52B2774F30008AE2C /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +84,123 @@
 		4630C7592B2619B40008AE2C /* GardeningApp */ = {
 			isa = PBXGroup;
 			children = (
-				4630C75A2B2619B40008AE2C /* AppDelegate.swift */,
-				4630C75C2B2619B40008AE2C /* SceneDelegate.swift */,
-				4630C75E2B2619B40008AE2C /* ViewController.swift */,
-				4630C7602B2619B40008AE2C /* Main.storyboard */,
+				4630C79C2B276FB40008AE2C /* Entities */,
+				4630C7942B2767320008AE2C /* Api */,
+				4630C7892B2757220008AE2C /* Exntensions */,
+				4630C7852B2755580008AE2C /* Providers */,
+				4630C76F2B2619FE0008AE2C /* Application */,
+				4630C7702B261A0A0008AE2C /* Modules */,
+				4630C76E2B2619D90008AE2C /* Resources */,
+			);
+			path = GardeningApp;
+			sourceTree = "<group>";
+		};
+		4630C76E2B2619D90008AE2C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				4630C7632B2619B50008AE2C /* Assets.xcassets */,
 				4630C7652B2619B50008AE2C /* LaunchScreen.storyboard */,
 				4630C7682B2619B50008AE2C /* Info.plist */,
 			);
-			path = GardeningApp;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4630C76F2B2619FE0008AE2C /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				4630C75A2B2619B40008AE2C /* AppDelegate.swift */,
+				4630C75C2B2619B40008AE2C /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		4630C7702B261A0A0008AE2C /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				4630C7712B261A140008AE2C /* Home */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4630C7712B261A140008AE2C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				4630C77C2B2625AA0008AE2C /* Views */,
+				4630C7722B2623FD0008AE2C /* HomeModuleBuilder.swift */,
+				4630C7732B2623FD0008AE2C /* HomePresenter.swift */,
+				4630C7742B2623FD0008AE2C /* HomeRouter.swift */,
+				4630C7752B2623FD0008AE2C /* HomeViewController.swift */,
+				4630C7762B2623FD0008AE2C /* HomeInteractor.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		4630C77C2B2625AA0008AE2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4630C78E2B275A4F0008AE2C /* CustomButton.swift */,
+				4630C7902B275AB70008AE2C /* CustomLabel.swift */,
+				4630C7922B27638B0008AE2C /* WeatherInfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4630C77D2B2628580008AE2C /* ImageProvider */ = {
+			isa = PBXGroup;
+			children = (
+				4630C77E2B262A460008AE2C /* ImageProvider.swift */,
+			);
+			path = ImageProvider;
+			sourceTree = "<group>";
+		};
+		4630C7852B2755580008AE2C /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				4630C7862B2755600008AE2C /* GreetingProvider */,
+				4630C77D2B2628580008AE2C /* ImageProvider */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		4630C7862B2755600008AE2C /* GreetingProvider */ = {
+			isa = PBXGroup;
+			children = (
+				4630C7872B2755F40008AE2C /* GreetingProvider.swift */,
+			);
+			path = GreetingProvider;
+			sourceTree = "<group>";
+		};
+		4630C7892B2757220008AE2C /* Exntensions */ = {
+			isa = PBXGroup;
+			children = (
+				4630C78C2B2757720008AE2C /* Extension+UIFont.swift */,
+			);
+			path = Exntensions;
+			sourceTree = "<group>";
+		};
+		4630C7942B2767320008AE2C /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				4630C7952B2767B00008AE2C /* WeatherApi */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		4630C7952B2767B00008AE2C /* WeatherApi */ = {
+			isa = PBXGroup;
+			children = (
+				4630C7982B2767E50008AE2C /* Endpoints.swift */,
+				4630C79A2B276ED40008AE2C /* WeatherApiManager.swift */,
+			);
+			path = WeatherApi;
+			sourceTree = "<group>";
+		};
+		4630C79C2B276FB40008AE2C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				4630C79D2B276FBE0008AE2C /* WeatherData.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +219,10 @@
 			dependencies = (
 			);
 			name = GardeningApp;
+			packageProductDependencies = (
+				4630C7812B2633AE0008AE2C /* SnapKit */,
+				4630C7A42B2774F30008AE2C /* Alamofire */,
+			);
 			productName = GardeningApp;
 			productReference = 4630C7572B2619B40008AE2C /* GardeningApp.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +251,10 @@
 				Base,
 			);
 			mainGroup = 4630C74E2B2619B40008AE2C;
+			packageReferences = (
+				4630C7802B2633AE0008AE2C /* XCRemoteSwiftPackageReference "SnapKit" */,
+				4630C7A32B2774F30008AE2C /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 4630C7582B2619B40008AE2C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +271,6 @@
 			files = (
 				4630C7672B2619B50008AE2C /* LaunchScreen.storyboard in Resources */,
 				4630C7642B2619B50008AE2C /* Assets.xcassets in Resources */,
-				4630C7622B2619B40008AE2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +281,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4630C75F2B2619B40008AE2C /* ViewController.swift in Sources */,
+				4630C77F2B262A460008AE2C /* ImageProvider.swift in Sources */,
+				4630C7772B2623FD0008AE2C /* HomeModuleBuilder.swift in Sources */,
+				4630C7792B2623FD0008AE2C /* HomeRouter.swift in Sources */,
+				4630C7992B2767E50008AE2C /* Endpoints.swift in Sources */,
+				4630C77B2B2623FD0008AE2C /* HomeInteractor.swift in Sources */,
 				4630C75B2B2619B40008AE2C /* AppDelegate.swift in Sources */,
+				4630C79B2B276ED40008AE2C /* WeatherApiManager.swift in Sources */,
+				4630C7782B2623FD0008AE2C /* HomePresenter.swift in Sources */,
+				4630C77A2B2623FD0008AE2C /* HomeViewController.swift in Sources */,
+				4630C78F2B275A4F0008AE2C /* CustomButton.swift in Sources */,
+				4630C7912B275AB70008AE2C /* CustomLabel.swift in Sources */,
 				4630C75D2B2619B40008AE2C /* SceneDelegate.swift in Sources */,
+				4630C79E2B276FBE0008AE2C /* WeatherData.swift in Sources */,
+				4630C7932B27638B0008AE2C /* WeatherInfoView.swift in Sources */,
+				4630C7882B2755F40008AE2C /* GreetingProvider.swift in Sources */,
+				4630C78D2B2757720008AE2C /* Extension+UIFont.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4630C7602B2619B40008AE2C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4630C7612B2619B40008AE2C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4630C7652B2619B50008AE2C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -294,12 +442,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MG7VG49PJM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GardeningApp/Info.plist;
+				INFOPLIST_FILE = GardeningApp/Resources/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app requires access to device's location";
+				INFOPLIST_KEY_NSLocationUsageDescription = Description;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app requires access to device's location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -322,12 +473,15 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MG7VG49PJM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GardeningApp/Info.plist;
+				INFOPLIST_FILE = GardeningApp/Resources/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app requires access to device's location";
+				INFOPLIST_KEY_NSLocationUsageDescription = Description;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app requires access to device's location";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -363,6 +517,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4630C7802B2633AE0008AE2C /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		4630C7A32B2774F30008AE2C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4630C7812B2633AE0008AE2C /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4630C7802B2633AE0008AE2C /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		4630C7A42B2774F30008AE2C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4630C7A32B2774F30008AE2C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4630C74F2B2619B40008AE2C /* Project object */;
 }
