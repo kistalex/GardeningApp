@@ -3,7 +3,7 @@
 // GardeningApp
 // WeatherInfoView.swift
 // 
-// Created by Alexander Kist on 11.12.2023.
+// Created by Alexander Kist on 12.12.2023.
 //
 
 
@@ -11,37 +11,38 @@ import UIKit
 
 class WeatherInfoView: UIView {
 
-    private let stackView = UIStackView()
-    private let imageView = UIImageView()
-    let label = UILabel()
+    private let tempInfo = WeatherInfoSection(imageName: "thermometer.medium")
+    private let humidityInfo = WeatherInfoSection(imageName: "humidity.fill")
+    private let windInfo = WeatherInfoSection(imageName: "wind")
+    private let weatherInfoStack = UIStackView()
 
-    init(imageName: String) {
+    override init(frame: CGRect) {
         super.init(frame: .zero)
-        imageView.image = UIImage(systemName: imageName)
-        imageView.tintColor = .tint
-        label.textColor = .tint
-        label.text = "-/-"
-        label.font = UIFont.body()
         setupViews()
     }
-
+    
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
 
-    func setupViews() {
-        stackView.axis = .horizontal
-        stackView.spacing = 10
-        stackView.distribution = .equalCentering
-        imageView.contentMode = .scaleAspectFit
-        label.numberOfLines = 0
+    private func setupViews(){
+        [tempInfo, humidityInfo, windInfo].forEach { item in
+            weatherInfoStack.addArrangedSubview(item)
+        }
 
-        addSubview(stackView)
-        stackView.addArrangedSubview(imageView)
-        stackView.addArrangedSubview(label)
+        weatherInfoStack.axis = .horizontal
+        weatherInfoStack.distribution = .equalSpacing
 
-        stackView.snp.makeConstraints { make in
+        addSubview(weatherInfoStack)
+
+        weatherInfoStack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+
+    public func setInfo(with weather: WeatherData){
+        tempInfo.label.text = "\(weather.current.temp)°C"
+        humidityInfo.label.text = "\(weather.current.humidity) %"
+        windInfo.label.text = "\(weather.current.windSpeed) m/s"
     }
 }

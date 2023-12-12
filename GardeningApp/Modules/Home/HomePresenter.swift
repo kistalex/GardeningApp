@@ -8,9 +8,7 @@
 import UIKit
 
 protocol HomePresenterProtocol: AnyObject {
-    func fetchCurrentTimeImage()
-    func fetchCurrentGreeting()
-    func fetchCurrentLocationWeather()
+    func viewDidLoad()
     func currentTimeImageFetched(with image: UIImage?)
     func currentGreetingFetched(with text: String)
     func currentWeatherFetched(with weatherData: WeatherData)
@@ -28,16 +26,11 @@ class HomePresenter {
 }
 
 extension HomePresenter: HomePresenterProtocol {
-    func fetchCurrentTimeImage() {
-        interactor.fetchCurrentTimeImage()
-    }
 
-    func fetchCurrentLocationWeather() {
-        interactor.fetchCurrenLocationWeather()
-    }
-
-    func fetchCurrentGreeting() {
+    func viewDidLoad() {
         interactor.fetchCurrentGreetings()
+        interactor.fetchCurrentTimeImage()
+//        interactor.fetchCurrenLocationWeather()
     }
 
     func currentGreetingFetched(with text: String) {

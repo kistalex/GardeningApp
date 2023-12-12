@@ -19,47 +19,29 @@ class HomeViewController: UIViewController {
     var presenter: HomePresenterProtocol?
 
 
-    private lazy var shadowView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.layer.shadowColor = UIColor.tint.withAlphaComponent(0.5).cgColor
-        view.layer.shadowOpacity = 0.8
-        view.layer.shadowRadius = 10.0
-        return view
-    }()
 
-    private lazy var iconImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.layer.cornerRadius = 10.0
-        iv.layer.masksToBounds = true
-        return iv
-    }()
+    private let buttonView = ButtonView()
+    private let greetingsView = GreetingsView()
+    private lazy var shadowImageView = ShadowImageView()
+    private let weatherInfoView = WeatherInfoView()
+    private let gardenHeader = GardenHeader(frame: .zero)
+    private let taskManagerButton = CustomButton(imageName: "list.number", configImagePointSize: 40, bgColor: .accent)
+    private lazy var gardenCollectionView = UICollectionView()
 
-    private let greetingLabel = CustomLabel(fontName: UIFont.title(), text: "Good evening")
-    private let descriptionLabel = CustomLabel(fontName: UIFont.body(), text: "Flora is Here, your personal garden manager!")
-
-    private let searchButton = CustomButton(imageName: "magnifyingglass", configImagePointSize: 20)
-
-    private let notificationButton = CustomButton(imageName: "bell", configImagePointSize: 20)
-
-    private var buttonStack = UIStackView()
-
-    private let tempInfo = WeatherInfoView(imageName: "thermometer.medium")
-    private let humidityInfo = WeatherInfoView(imageName: "humidity.fill")
-    private let windInfo = WeatherInfoView(imageName: "wind")
-
-    private let weatherInfoStack = UIStackView()
-
-
+    var plants: [Plant] = [
+        Plant(image: "noImage", name: "Fern", age: "2 years"),
+        Plant(image: "noImage", name: "Sunflower", age: "3 months"),
+        Plant(image: "noImage", name: "Fern", age: "2 years"),
+        Plant(image: "noImage", name: "Sunflower", age: "3 months"),
+        Plant(image: "noImage", name: "Fern", age: "2 years"),
+        Plant(image: "noImage", name: "Sunflower", age: "3 months"),
+    ]
 
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
-        presenter?.fetchCurrentTimeImage()
-        presenter?.fetchCurrentLocationWeather()
-        presenter?.fetchCurrentGreeting()
+        presenter?.viewDidLoad()
     }
 }
 
@@ -67,81 +49,133 @@ class HomeViewController: UIViewController {
 private extension HomeViewController {
     func initialize() {
         setupViews()
+        setupCollectionView()
+        setViewDelegate()
+    }
+    
+    private func setViewDelegate(){
+        gardenHeader.delegate = self
+        buttonView.delegate = self
     }
 
     private func setupViews(){
         view.backgroundColor = .background
 
-        [searchButton, notificationButton].forEach { item  in
-            buttonStack.addArrangedSubview(item)}
+        view.addSubview(buttonView)
+        view.addSubview(greetingsView)
+        view.addSubview(shadowImageView)
+        view.addSubview(weatherInfoView)
+        view.addSubview(taskManagerButton)
+        view.addSubview(gardenHeader)
 
-        buttonStack.axis = .horizontal
-        buttonStack.distribution = .equalSpacing
-
-
-        [tempInfo, humidityInfo, windInfo].forEach { item in
-            weatherInfoStack.addArrangedSubview(item)
-        }
-
-        weatherInfoStack.axis = .horizontal
-        weatherInfoStack.distribution = .equalSpacing
-
-        view.addSubview(buttonStack)
-        view.addSubview(weatherInfoStack)
-
-        view.addSubview(shadowView)
-        view.addSubview(greetingLabel)
-        view.addSubview(descriptionLabel)
-
-        shadowView.addSubview(iconImageView)
-
-        buttonStack.snp.makeConstraints { make in
+        buttonView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
         }
 
-        greetingLabel.snp.makeConstraints { make in
-            make.top.equalTo(buttonStack.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-        }
-
-        descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(greetingLabel.snp.bottom).offset(10)
-            make.horizontalEdges.equalToSuperview().inset(20)
+        greetingsView.snp.makeConstraints { make in
+            make.top.equalTo(buttonView.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
         }
 
 
-        shadowView.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(20)
+        shadowImageView.snp.makeConstraints { make in
+            make.top.equalTo(greetingsView.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
-            make.size.equalTo(175)
+            make.size.equalTo(175).multipliedBy(2)
         }
 
-        iconImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
-        weatherInfoStack.snp.makeConstraints { make in
-            make.top.equalTo(shadowView.snp.bottom).offset(20)
+        weatherInfoView.snp.makeConstraints { make in
+            make.top.equalTo(shadowImageView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
         }
+
+        gardenHeader.snp.makeConstraints { make in
+            make.top.equalTo(weatherInfoView.snp.bottom).offset(30)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalToSuperview().dividedBy(15)
+        }
+
+        taskManagerButton.snp.makeConstraints { make in
+            make.centerY.equalTo(shadowImageView.snp.centerY)
+            make.trailing.equalToSuperview()
+        }
+    }
+
+    private func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+
+        gardenCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+
+        gardenCollectionView.register(PlantCell.self, forCellWithReuseIdentifier: "\(PlantCell.self)")
+        gardenCollectionView.backgroundColor = .background
+        gardenCollectionView.showsVerticalScrollIndicator = false
+        gardenCollectionView.showsHorizontalScrollIndicator = false
+
+        gardenCollectionView.dataSource = self
+        gardenCollectionView.delegate = self 
+
+        view.addSubview(gardenCollectionView)
+
+        gardenCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(gardenHeader.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(40)
+        }
+    }
+}
+
+//MARK: - UICollectionViewDataSource
+extension HomeViewController: UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return plants.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(PlantCell.self)", for: indexPath) as? PlantCell else {
+            return UICollectionViewCell()
+        }
+        let plant = plants[indexPath.row]
+        cell.configureCell(with: plant)
+        return cell
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.bounds.width / 2
+        let height = collectionView.bounds.height - 20
+        return CGSize(width: width, height: height)
+    }
+}
+
+extension HomeViewController: HomeModuleEventsDelegate {
+    func didTapButton(sender: GardenHeader) {
+        print("Нажали добавить новое растение")
+    }
+
+    func didTapSearchButton(sender: ButtonView) {
+        print("Нажали на поиск")
+    }
+
+    func didTapNotificationButton(sender: ButtonView) {
+        print("Нажали на колокольчик")
     }
 }
 
 // MARK: - HomeViewProtocol
 extension HomeViewController: HomeViewProtocol {
     func showImageForCurrentTime(image: UIImage?) {
-        self.iconImageView.image = image
+        shadowImageView.setImage(with: image)
     }
 
     func showGreetingForCurrentTime(text: String) {
-        self.greetingLabel.text = text
+        greetingsView.setText(with: text)
     }
 
     func showCurrentWeatherData(with weather: WeatherData) {
-        tempInfo.label.text = "\(weather.current.temp)°C"
-        humidityInfo.label.text = "\(weather.current.humidity) %"
-        windInfo.label.text = "\(weather.current.windSpeed) m/s"
+        weatherInfoView.setInfo(with: weather)
     }
 }

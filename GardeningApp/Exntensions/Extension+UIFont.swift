@@ -17,6 +17,10 @@ extension UIFont {
     static func title() -> UIFont {
         return UIFont.preferredFont(forTextStyle: .title1)
     }
+    
+    static func title2() -> UIFont {
+        return UIFont.preferredFont(forTextStyle: .title2)
+    }
 
     static func title3() -> UIFont {
         return UIFont.preferredFont(forTextStyle: .title3)

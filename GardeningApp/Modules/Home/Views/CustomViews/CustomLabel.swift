@@ -13,7 +13,7 @@ final class CustomLabel: UILabel {
 
     init(fontName: UIFont, text: String? = nil) {
         super.init(frame: .zero)
-        textColor = .tint
+        textColor = .accent
         numberOfLines = 0
         font = fontName
         textAlignment = .center
