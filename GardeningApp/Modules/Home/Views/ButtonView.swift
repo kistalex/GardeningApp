@@ -9,12 +9,12 @@
 
 import UIKit
 
-class ButtonView: UIView {
+final class ButtonView: UIView {
 
     weak var delegate: HomeModuleEventsDelegate?
 
-    private let searchButton = CustomButton(imageName: "magnifyingglass", configImagePointSize: 20)
-    private let notificationButton = CustomButton(imageName: "bell", configImagePointSize: 20)
+    private let searchButton = CustomImageButton(imageName: "magnifyingglass", configImagePointSize: 20)
+    private let notificationButton = CustomImageButton(imageName: "bell", configImagePointSize: 20)
     private var buttonStack = UIStackView()
 
     override init(frame: CGRect) {

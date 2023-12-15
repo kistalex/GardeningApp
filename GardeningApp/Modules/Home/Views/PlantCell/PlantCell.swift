@@ -13,14 +13,14 @@ class PlantCell: UICollectionViewCell {
 
     private let plantImageView: UIImageView = {
         let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.tintColor = .accent
+        iv.contentMode = .scaleAspectFill
+        iv.tintColor = .accentLight
         iv.layer.masksToBounds = true
         return iv
     }()
 
-    private let nameLabel = CustomLabel(fontName: UIFont.body())
-    private let ageLabel = CustomLabel(fontName: UIFont.body())
+    private let nameLabel = CustomLabel(fontName: UIFont.body(), textColor: .accentDark)
+    private let ageLabel = CustomLabel(fontName: UIFont.body(), textColor: .accentDark)
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -31,6 +31,8 @@ class PlantCell: UICollectionViewCell {
         super.layoutSubviews()
         contentView.layer.cornerRadius = 10
         plantImageView.layer.cornerRadius = 10
+        plantImageView.layer.borderColor = UIColor.accentDark.cgColor
+        plantImageView.layer.borderWidth = 1
     }
 
     required init?(coder: NSCoder) {
@@ -44,18 +46,10 @@ class PlantCell: UICollectionViewCell {
     }
 
     private func setupViews(){
-
-        contentView.layer.borderWidth = 1.5
-        contentView.layer.borderColor = UIColor.accent.cgColor
-
+        contentView.backgroundColor = .accentLight
         contentView.addSubview(plantImageView)
         contentView.addSubview(nameLabel)
         contentView.addSubview(ageLabel)
-
-
-        plantImageView.layer.borderWidth = 1
-        plantImageView.layer.borderColor = UIColor.accent.cgColor
-
 
         plantImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
@@ -75,9 +69,9 @@ class PlantCell: UICollectionViewCell {
         }
     }
 
-    public func configureCell(with plant: Plant){
-        plantImageView.image = UIImage(named: plant.image ?? "noImage")
-        nameLabel.text = plant.name
-        ageLabel.text = plant.age
+    public func configureCell(with plant: PlantObject){
+        plantImageView.image = plant.image
+        nameLabel.text = plant.plantName
+        ageLabel.text = plant.plantAge
     }
 }

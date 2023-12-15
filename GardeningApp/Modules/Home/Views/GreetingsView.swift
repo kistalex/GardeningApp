@@ -9,10 +9,10 @@
 
 import UIKit
 
-class GreetingsView: UIView {
+final class GreetingsView: UIView {
 
-    private let greetingLabel = CustomLabel(fontName: UIFont.title())
-    private let descriptionLabel = CustomLabel(fontName: UIFont.body(), text: "Flora is Here, your personal garden manager!")
+    private let greetingLabel = CustomLabel(fontName: UIFont.title(), textColor: .accentLight)
+    private let descriptionLabel = CustomLabel(fontName: UIFont.body(), text: "Flora is Here, your personal garden manager!", textColor: .accentLight)
     private let textStack = UIStackView()
 
 

@@ -6,12 +6,13 @@
 //
 
 import CoreLocation
-import WeatherKit
+import RealmSwift
 
 protocol HomeInteractorProtocol: AnyObject {
     func fetchCurrentTimeImage()
     func fetchCurrentGreetings()
     func fetchCurrenLocationWeather()
+    func fetchUserPlants()
 }
 
 class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegate {
@@ -23,15 +24,45 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
 
     private let weatherManager: WeatherApiManager
     private let locationManager: CLLocationManager
-
+    
+    private let realm: Realm!
+    private var notificationToken: NotificationToken?
 
     init(imageProvider: ImageProvider,greetingProvider: GreetingProvider, locationManager: CLLocationManager, weatherManager: WeatherApiManager) {
         self.imageProvider = imageProvider
         self.greetingProvider = greetingProvider
         self.locationManager = locationManager
         self.weatherManager = weatherManager
+        
+        do {
+            realm = try Realm()
+        } catch let error {
+            print("Failed to instantiate Realm: \(error.localizedDescription)")
+            realm = nil
+        }
         super.init()
+        setupPlantChangeNotifications()
     }
+
+
+    deinit {
+        notificationToken?.invalidate()
+    }
+
+    func setupPlantChangeNotifications() {
+        let plants = realm.objects(PlantObject.self)
+        notificationToken = plants.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial(let plants):
+                self?.presenter?.plantsFetched(with: Array(plants))
+            case .update(let plants, _, _, _):
+                self?.presenter?.plantsFetched(with: Array(plants))
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
 
     func fetchCurrentTimeImage() {
         let image = imageProvider.imageForCurrentTime()
@@ -40,7 +71,12 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
 
     func fetchCurrentGreetings() {
         let greeting = greetingProvider.greetingForCurrentTime()
-        presenter?.currentGreetingFetched(with: greeting )
+        presenter?.currentGreetingFetched(with: greeting)
+    }
+
+    func fetchUserPlants(){
+        let plants = realm.objects(PlantObject.self)
+        presenter?.plantsFetched(with: Array(plants))
     }
 
 
@@ -50,7 +86,7 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
         locationManager.startUpdatingLocation()
     }
 
-    private func getCurrentWeather(location: CLLocation){
+    func getCurrentWeather(location: CLLocation){
         let weatherApiManager = WeatherApiManager()
         weatherApiManager.fetchCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.latitude) { result in
             switch result {

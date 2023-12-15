@@ -10,7 +10,7 @@
 import Foundation
 
 protocol HomeModuleEventsDelegate: AnyObject {
-    func didTapButton(sender: GardenHeader)
+    func didTapAddNewPlantButton(sender: GardenHeader)
     func didTapSearchButton(sender: ButtonView)
     func didTapNotificationButton(sender: ButtonView)
 }

@@ -9,7 +9,7 @@
 
 import UIKit
 
-class WeatherInfoView: UIView {
+final class WeatherInfoView: UIView {
 
     private let tempInfo = WeatherInfoSection(imageName: "thermometer.medium")
     private let humidityInfo = WeatherInfoSection(imageName: "humidity.fill")

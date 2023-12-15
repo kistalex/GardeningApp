@@ -12,31 +12,22 @@ protocol HomeViewProtocol: AnyObject {
     func showImageForCurrentTime(image: UIImage?)
     func showGreetingForCurrentTime(text: String)
     func showCurrentWeatherData(with weather: WeatherData)
+    func setPlants(with plants: [PlantObject])
 }
 
 class HomeViewController: UIViewController {
     // MARK: - Public
     var presenter: HomePresenterProtocol?
 
-
-
     private let buttonView = ButtonView()
     private let greetingsView = GreetingsView()
     private lazy var shadowImageView = ShadowImageView()
     private let weatherInfoView = WeatherInfoView()
     private let gardenHeader = GardenHeader(frame: .zero)
-    private let taskManagerButton = CustomButton(imageName: "list.number", configImagePointSize: 40, bgColor: .accent)
+    private let taskManagerButton = CustomImageButton(imageName: "list.number", configImagePointSize: 40, bgColor: .accentLight)
     private lazy var gardenCollectionView = UICollectionView()
-
-    var plants: [Plant] = [
-        Plant(image: "noImage", name: "Fern", age: "2 years"),
-        Plant(image: "noImage", name: "Sunflower", age: "3 months"),
-        Plant(image: "noImage", name: "Fern", age: "2 years"),
-        Plant(image: "noImage", name: "Sunflower", age: "3 months"),
-        Plant(image: "noImage", name: "Fern", age: "2 years"),
-        Plant(image: "noImage", name: "Sunflower", age: "3 months"),
-    ]
-
+    
+    private var userPlants = [PlantObject]()
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,14 +50,11 @@ private extension HomeViewController {
     }
 
     private func setupViews(){
-        view.backgroundColor = .background
+        view.backgroundColor = .accentDark
 
-        view.addSubview(buttonView)
-        view.addSubview(greetingsView)
-        view.addSubview(shadowImageView)
-        view.addSubview(weatherInfoView)
-        view.addSubview(taskManagerButton)
-        view.addSubview(gardenHeader)
+        [buttonView, greetingsView, shadowImageView, weatherInfoView, taskManagerButton, gardenHeader].forEach { item in
+            view.addSubview(item)
+        }
 
         buttonView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
@@ -110,7 +98,7 @@ private extension HomeViewController {
         gardenCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
         gardenCollectionView.register(PlantCell.self, forCellWithReuseIdentifier: "\(PlantCell.self)")
-        gardenCollectionView.backgroundColor = .background
+        gardenCollectionView.backgroundColor = .accentDark
         gardenCollectionView.showsVerticalScrollIndicator = false
         gardenCollectionView.showsHorizontalScrollIndicator = false
 
@@ -130,14 +118,14 @@ private extension HomeViewController {
 //MARK: - UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return plants.count
+        return userPlants.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(PlantCell.self)", for: indexPath) as? PlantCell else {
             return UICollectionViewCell()
         }
-        let plant = plants[indexPath.row]
+        let plant = userPlants[indexPath.row]
         cell.configureCell(with: plant)
         return cell
     }
@@ -146,14 +134,21 @@ extension HomeViewController: UICollectionViewDataSource{
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width / 2
-        let height = collectionView.bounds.height - 20
+        let height = collectionView.bounds.height - 30
         return CGSize(width: width, height: height)
     }
 }
 
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected item at index \(indexPath.item)")
+        print("Selected item in section \(indexPath.section) at index \(indexPath.item)")
+    }
+}
+
 extension HomeViewController: HomeModuleEventsDelegate {
-    func didTapButton(sender: GardenHeader) {
-        print("Нажали добавить новое растение")
+    func didTapAddNewPlantButton(sender: GardenHeader) {
+        presenter?.didTapAddNewPlant()
     }
 
     func didTapSearchButton(sender: ButtonView) {
@@ -177,5 +172,10 @@ extension HomeViewController: HomeViewProtocol {
 
     func showCurrentWeatherData(with weather: WeatherData) {
         weatherInfoView.setInfo(with: weather)
+    }
+
+    func setPlants(with plants: [PlantObject]) {
+        userPlants = plants
+        gardenCollectionView.reloadData()
     }
 }

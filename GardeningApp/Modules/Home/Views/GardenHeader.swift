@@ -9,14 +9,12 @@
 
 import UIKit
 
-
-
 final class GardenHeader: UIView {
 
     weak var delegate: HomeModuleEventsDelegate?
 
-    private let header = CustomLabel(fontName: UIFont.title2(), text: "My Garden")
-    private let addPlantButton = CustomButton(imageName: "plus.circle.fill", configImagePointSize: 20, text: "Add new plant")
+    private let header = CustomLabel(fontName: UIFont.title2(), text: "My Garden", textColor: .accentLight)
+    private let addPlantButton = CustomImageButton(imageName: "plus.circle.fill", configImagePointSize: 20, text: "Add new plant")
     private let dividerLine = UIView()
 
     private let stackView = UIStackView()
@@ -37,7 +35,7 @@ final class GardenHeader: UIView {
 
     private func setupLine() {
         addSubview(dividerLine)
-        dividerLine.backgroundColor = .accent
+        dividerLine.backgroundColor = .accentLight
 
         dividerLine.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
@@ -65,6 +63,6 @@ final class GardenHeader: UIView {
 
     //MARK: - Selectors
     @objc private func handleTap(){
-        delegate?.didTapButton(sender: self)
+        delegate?.didTapAddNewPlantButton(sender: self)
     }
 }

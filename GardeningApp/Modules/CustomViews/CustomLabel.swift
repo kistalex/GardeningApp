@@ -11,9 +11,9 @@ import UIKit
 
 final class CustomLabel: UILabel {
 
-    init(fontName: UIFont, text: String? = nil) {
+    init(fontName: UIFont, text: String? = nil, textColor: UIColor) {
         super.init(frame: .zero)
-        textColor = .accent
+        self.textColor = textColor
         numberOfLines = 0
         font = fontName
         textAlignment = .center
@@ -22,6 +22,6 @@ final class CustomLabel: UILabel {
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
 }

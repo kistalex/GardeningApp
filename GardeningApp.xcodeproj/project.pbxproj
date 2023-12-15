@@ -20,7 +20,7 @@
 		4630C7822B2633AE0008AE2C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4630C7812B2633AE0008AE2C /* SnapKit */; };
 		4630C7882B2755F40008AE2C /* GreetingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7872B2755F40008AE2C /* GreetingProvider.swift */; };
 		4630C78D2B2757720008AE2C /* Extension+UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C78C2B2757720008AE2C /* Extension+UIFont.swift */; };
-		4630C78F2B275A4F0008AE2C /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C78E2B275A4F0008AE2C /* CustomButton.swift */; };
+		4630C78F2B275A4F0008AE2C /* CustomImageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C78E2B275A4F0008AE2C /* CustomImageButton.swift */; };
 		4630C7912B275AB70008AE2C /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7902B275AB70008AE2C /* CustomLabel.swift */; };
 		4630C7932B27638B0008AE2C /* WeatherInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7922B27638B0008AE2C /* WeatherInfoSection.swift */; };
 		4630C7992B2767E50008AE2C /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7982B2767E50008AE2C /* Endpoints.swift */; };
@@ -29,12 +29,24 @@
 		4630C7A52B2774F30008AE2C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4630C7A42B2774F30008AE2C /* Alamofire */; };
 		4630C7A82B286CF50008AE2C /* GardenHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7A72B286CF50008AE2C /* GardenHeader.swift */; };
 		4630C7AB2B287A690008AE2C /* PlantCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7AA2B287A690008AE2C /* PlantCell.swift */; };
-		4630C7AD2B287EE20008AE2C /* Plant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7AC2B287EE20008AE2C /* Plant.swift */; };
+		4630C7AD2B287EE20008AE2C /* PlantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7AC2B287EE20008AE2C /* PlantViewModel.swift */; };
 		4630C7AF2B289DD20008AE2C /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7AE2B289DD20008AE2C /* ButtonView.swift */; };
 		4630C7B22B289F370008AE2C /* ShadowImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7B12B289F370008AE2C /* ShadowImageView.swift */; };
 		4630C7B42B28A0C00008AE2C /* GreetingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7B32B28A0C00008AE2C /* GreetingsView.swift */; };
 		4630C7B72B28A2E90008AE2C /* WeatherInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7B62B28A2E90008AE2C /* WeatherInfoView.swift */; };
 		4630C7B92B28B1330008AE2C /* HomeModuleEventsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7B82B28B1330008AE2C /* HomeModuleEventsDelegate.swift */; };
+		4630C7CC2B28B7D00008AE2C /* NewPlantModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7C72B28B7D00008AE2C /* NewPlantModuleBuilder.swift */; };
+		4630C7CD2B28B7D00008AE2C /* NewPlantPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7C82B28B7D00008AE2C /* NewPlantPresenter.swift */; };
+		4630C7CE2B28B7D00008AE2C /* NewPlantRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7C92B28B7D00008AE2C /* NewPlantRouter.swift */; };
+		4630C7CF2B28B7D00008AE2C /* NewPlantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7CA2B28B7D00008AE2C /* NewPlantViewController.swift */; };
+		4630C7D02B28B7D00008AE2C /* NewPlantInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7CB2B28B7D00008AE2C /* NewPlantInteractor.swift */; };
+		4630C7D42B28CBA20008AE2C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D32B28CBA20008AE2C /* CustomTextField.swift */; };
+		4630C7D62B28D1FD0008AE2C /* CustomTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */; };
+		4630C7D82B28DFE90008AE2C /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D72B28DFE90008AE2C /* CustomTextView.swift */; };
+		468883902B2B145500B8CA80 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688838F2B2B145500B8CA80 /* CustomImageView.swift */; };
+		468883922B2B22E400B8CA80 /* PlantObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468883912B2B22E400B8CA80 /* PlantObject.swift */; };
+		468883952B2B237600B8CA80 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 468883942B2B237600B8CA80 /* Realm */; };
+		468883972B2B237600B8CA80 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 468883962B2B237600B8CA80 /* RealmSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +64,7 @@
 		4630C77E2B262A460008AE2C /* ImageProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageProvider.swift; sourceTree = "<group>"; };
 		4630C7872B2755F40008AE2C /* GreetingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingProvider.swift; sourceTree = "<group>"; };
 		4630C78C2B2757720008AE2C /* Extension+UIFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIFont.swift"; sourceTree = "<group>"; };
-		4630C78E2B275A4F0008AE2C /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		4630C78E2B275A4F0008AE2C /* CustomImageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageButton.swift; sourceTree = "<group>"; };
 		4630C7902B275AB70008AE2C /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		4630C7922B27638B0008AE2C /* WeatherInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoSection.swift; sourceTree = "<group>"; };
 		4630C7982B2767E50008AE2C /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
@@ -60,12 +72,22 @@
 		4630C79D2B276FBE0008AE2C /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		4630C7A72B286CF50008AE2C /* GardenHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenHeader.swift; sourceTree = "<group>"; };
 		4630C7AA2B287A690008AE2C /* PlantCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantCell.swift; sourceTree = "<group>"; };
-		4630C7AC2B287EE20008AE2C /* Plant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plant.swift; sourceTree = "<group>"; };
+		4630C7AC2B287EE20008AE2C /* PlantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantViewModel.swift; sourceTree = "<group>"; };
 		4630C7AE2B289DD20008AE2C /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		4630C7B12B289F370008AE2C /* ShadowImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowImageView.swift; sourceTree = "<group>"; };
 		4630C7B32B28A0C00008AE2C /* GreetingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingsView.swift; sourceTree = "<group>"; };
 		4630C7B62B28A2E90008AE2C /* WeatherInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherInfoView.swift; sourceTree = "<group>"; };
 		4630C7B82B28B1330008AE2C /* HomeModuleEventsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModuleEventsDelegate.swift; sourceTree = "<group>"; };
+		4630C7C72B28B7D00008AE2C /* NewPlantModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantModuleBuilder.swift; sourceTree = "<group>"; };
+		4630C7C82B28B7D00008AE2C /* NewPlantPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantPresenter.swift; sourceTree = "<group>"; };
+		4630C7C92B28B7D00008AE2C /* NewPlantRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantRouter.swift; sourceTree = "<group>"; };
+		4630C7CA2B28B7D00008AE2C /* NewPlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantViewController.swift; sourceTree = "<group>"; };
+		4630C7CB2B28B7D00008AE2C /* NewPlantInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantInteractor.swift; sourceTree = "<group>"; };
+		4630C7D32B28CBA20008AE2C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextButton.swift; sourceTree = "<group>"; };
+		4630C7D72B28DFE90008AE2C /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		4688838F2B2B145500B8CA80 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		468883912B2B22E400B8CA80 /* PlantObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468883972B2B237600B8CA80 /* RealmSwift in Frameworks */,
+				468883952B2B237600B8CA80 /* Realm in Frameworks */,
 				4630C7822B2633AE0008AE2C /* SnapKit in Frameworks */,
 				4630C7A52B2774F30008AE2C /* Alamofire in Frameworks */,
 			);
@@ -133,6 +157,8 @@
 		4630C7702B261A0A0008AE2C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4630C7B52B28A1A70008AE2C /* CustomViews */,
+				4630C7C62B28B7B50008AE2C /* NewPlant */,
 				4630C7712B261A140008AE2C /* Home */,
 			);
 			path = Modules;
@@ -156,7 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				4630C7A92B287A4F0008AE2C /* PlantCell */,
-				4630C7B52B28A1A70008AE2C /* CustomViews */,
 				4630C7AE2B289DD20008AE2C /* ButtonView.swift */,
 				4630C7B32B28A0C00008AE2C /* GreetingsView.swift */,
 				4630C7B12B289F370008AE2C /* ShadowImageView.swift */,
@@ -221,7 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				4630C79D2B276FBE0008AE2C /* WeatherData.swift */,
-				4630C7AC2B287EE20008AE2C /* Plant.swift */,
+				4630C7AC2B287EE20008AE2C /* PlantViewModel.swift */,
+				468883912B2B22E400B8CA80 /* PlantObject.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -237,10 +263,34 @@
 		4630C7B52B28A1A70008AE2C /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				4630C78E2B275A4F0008AE2C /* CustomButton.swift */,
+				4630C7D32B28CBA20008AE2C /* CustomTextField.swift */,
+				4630C78E2B275A4F0008AE2C /* CustomImageButton.swift */,
 				4630C7902B275AB70008AE2C /* CustomLabel.swift */,
+				4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */,
+				4630C7D72B28DFE90008AE2C /* CustomTextView.swift */,
+				4688838F2B2B145500B8CA80 /* CustomImageView.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		4630C7C62B28B7B50008AE2C /* NewPlant */ = {
+			isa = PBXGroup;
+			children = (
+				4630C7D12B28CB780008AE2C /* Views */,
+				4630C7C72B28B7D00008AE2C /* NewPlantModuleBuilder.swift */,
+				4630C7C82B28B7D00008AE2C /* NewPlantPresenter.swift */,
+				4630C7C92B28B7D00008AE2C /* NewPlantRouter.swift */,
+				4630C7CA2B28B7D00008AE2C /* NewPlantViewController.swift */,
+				4630C7CB2B28B7D00008AE2C /* NewPlantInteractor.swift */,
+			);
+			path = NewPlant;
+			sourceTree = "<group>";
+		};
+		4630C7D12B28CB780008AE2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +312,8 @@
 			packageProductDependencies = (
 				4630C7812B2633AE0008AE2C /* SnapKit */,
 				4630C7A42B2774F30008AE2C /* Alamofire */,
+				468883942B2B237600B8CA80 /* Realm */,
+				468883962B2B237600B8CA80 /* RealmSwift */,
 			);
 			productName = GardeningApp;
 			productReference = 4630C7572B2619B40008AE2C /* GardeningApp.app */;
@@ -294,6 +346,7 @@
 			packageReferences = (
 				4630C7802B2633AE0008AE2C /* XCRemoteSwiftPackageReference "SnapKit" */,
 				4630C7A32B2774F30008AE2C /* XCRemoteSwiftPackageReference "Alamofire" */,
+				468883932B2B237600B8CA80 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 4630C7582B2619B40008AE2C /* Products */;
 			projectDirPath = "";
@@ -328,19 +381,29 @@
 				4630C77F2B262A460008AE2C /* ImageProvider.swift in Sources */,
 				4630C7772B2623FD0008AE2C /* HomeModuleBuilder.swift in Sources */,
 				4630C7792B2623FD0008AE2C /* HomeRouter.swift in Sources */,
+				468883902B2B145500B8CA80 /* CustomImageView.swift in Sources */,
 				4630C7992B2767E50008AE2C /* Endpoints.swift in Sources */,
-				4630C7AD2B287EE20008AE2C /* Plant.swift in Sources */,
+				4630C7AD2B287EE20008AE2C /* PlantViewModel.swift in Sources */,
 				4630C77B2B2623FD0008AE2C /* HomeInteractor.swift in Sources */,
+				4630C7D82B28DFE90008AE2C /* CustomTextView.swift in Sources */,
+				4630C7CC2B28B7D00008AE2C /* NewPlantModuleBuilder.swift in Sources */,
+				4630C7CE2B28B7D00008AE2C /* NewPlantRouter.swift in Sources */,
+				4630C7D02B28B7D00008AE2C /* NewPlantInteractor.swift in Sources */,
 				4630C7AF2B289DD20008AE2C /* ButtonView.swift in Sources */,
+				4630C7D42B28CBA20008AE2C /* CustomTextField.swift in Sources */,
 				4630C75B2B2619B40008AE2C /* AppDelegate.swift in Sources */,
 				4630C79B2B276ED40008AE2C /* WeatherApiManager.swift in Sources */,
 				4630C7782B2623FD0008AE2C /* HomePresenter.swift in Sources */,
 				4630C77A2B2623FD0008AE2C /* HomeViewController.swift in Sources */,
 				4630C7A82B286CF50008AE2C /* GardenHeader.swift in Sources */,
-				4630C78F2B275A4F0008AE2C /* CustomButton.swift in Sources */,
+				4630C78F2B275A4F0008AE2C /* CustomImageButton.swift in Sources */,
 				4630C7912B275AB70008AE2C /* CustomLabel.swift in Sources */,
 				4630C75D2B2619B40008AE2C /* SceneDelegate.swift in Sources */,
 				4630C79E2B276FBE0008AE2C /* WeatherData.swift in Sources */,
+				4630C7CD2B28B7D00008AE2C /* NewPlantPresenter.swift in Sources */,
+				468883922B2B22E400B8CA80 /* PlantObject.swift in Sources */,
+				4630C7CF2B28B7D00008AE2C /* NewPlantViewController.swift in Sources */,
+				4630C7D62B28D1FD0008AE2C /* CustomTextButton.swift in Sources */,
 				4630C7932B27638B0008AE2C /* WeatherInfoSection.swift in Sources */,
 				4630C7AB2B287A690008AE2C /* PlantCell.swift in Sources */,
 				4630C7882B2755F40008AE2C /* GreetingProvider.swift in Sources */,
@@ -414,7 +477,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -471,7 +534,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -497,7 +560,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,7 +591,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -583,6 +646,14 @@
 				minimumVersion = 5.8.1;
 			};
 		};
+		468883932B2B237600B8CA80 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.44.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -595,6 +666,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4630C7A32B2774F30008AE2C /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		468883942B2B237600B8CA80 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 468883932B2B237600B8CA80 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		468883962B2B237600B8CA80 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 468883932B2B237600B8CA80 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

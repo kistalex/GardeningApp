@@ -9,7 +9,7 @@
 
 import UIKit
 
-class WeatherInfoSection: UIView {
+final class WeatherInfoSection: UIView {
 
     private let stackView = UIStackView()
     private let imageView = UIImageView()
@@ -18,8 +18,8 @@ class WeatherInfoSection: UIView {
     init(imageName: String) {
         super.init(frame: .zero)
         imageView.image = UIImage(systemName: imageName)
-        imageView.tintColor = .accent
-        label.textColor = .accent
+        imageView.tintColor = .accentLight
+        label.textColor = .accentLight
         label.text = "-/-"
         label.font = UIFont.body()
         setupViews()

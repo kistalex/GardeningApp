@@ -6,12 +6,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 protocol HomePresenterProtocol: AnyObject {
     func viewDidLoad()
     func currentTimeImageFetched(with image: UIImage?)
     func currentGreetingFetched(with text: String)
     func currentWeatherFetched(with weatherData: WeatherData)
+    func plantsFetched(with plants: [PlantObject])
+    func didTapAddNewPlant()
+//    func setPlants()
 }
 
 class HomePresenter {
@@ -30,7 +34,20 @@ extension HomePresenter: HomePresenterProtocol {
     func viewDidLoad() {
         interactor.fetchCurrentGreetings()
         interactor.fetchCurrentTimeImage()
-//        interactor.fetchCurrenLocationWeather()
+        interactor.fetchUserPlants()
+    }
+
+    func didTapAddNewPlant() {
+        router.openNewPlantVC()
+    }
+
+//    func setPlants() {
+//        let plants = interactor.fetchPlants()
+//        view?.setPlants(with: plants)
+//    }
+    
+    func plantsFetched(with plants: [PlantObject]) {
+        view?.setPlants(with: plants)
     }
 
     func currentGreetingFetched(with text: String) {
@@ -40,7 +57,7 @@ extension HomePresenter: HomePresenterProtocol {
     func currentTimeImageFetched(with image: UIImage?) {
         view?.showImageForCurrentTime(image: image)
     }
-    
+
     func currentWeatherFetched(with weatherData: WeatherData) {
         view?.showCurrentWeatherData(with: weatherData)
     }
