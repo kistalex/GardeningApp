@@ -25,7 +25,7 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
     private let weatherManager: WeatherApiManager
     private let locationManager: CLLocationManager
     
-    private let realm: Realm!
+    private let realm: Realm?
     private var notificationToken: NotificationToken?
 
     init(imageProvider: ImageProvider,greetingProvider: GreetingProvider, locationManager: CLLocationManager, weatherManager: WeatherApiManager) {
@@ -50,8 +50,8 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
     }
 
     func setupPlantChangeNotifications() {
-        let plants = realm.objects(PlantObject.self)
-        notificationToken = plants.observe { [weak self] (changes: RealmCollectionChange) in
+        let plants = realm?.objects(PlantObject.self)
+        notificationToken = plants?.observe { [weak self] (changes: RealmCollectionChange) in
             switch changes {
             case .initial(let plants):
                 self?.presenter?.plantsFetched(with: Array(plants))
@@ -75,7 +75,8 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
     }
 
     func fetchUserPlants(){
-        let plants = realm.objects(PlantObject.self)
+        let plantsObjects = realm?.objects(PlantObject.self)
+        guard let plants = plantsObjects else { return }
         presenter?.plantsFetched(with: Array(plants))
     }
 

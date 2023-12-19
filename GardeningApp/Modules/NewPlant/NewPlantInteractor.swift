@@ -10,7 +10,7 @@ import RealmSwift
 
 protocol NewPlantInteractorProtocol: AnyObject {
     func createPickerConfiguration() -> PHPickerConfiguration
-    func savePlantObject(with plant: PlantObject)
+    func savePlantObject(image: UIImage?, name: String, age: String, description: String?)
 }
 
 class NewPlantInteractor: NewPlantInteractorProtocol {
@@ -35,11 +35,15 @@ class NewPlantInteractor: NewPlantInteractorProtocol {
         return config
     }
 
-    func savePlantObject(with plant: PlantObject) {
+    func savePlantObject(image: UIImage?, name: String, age: String, description: String?) {
+        let userDescription = description?.isEmpty ?? true ?  "Your observations and notes on flower care could have been here, but you didn't add them😔" : description
+
+        let plant = PlantObject(imageData: image?.jpegData(compressionQuality: 1.0), plantName: name, plantAge: age, plantDescription: userDescription)
+
         do {
-            try realm?.write {
+            try realm?.write({
                 realm?.add(plant)
-            }
+            })
         } catch {
             print(error)
         }

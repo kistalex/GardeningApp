@@ -66,11 +66,11 @@ private extension HomeViewController {
             make.centerX.equalToSuperview()
         }
 
-
         shadowImageView.snp.makeConstraints { make in
             make.top.equalTo(greetingsView.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
-            make.size.equalTo(175).multipliedBy(2)
+            make.height.equalToSuperview().dividedBy(5)
+            make.width.equalTo(shadowImageView.snp.height)
         }
 
         weatherInfoView.snp.makeConstraints { make in
@@ -141,8 +141,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Selected item at index \(indexPath.item)")
-        print("Selected item in section \(indexPath.section) at index \(indexPath.item)")
+        let plant = userPlants[indexPath.row]
+        presenter?.didTapOpenGardenInfo(with: plant)
     }
 }
 

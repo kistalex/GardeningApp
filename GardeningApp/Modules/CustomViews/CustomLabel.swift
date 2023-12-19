@@ -11,12 +11,12 @@ import UIKit
 
 final class CustomLabel: UILabel {
 
-    init(fontName: UIFont, text: String? = nil, textColor: UIColor) {
+    init(fontName: UIFont, text: String? = nil, textColor: UIColor, textAlignment: NSTextAlignment = .center) {
         super.init(frame: .zero)
         self.textColor = textColor
         numberOfLines = 0
         font = fontName
-        textAlignment = .center
+        self.textAlignment = textAlignment
         self.text = text
 
     }

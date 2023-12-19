@@ -43,8 +43,7 @@ extension NewPlantPresenter: NewPlantPresenterProtocol {
     }
 
     func didTapSavePlant(image: UIImage?, name: String, age: String, description: String?) {
-        let plant = PlantObject(imageData: image?.jpegData(compressionQuality: 1.0), plantName: name, plantAge: age, plantDescription: description)
-        interactor.savePlantObject(with: plant)
+        interactor.savePlantObject(image: image, name: name, age: age, description: description)
         router.dismissViewController()
     }
 }

@@ -47,6 +47,11 @@
 		468883922B2B22E400B8CA80 /* PlantObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468883912B2B22E400B8CA80 /* PlantObject.swift */; };
 		468883952B2B237600B8CA80 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 468883942B2B237600B8CA80 /* Realm */; };
 		468883972B2B237600B8CA80 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 468883962B2B237600B8CA80 /* RealmSwift */; };
+		468883A02B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */; };
+		468883A12B2CD44900B8CA80 /* GardenInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839C2B2CD44900B8CA80 /* GardenInfoPresenter.swift */; };
+		468883A22B2CD44900B8CA80 /* GardenInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839D2B2CD44900B8CA80 /* GardenInfoRouter.swift */; };
+		468883A32B2CD44900B8CA80 /* GardenInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839E2B2CD44900B8CA80 /* GardenInfoViewController.swift */; };
+		468883A42B2CD44900B8CA80 /* GardenInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839F2B2CD44900B8CA80 /* GardenInfoInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +93,11 @@
 		4630C7D72B28DFE90008AE2C /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		4688838F2B2B145500B8CA80 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		468883912B2B22E400B8CA80 /* PlantObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantObject.swift; sourceTree = "<group>"; };
+		4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoModuleBuilder.swift; sourceTree = "<group>"; };
+		4688839C2B2CD44900B8CA80 /* GardenInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoPresenter.swift; sourceTree = "<group>"; };
+		4688839D2B2CD44900B8CA80 /* GardenInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoRouter.swift; sourceTree = "<group>"; };
+		4688839E2B2CD44900B8CA80 /* GardenInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoViewController.swift; sourceTree = "<group>"; };
+		4688839F2B2CD44900B8CA80 /* GardenInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +167,7 @@
 		4630C7702B261A0A0008AE2C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4688839A2B2CD41C00B8CA80 /* GardenInfo */,
 				4630C7B52B28A1A70008AE2C /* CustomViews */,
 				4630C7C62B28B7B50008AE2C /* NewPlant */,
 				4630C7712B261A140008AE2C /* Home */,
@@ -293,6 +304,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4688839A2B2CD41C00B8CA80 /* GardenInfo */ = {
+			isa = PBXGroup;
+			children = (
+				4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */,
+				4688839C2B2CD44900B8CA80 /* GardenInfoPresenter.swift */,
+				4688839D2B2CD44900B8CA80 /* GardenInfoRouter.swift */,
+				4688839E2B2CD44900B8CA80 /* GardenInfoViewController.swift */,
+				4688839F2B2CD44900B8CA80 /* GardenInfoInteractor.swift */,
+			);
+			path = GardenInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -377,13 +400,16 @@
 				4630C7B92B28B1330008AE2C /* HomeModuleEventsDelegate.swift in Sources */,
 				4630C7B72B28A2E90008AE2C /* WeatherInfoView.swift in Sources */,
 				4630C7B22B289F370008AE2C /* ShadowImageView.swift in Sources */,
+				468883A02B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift in Sources */,
 				4630C7B42B28A0C00008AE2C /* GreetingsView.swift in Sources */,
+				468883A22B2CD44900B8CA80 /* GardenInfoRouter.swift in Sources */,
 				4630C77F2B262A460008AE2C /* ImageProvider.swift in Sources */,
 				4630C7772B2623FD0008AE2C /* HomeModuleBuilder.swift in Sources */,
 				4630C7792B2623FD0008AE2C /* HomeRouter.swift in Sources */,
 				468883902B2B145500B8CA80 /* CustomImageView.swift in Sources */,
 				4630C7992B2767E50008AE2C /* Endpoints.swift in Sources */,
 				4630C7AD2B287EE20008AE2C /* PlantViewModel.swift in Sources */,
+				468883A12B2CD44900B8CA80 /* GardenInfoPresenter.swift in Sources */,
 				4630C77B2B2623FD0008AE2C /* HomeInteractor.swift in Sources */,
 				4630C7D82B28DFE90008AE2C /* CustomTextView.swift in Sources */,
 				4630C7CC2B28B7D00008AE2C /* NewPlantModuleBuilder.swift in Sources */,
@@ -392,6 +418,7 @@
 				4630C7AF2B289DD20008AE2C /* ButtonView.swift in Sources */,
 				4630C7D42B28CBA20008AE2C /* CustomTextField.swift in Sources */,
 				4630C75B2B2619B40008AE2C /* AppDelegate.swift in Sources */,
+				468883A42B2CD44900B8CA80 /* GardenInfoInteractor.swift in Sources */,
 				4630C79B2B276ED40008AE2C /* WeatherApiManager.swift in Sources */,
 				4630C7782B2623FD0008AE2C /* HomePresenter.swift in Sources */,
 				4630C77A2B2623FD0008AE2C /* HomeViewController.swift in Sources */,
@@ -400,6 +427,7 @@
 				4630C7912B275AB70008AE2C /* CustomLabel.swift in Sources */,
 				4630C75D2B2619B40008AE2C /* SceneDelegate.swift in Sources */,
 				4630C79E2B276FBE0008AE2C /* WeatherData.swift in Sources */,
+				468883A32B2CD44900B8CA80 /* GardenInfoViewController.swift in Sources */,
 				4630C7CD2B28B7D00008AE2C /* NewPlantPresenter.swift in Sources */,
 				468883922B2B22E400B8CA80 /* PlantObject.swift in Sources */,
 				4630C7CF2B28B7D00008AE2C /* NewPlantViewController.swift in Sources */,

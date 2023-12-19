@@ -54,7 +54,7 @@ class PlantCell: UICollectionViewCell {
         plantImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.centerX.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.7)
+            make.height.equalToSuperview().dividedBy(1.5)
             make.width.equalTo(plantImageView.snp.height)
         }
 

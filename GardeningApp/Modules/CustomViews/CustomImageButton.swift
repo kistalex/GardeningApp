@@ -10,7 +10,7 @@
 import UIKit
 
 final class CustomImageButton: UIButton {
-
+    
     init(imageName: String, configImagePointSize: CGFloat, text: String? = nil, bgColor: UIColor? = nil){
         super.init(frame: .zero)
         let configuration = UIImage.SymbolConfiguration(pointSize: configImagePointSize)

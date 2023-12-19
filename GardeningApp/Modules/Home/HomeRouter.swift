@@ -7,6 +7,7 @@
 
 protocol HomeRouterProtocol {
     func openNewPlantVC()
+    func openGardenInfoVC(with plant: PlantObject)
 }
 
 class HomeRouter {
@@ -18,10 +19,13 @@ extension HomeRouter: HomeRouterProtocol {
         let vc = NewPlantModuleBuilder.build()
         viewController?.present(vc, animated: true)
     }
+
+    func openGardenInfoVC(with plant: PlantObject) {
+        let vc = GardenInfoModuleBuilder.build(with: plant)
+        if let sheet = vc.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        viewController?.present(vc, animated: true)
+    }
 }
-/*
- if let sheet = addExpense.sheetPresentationController {
-     sheet.detents = [.medium()]
-     sheet.prefersGrabberVisible = true
- }
- */
+

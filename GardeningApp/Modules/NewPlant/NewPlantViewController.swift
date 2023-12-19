@@ -22,7 +22,8 @@ class NewPlantViewController: UIViewController {
     private let recommendationLabel = CustomLabel(fontName: UIFont.body(), text: "If you want, you can add a description of your plant or some personal observations.", textColor: .accentLight)
     private let descriptionTView = CustomTextView()
     private let saveButton = CustomTextButton(text: "Save", bgColor: .accentLight)
-    
+    private let contentView = UIView()
+
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,52 +38,59 @@ private extension NewPlantViewController {
         setupViews()
         setupGesture()
     }
-    
+
     private func setupViews(){
+
+        view.addSubview(contentView)
+
         [plantImageView, nameTField, recommendationLabel ,ageTField, descriptionTView, saveButton].forEach { item in
-            view.addSubview(item)
+            contentView.addSubview(item)
         }
-        
+
+        contentView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.keyboardLayoutGuide.snp.top).inset(20)
+        }
+
         plantImageView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(10)
+            make.top.equalToSuperview().offset(10)
             make.centerX.equalToSuperview()
-            make.size.equalTo(175)
+            make.height.equalToSuperview().dividedBy(3.5)
+            make.width.equalTo(plantImageView.snp.height)
         }
-        
+
         nameTField.snp.makeConstraints { make in
-            make.top.equalTo(plantImageView.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(plantImageView.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(10)
             make.height.equalToSuperview().dividedBy(15)
         }
-        
+
         ageTField.snp.makeConstraints { make in
-            make.top.equalTo(nameTField.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(nameTField.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(10)
             make.height.equalToSuperview().dividedBy(15)
         }
-        
+
         recommendationLabel.snp.makeConstraints { make in
-            make.top.equalTo(ageTField.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(ageTField.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(10)
         }
-        
+
         descriptionTView.snp.makeConstraints { make in
-            make.top.equalTo(recommendationLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
+            make.top.equalTo(recommendationLabel.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(10)
             make.height.equalToSuperview().dividedBy(5)
         }
-        
+
         saveButton.snp.makeConstraints { make in
-            make.top.equalTo(descriptionTView.snp.bottom).offset(20)
+            make.top.equalTo(descriptionTView.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
             make.height.equalTo(50)
             make.width.equalTo(150)
         }
-
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
     }
-    
-    
+
     private func setupGesture(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
         plantImageView.isUserInteractionEnabled = true
@@ -94,12 +102,12 @@ private extension NewPlantViewController {
     @objc private func openImagePicker() {
         presenter?.didTapOpenImagePicker()
     }
-
+    
     @objc private func saveButtonTapped() {
         guard  let image = plantImageView.image,
                let name = nameTField.text, !name.isEmpty,
                let age = ageTField.text, !age.isEmpty,
-        let description = descriptionTView.text else { return }
+               let description = descriptionTView.text else { return }
         presenter?.didTapSavePlant(image: image, name: name, age: age, description: description)
     }
 }
@@ -118,3 +126,5 @@ extension NewPlantViewController: NewPlantViewProtocol {
         }
     }
 }
+
+
