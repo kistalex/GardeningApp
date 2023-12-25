@@ -9,7 +9,7 @@ import CoreLocation
 import WeatherKit
 
 class HomeModuleBuilder {
-    static func build() -> HomeViewController {
+    static func build() -> UINavigationController {
         let imageProvider = ImageProvider()
         let locationManager = CLLocationManager()
         let weatherManager = WeatherApiManager()
@@ -22,6 +22,11 @@ class HomeModuleBuilder {
         viewController.presenter = presenter
         interactor.presenter = presenter
         router.viewController = viewController
-        return viewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        navigationController.navigationBar.prefersLargeTitles = false
+        navigationController.navigationBar.tintColor = .accentLight
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.accentLight]
+        return navigationController
+//        return viewController
     }
 }

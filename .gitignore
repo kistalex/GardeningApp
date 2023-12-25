@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/xcode,swiftpackagemanager,swiftpm,swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swiftpackagemanager,swiftpm,swift
 
+
+
+GardeningApp/Modules/PlantsTasks/Views/DatePickerView/Previews/
+
 ### Swift ###
 # Xcode
 #

@@ -24,10 +24,12 @@ class HomeViewController: UIViewController {
     private lazy var shadowImageView = ShadowImageView()
     private let weatherInfoView = WeatherInfoView()
     private let gardenHeader = GardenHeader(frame: .zero)
-    private let taskManagerButton = CustomImageButton(imageName: "list.number", configImagePointSize: 40, bgColor: .accentLight)
+    private let taskManagerButton = CustomImageButton(imageName: "", configImagePointSize: 40, bgColor: .accentLight)
     private lazy var gardenCollectionView = UICollectionView()
     
     private var userPlants = [PlantObject]()
+    private var widthConstraint: Constraint?
+
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,13 +53,14 @@ private extension HomeViewController {
 
     private func setupViews(){
         view.backgroundColor = .accentDark
+        title = "Home"
 
         [buttonView, greetingsView, shadowImageView, weatherInfoView, taskManagerButton, gardenHeader].forEach { item in
             view.addSubview(item)
         }
 
         buttonView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide)
             make.leading.trailing.equalToSuperview().inset(20)
         }
 
@@ -87,6 +90,38 @@ private extension HomeViewController {
         taskManagerButton.snp.makeConstraints { make in
             make.centerY.equalTo(shadowImageView.snp.centerY)
             make.trailing.equalToSuperview()
+            widthConstraint = make.width.equalTo(35).constraint // Save reference to the width constraint
+            make.height.equalTo(35)
+        }
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        taskManagerButton.addGestureRecognizer(panGesture)
+        taskManagerButton.addTarget(self, action: #selector(taskButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func taskButtonTapped(){
+        presenter?.didTapTaskManagerButton()
+    }
+
+    @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
+        switch gesture.state {
+        case .changed:
+            let translation = gesture.translation(in: taskManagerButton)
+            let minWidth: CGFloat = 30
+            let maxWidth: CGFloat = 150
+            if let currentWidth = widthConstraint?.layoutConstraints.first?.constant {
+                let newWidth = min(maxWidth, max(minWidth, currentWidth - translation.x))
+                widthConstraint?.update(offset: newWidth)
+                self.view.layoutIfNeeded()
+            }
+            gesture.setTranslation(.zero, in: taskManagerButton)
+        case .ended, .cancelled:
+            widthConstraint?.update(offset: 35)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+        default:
+            break
         }
     }
 

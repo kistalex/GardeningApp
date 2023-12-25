@@ -15,6 +15,7 @@ protocol HomePresenterProtocol: AnyObject {
     func currentWeatherFetched(with weatherData: WeatherData)
     func plantsFetched(with plants: [PlantObject])
     func didTapAddNewPlant()
+    func didTapTaskManagerButton()
     func didTapOpenGardenInfo(with plant: PlantObject)
 }
 
@@ -44,7 +45,11 @@ extension HomePresenter: HomePresenterProtocol {
     func didTapOpenGardenInfo(with plant: PlantObject) {
         router.openGardenInfoVC(with: plant)
     }
-    
+
+    func didTapTaskManagerButton() {
+        router.openPlantsTasksVC()
+    }
+
     func plantsFetched(with plants: [PlantObject]) {
         view?.setPlants(with: plants)
     }
