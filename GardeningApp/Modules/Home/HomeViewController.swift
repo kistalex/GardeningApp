@@ -90,7 +90,7 @@ private extension HomeViewController {
         taskManagerButton.snp.makeConstraints { make in
             make.centerY.equalTo(shadowImageView.snp.centerY)
             make.trailing.equalToSuperview()
-            widthConstraint = make.width.equalTo(35).constraint // Save reference to the width constraint
+            widthConstraint = make.width.equalTo(35).constraint
             make.height.equalTo(35)
         }
         

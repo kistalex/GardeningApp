@@ -43,18 +43,12 @@
 		4630C7D42B28CBA20008AE2C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D32B28CBA20008AE2C /* CustomTextField.swift */; };
 		4630C7D62B28D1FD0008AE2C /* CustomTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */; };
 		4630C7D82B28DFE90008AE2C /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D72B28DFE90008AE2C /* CustomTextView.swift */; };
-		464369E52B3A085400C8ECA4 /* Extensions+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464369E42B3A085400C8ECA4 /* Extensions+Date.swift */; };
+		464369E72B3DB9B000C8ECA4 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464369E62B3DB9B000C8ECA4 /* CalendarCell.swift */; };
 		464BCE402B359DC20016E126 /* PlantsTasksModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE3B2B359DC20016E126 /* PlantsTasksModuleBuilder.swift */; };
 		464BCE412B359DC20016E126 /* PlantsTasksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE3C2B359DC20016E126 /* PlantsTasksPresenter.swift */; };
 		464BCE422B359DC20016E126 /* PlantsTasksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE3D2B359DC20016E126 /* PlantsTasksRouter.swift */; };
 		464BCE432B359DC20016E126 /* PlantsTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE3E2B359DC20016E126 /* PlantsTasksViewController.swift */; };
 		464BCE442B359DC20016E126 /* PlantsTasksInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE3F2B359DC20016E126 /* PlantsTasksInteractor.swift */; };
-		464BCE882B3862650016E126 /* DatePickerWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE862B3862650016E126 /* DatePickerWeekView.swift */; };
-		464BCE892B3862650016E126 /* InfiniteTabPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE872B3862650016E126 /* InfiniteTabPageView.swift */; };
-		464BCE8B2B3862800016E126 /* WeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE8A2B3862800016E126 /* WeekView.swift */; };
-		464BCE902B386B4C0016E126 /* DatePickerWeekView_Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE8F2B386B4C0016E126 /* DatePickerWeekView_Preview.swift */; };
-		464BCE922B386BAE0016E126 /* InfiniteTabPageView_Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE912B386BAE0016E126 /* InfiniteTabPageView_Preview.swift */; };
-		464BCE942B386BE60016E126 /* WeekView_Preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE932B386BE60016E126 /* WeekView_Preview.swift */; };
 		468883902B2B145500B8CA80 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688838F2B2B145500B8CA80 /* CustomImageView.swift */; };
 		468883922B2B22E400B8CA80 /* PlantObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468883912B2B22E400B8CA80 /* PlantObject.swift */; };
 		468883A02B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */; };
@@ -103,18 +97,12 @@
 		4630C7D32B28CBA20008AE2C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextButton.swift; sourceTree = "<group>"; };
 		4630C7D72B28DFE90008AE2C /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
-		464369E42B3A085400C8ECA4 /* Extensions+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Date.swift"; sourceTree = "<group>"; };
+		464369E62B3DB9B000C8ECA4 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		464BCE3B2B359DC20016E126 /* PlantsTasksModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTasksModuleBuilder.swift; sourceTree = "<group>"; };
 		464BCE3C2B359DC20016E126 /* PlantsTasksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTasksPresenter.swift; sourceTree = "<group>"; };
 		464BCE3D2B359DC20016E126 /* PlantsTasksRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTasksRouter.swift; sourceTree = "<group>"; };
 		464BCE3E2B359DC20016E126 /* PlantsTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTasksViewController.swift; sourceTree = "<group>"; };
 		464BCE3F2B359DC20016E126 /* PlantsTasksInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTasksInteractor.swift; sourceTree = "<group>"; };
-		464BCE862B3862650016E126 /* DatePickerWeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerWeekView.swift; sourceTree = "<group>"; };
-		464BCE872B3862650016E126 /* InfiniteTabPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteTabPageView.swift; sourceTree = "<group>"; };
-		464BCE8A2B3862800016E126 /* WeekView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekView.swift; sourceTree = "<group>"; };
-		464BCE8F2B386B4C0016E126 /* DatePickerWeekView_Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerWeekView_Preview.swift; sourceTree = "<group>"; };
-		464BCE912B386BAE0016E126 /* InfiniteTabPageView_Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteTabPageView_Preview.swift; sourceTree = "<group>"; };
-		464BCE932B386BE60016E126 /* WeekView_Preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekView_Preview.swift; sourceTree = "<group>"; };
 		4688838F2B2B145500B8CA80 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		468883912B2B22E400B8CA80 /* PlantObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantObject.swift; sourceTree = "<group>"; };
 		4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoModuleBuilder.swift; sourceTree = "<group>"; };
@@ -257,7 +245,6 @@
 			isa = PBXGroup;
 			children = (
 				4630C78C2B2757720008AE2C /* Extension+UIFont.swift */,
-				464369E42B3A085400C8ECA4 /* Extensions+Date.swift */,
 			);
 			path = Exntensions;
 			sourceTree = "<group>";
@@ -338,30 +325,9 @@
 		464BCE842B3861F20016E126 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				464BCE852B3862000016E126 /* DatePickerView */,
+				464369E62B3DB9B000C8ECA4 /* CalendarCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		464BCE852B3862000016E126 /* DatePickerView */ = {
-			isa = PBXGroup;
-			children = (
-				464BCE8C2B386ACD0016E126 /* Previews */,
-				464BCE862B3862650016E126 /* DatePickerWeekView.swift */,
-				464BCE872B3862650016E126 /* InfiniteTabPageView.swift */,
-				464BCE8A2B3862800016E126 /* WeekView.swift */,
-			);
-			path = DatePickerView;
-			sourceTree = "<group>";
-		};
-		464BCE8C2B386ACD0016E126 /* Previews */ = {
-			isa = PBXGroup;
-			children = (
-				464BCE8F2B386B4C0016E126 /* DatePickerWeekView_Preview.swift */,
-				464BCE912B386BAE0016E126 /* InfiniteTabPageView_Preview.swift */,
-				464BCE932B386BE60016E126 /* WeekView_Preview.swift */,
-			);
-			path = Previews;
 			sourceTree = "<group>";
 		};
 		4688839A2B2CD41C00B8CA80 /* GardenInfo */ = {
@@ -457,13 +423,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				464369E52B3A085400C8ECA4 /* Extensions+Date.swift in Sources */,
+				464369E72B3DB9B000C8ECA4 /* CalendarCell.swift in Sources */,
 				4630C7B92B28B1330008AE2C /* HomeModuleEventsDelegate.swift in Sources */,
 				4630C7B72B28A2E90008AE2C /* WeatherInfoView.swift in Sources */,
-				464BCE922B386BAE0016E126 /* InfiniteTabPageView_Preview.swift in Sources */,
 				4630C7B22B289F370008AE2C /* ShadowImageView.swift in Sources */,
 				468883A02B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift in Sources */,
-				464BCE882B3862650016E126 /* DatePickerWeekView.swift in Sources */,
 				4630C7B42B28A0C00008AE2C /* GreetingsView.swift in Sources */,
 				468883A22B2CD44900B8CA80 /* GardenInfoRouter.swift in Sources */,
 				464BCE402B359DC20016E126 /* PlantsTasksModuleBuilder.swift in Sources */,
@@ -489,11 +453,8 @@
 				4630C77A2B2623FD0008AE2C /* HomeViewController.swift in Sources */,
 				4630C7A82B286CF50008AE2C /* GardenHeader.swift in Sources */,
 				4630C78F2B275A4F0008AE2C /* CustomImageButton.swift in Sources */,
-				464BCE902B386B4C0016E126 /* DatePickerWeekView_Preview.swift in Sources */,
 				464BCE442B359DC20016E126 /* PlantsTasksInteractor.swift in Sources */,
-				464BCE942B386BE60016E126 /* WeekView_Preview.swift in Sources */,
 				4630C7912B275AB70008AE2C /* CustomLabel.swift in Sources */,
-				464BCE8B2B3862800016E126 /* WeekView.swift in Sources */,
 				464BCE412B359DC20016E126 /* PlantsTasksPresenter.swift in Sources */,
 				4630C75D2B2619B40008AE2C /* SceneDelegate.swift in Sources */,
 				4630C79E2B276FBE0008AE2C /* WeatherData.swift in Sources */,
@@ -503,7 +464,6 @@
 				4630C7CF2B28B7D00008AE2C /* NewPlantViewController.swift in Sources */,
 				4630C7D62B28D1FD0008AE2C /* CustomTextButton.swift in Sources */,
 				464BCE422B359DC20016E126 /* PlantsTasksRouter.swift in Sources */,
-				464BCE892B3862650016E126 /* InfiniteTabPageView.swift in Sources */,
 				4630C7932B27638B0008AE2C /* WeatherInfoSection.swift in Sources */,
 				4630C7AB2B287A690008AE2C /* PlantCell.swift in Sources */,
 				4630C7882B2755F40008AE2C /* GreetingProvider.swift in Sources */,

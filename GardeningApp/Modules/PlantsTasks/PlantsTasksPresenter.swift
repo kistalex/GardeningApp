@@ -8,7 +8,11 @@
 import UIKit
 
 protocol PlantsTasksPresenterProtocol: AnyObject {
-    func didSelectDate(_ date: Date)
+    func datesFetched(dates: [Date])
+    func viewDidLoad()
+    func setCurrentDate(date: Date)
+    func didSelectDate(date: Date?)
+    func todayButtonTapped()
 }
 
 class PlantsTasksPresenter {
@@ -23,22 +27,30 @@ class PlantsTasksPresenter {
 }
 
 extension PlantsTasksPresenter: PlantsTasksPresenterProtocol {
-    func didSelectDate(_ date: Date) {
-        let localDateString = formatDate(date, timeZone: TimeZone.current)
-        let utcDateString = formatDate(date, timeZone: TimeZone(secondsFromGMT: 0)!)
 
-        print("Presenter didSelectDate (Local): \(localDateString)")
-        print("Presenter didSelectDate (UTC): \(utcDateString)")
-
-        view?.setDateLabel(with: date)
+    func viewDidLoad() {
+        interactor.fetchCurrentDate()
+        interactor.fetchDates()
     }
 
-    private func formatDate(_ date: Date, timeZone: TimeZone) -> String {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .medium
-            dateFormatter.timeZone = timeZone
+    func datesFetched(dates: [Date]) {
+        view?.setDates(dates: dates)
+    }
 
-            return dateFormatter.string(from: date)
-        }
+    func setCurrentDate(date: Date){
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        view?.setCurrentDateLabel(date: dateFormatter.string(from: date))
+        view?.setCurrentDate(date: date)
+    }
+    func didSelectDate(date: Date?) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        view?.setCurrentDateLabel(date: dateFormatter.string(from: date ?? Date()))
+    }
+
+    func todayButtonTapped() {
+        interactor.fetchCurrentDate()
+        view?.refreshCollectionViewAndScrollToCurrentDate()
+    }
 }
