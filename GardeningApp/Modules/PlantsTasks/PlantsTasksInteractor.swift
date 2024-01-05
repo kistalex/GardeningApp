@@ -10,11 +10,14 @@ import Foundation
 protocol PlantsTasksInteractorProtocol: AnyObject {
     func fetchDates()
     func fetchCurrentDate()
+    func fetchTasks()
+    func addTask()
 }
 
 class PlantsTasksInteractor: PlantsTasksInteractorProtocol {
     weak var presenter: PlantsTasksPresenterProtocol?
-
+    
+    private var tasks: [Int] = []
 
     func fetchDates()  {
         var dates = [Date]()
@@ -41,7 +44,6 @@ class PlantsTasksInteractor: PlantsTasksInteractorProtocol {
                         break
                     }
                 }
-
                 presenter?.datesFetched(dates: dates)
             }
         }
@@ -50,5 +52,16 @@ class PlantsTasksInteractor: PlantsTasksInteractorProtocol {
     func fetchCurrentDate(){
         let selectedDate = Date()
         presenter?.setCurrentDate(date: selectedDate)
+    }
+
+    func fetchTasks(){
+
+        presenter?.tasksFetched(tasks: tasks)
+    }
+
+    func addTask() {
+        tasks.append(1)
+        print("tasks from interactor: \(tasks)")
+        presenter?.tasksFetched(tasks: tasks)
     }
 }

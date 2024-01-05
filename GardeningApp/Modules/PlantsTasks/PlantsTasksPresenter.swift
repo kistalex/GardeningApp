@@ -9,10 +9,13 @@ import UIKit
 
 protocol PlantsTasksPresenterProtocol: AnyObject {
     func datesFetched(dates: [Date])
+    func tasksFetched(tasks: [Int])
+
     func viewDidLoad()
     func setCurrentDate(date: Date)
     func didSelectDate(date: Date?)
     func todayButtonTapped()
+    func addTaskButtonTapped()
 }
 
 class PlantsTasksPresenter {
@@ -31,10 +34,15 @@ extension PlantsTasksPresenter: PlantsTasksPresenterProtocol {
     func viewDidLoad() {
         interactor.fetchCurrentDate()
         interactor.fetchDates()
+        interactor.fetchTasks()
     }
 
     func datesFetched(dates: [Date]) {
         view?.setDates(dates: dates)
+    }
+
+    func tasksFetched(tasks: [Int]) {
+        view?.setTasks(tasks: tasks)
     }
 
     func setCurrentDate(date: Date){
@@ -52,5 +60,9 @@ extension PlantsTasksPresenter: PlantsTasksPresenterProtocol {
     func todayButtonTapped() {
         interactor.fetchCurrentDate()
         view?.refreshCollectionViewAndScrollToCurrentDate()
+    }
+
+    func addTaskButtonTapped() {
+        interactor.addTask()
     }
 }

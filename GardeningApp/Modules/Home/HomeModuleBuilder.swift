@@ -25,6 +25,7 @@ class HomeModuleBuilder {
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.prefersLargeTitles = false
         navigationController.navigationBar.tintColor = .accentLight
+        navigationController.navigationBar.barTintColor = .accentDark
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.accentLight]
         return navigationController
 //        return viewController

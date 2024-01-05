@@ -11,14 +11,14 @@ import UIKit
 
 final class CustomImageButton: UIButton {
     
-    init(imageName: String, configImagePointSize: CGFloat, text: String? = nil, bgColor: UIColor? = nil){
+    init(imageName: String, configImagePointSize: CGFloat, text: String? = nil, bgColor: UIColor? = nil, tintColor: UIColor = .accentLight){
         super.init(frame: .zero)
         let configuration = UIImage.SymbolConfiguration(pointSize: configImagePointSize)
         setImage(UIImage(systemName: imageName, withConfiguration: configuration), for: .normal)
         setTitle(text, for: .normal)
         setTitleColor(.accentLight, for: .normal)
         titleLabel?.font = UIFont.body()
-        tintColor = .accentLight
+        self.tintColor = tintColor
         backgroundColor = bgColor
     }
     
