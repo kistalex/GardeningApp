@@ -11,7 +11,7 @@ import SnapKit
 
 protocol PlantsTasksViewProtocol: AnyObject {
     func setDates(dates: [Date])
-    func setTasks(tasks: [Int])
+    func setTasks(tasks: [TaskModel])
     func setCurrentDate(date: Date)
     func setCurrentDateLabel(date: String)
     func refreshCollectionViewAndScrollToCurrentDate()
@@ -33,7 +33,7 @@ class PlantsTasksViewController: UIViewController {
     private let addTaskButton = CustomImageButton(imageName: "plus.circle", configImagePointSize: 40)
 
     private var dates = [Date]()
-    private var tasks = [Int]()
+    private var tasks = [TaskModel]()
     private var selectedDate: Date?
 
     private var userTaskCollectionViewHeight: Constraint?
@@ -44,13 +44,15 @@ class PlantsTasksViewController: UIViewController {
         super.viewDidLoad()
         initialize()
         presenter?.viewDidLoad()
-
+        view.layoutIfNeeded()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        updateScrollViewContentSize()
         setupCollectionViewAppearance()
     }
+
 }
 
 // MARK: - Private functions
@@ -61,6 +63,12 @@ private extension PlantsTasksViewController {
         setupViews()
     }
     
+
+    private func  updateScrollViewContentSize() {
+        userTaskCollectionView.collectionViewLayout.invalidateLayout()
+        userTaskCollectionView.layoutIfNeeded()
+        userTaskCollectionViewHeight?.update(offset: userTaskCollectionView.contentSize.height)
+    }
 
     private func setupCollectionViewAppearance(){
         setCollectionLayer(collectionView: datePickerCollectionView, cornerRadiusDivider: 12, borderWidth: 1, borderColor: UIColor.accentLight.cgColor)
@@ -105,17 +113,13 @@ private extension PlantsTasksViewController {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
 
-        addTaskButton.backgroundColor = .red
-
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalToSuperview()
         }
 
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.width.equalTo(scrollView)
-            make.height.equalTo(scrollView).priority(.low)
-//            make.height.greaterThanOrEqualToSuperview().priority(.required)
+            make.edges.width.equalToSuperview()
         }
 
         [dateLabel, todayButton, addTaskButton, datePickerCollectionView, userTaskCollectionView].forEach { item in
@@ -136,7 +140,7 @@ private extension PlantsTasksViewController {
         datePickerCollectionView.snp.makeConstraints { make in
             make.top.equalTo(dateLabel.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(10)
-            make.height.equalToSuperview().dividedBy(5.5)
+            make.height.equalTo(150)
         }
 
         addTaskButton.snp.makeConstraints { make in
@@ -147,8 +151,8 @@ private extension PlantsTasksViewController {
         userTaskCollectionView.snp.makeConstraints { make in
             make.top.equalTo(addTaskButton.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(contentView.snp.bottom)
-            make.height.greaterThanOrEqualTo(400)
+            make.bottom.equalTo(contentView.snp.bottom).inset(10)
+            self.userTaskCollectionViewHeight = make.height.equalTo(userTaskCollectionView.contentSize.height).constraint
         }
 
         todayButton.addTarget(self, action: #selector(todayButtonTapped), for: .touchUpInside)
@@ -219,6 +223,8 @@ extension PlantsTasksViewController: UICollectionViewDataSource {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(TaskCell.self)", for: indexPath) as? TaskCell else {
                 return UICollectionViewCell()
             }
+            let task = tasks[indexPath.item]
+            cell.configure(with: task)
             return cell
         default:
             return UICollectionViewCell()
@@ -284,7 +290,7 @@ extension PlantsTasksViewController: PlantsTasksViewProtocol {
         datePickerCollectionView.reloadData()
     }
 
-    func setTasks(tasks: [Int]) {
+    func setTasks(tasks: [TaskModel]) {
         self.tasks = tasks
         userTaskCollectionView.reloadData()
     }
@@ -302,9 +308,3 @@ extension PlantsTasksViewController: PlantsTasksViewProtocol {
         scrollToSelectedDate(animated: true)
     }
 }
-
-
-
-
-
-/*userTaskCollectionView*/

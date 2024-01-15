@@ -14,6 +14,7 @@ final class CustomTextField: UITextField {
     enum CustomTextFieldType {
         case name
         case age
+        case taskName
     }
     private let tFieldType: CustomTextFieldType
     
@@ -30,6 +31,9 @@ final class CustomTextField: UITextField {
             returnKeyType = .continue
         case .age:
             placeholder = "Input plant age here"
+            returnKeyType = .continue
+        case .taskName:
+            placeholder = "Input task name here"
             returnKeyType = .continue
         }
     }

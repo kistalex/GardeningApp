@@ -11,7 +11,7 @@ import UIKit
 
 final class CustomTextButton: UIButton {
 
-    init(text: String, bgColor: UIColor){
+    init(text: String? = "", bgColor: UIColor){
         super.init(frame: .zero)
         setTitle(text, for: .normal)
         setTitleColor(.accentDark, for: .normal)

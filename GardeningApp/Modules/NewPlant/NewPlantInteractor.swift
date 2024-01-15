@@ -36,15 +36,29 @@ class NewPlantInteractor: NewPlantInteractorProtocol {
     }
 
     func savePlantObject(image: UIImage?, name: String, age: String, description: String?) {
-        let userDescription = description?.isEmpty ?? true ?  "Your observations and notes on flower care could have been here, but you didn't add them😔" : description
+        guard let realm = self.realm else { return }
 
-        let plant = PlantObject(imageData: image?.jpegData(compressionQuality: 1.0), plantName: name, plantAge: age, plantDescription: userDescription)
+        if realm.objects(PlantObject.self).filter("plantName == %@", name).first != nil {
+//            presenter?.showError("A plant with the same name already exists.")
+            print("Имя растения уже существует")
+            return
+        }
+
+        let userDescription = description?.isEmpty ?? true ? "Your observations and notes on flower care could have been here, but you didn't add them😔" : description
+
+        let plant = PlantObject(
+            imageData: image?.jpegData(compressionQuality: 1.0),
+            plantName: name,
+            plantAge: age,
+            plantDescription: userDescription
+        )
 
         do {
-            try realm?.write({
-                realm?.add(plant)
-            })
+            try realm.write {
+                realm.add(plant)
+            }
         } catch {
+//            presenter?.showError(error.localizedDescription)
             print(error)
         }
     }

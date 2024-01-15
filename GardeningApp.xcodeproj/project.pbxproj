@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46059BEC2B505F4400C7E3BC /* DatePickerCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46059BEB2B505F4400C7E3BC /* DatePickerCollectionTableViewCell.swift */; };
 		4630C75B2B2619B40008AE2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C75A2B2619B40008AE2C /* AppDelegate.swift */; };
 		4630C75D2B2619B40008AE2C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C75C2B2619B40008AE2C /* SceneDelegate.swift */; };
 		4630C7642B2619B50008AE2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4630C7632B2619B50008AE2C /* Assets.xcassets */; };
@@ -50,6 +51,19 @@
 		464BCE432B359DC20016E126 /* PlantsTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE3E2B359DC20016E126 /* PlantsTasksViewController.swift */; };
 		464BCE442B359DC20016E126 /* PlantsTasksInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464BCE3F2B359DC20016E126 /* PlantsTasksInteractor.swift */; };
 		4669F1122B444AEA000ED694 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1112B444AEA000ED694 /* TaskCell.swift */; };
+		4669F1522B4872D8000ED694 /* AddPlantTaskModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F14D2B4872D8000ED694 /* AddPlantTaskModuleBuilder.swift */; };
+		4669F1532B4872D8000ED694 /* AddPlantTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F14E2B4872D8000ED694 /* AddPlantTaskPresenter.swift */; };
+		4669F1542B4872D8000ED694 /* AddPlantTaskRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F14F2B4872D8000ED694 /* AddPlantTaskRouter.swift */; };
+		4669F1552B4872D8000ED694 /* AddPlantTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1502B4872D8000ED694 /* AddPlantTaskViewController.swift */; };
+		4669F1562B4872D8000ED694 /* AddPlantTaskInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1512B4872D8000ED694 /* AddPlantTaskInteractor.swift */; };
+		4669F1582B487FCD000ED694 /* TaskTypesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1572B487FCD000ED694 /* TaskTypesCollectionViewCell.swift */; };
+		4669F1912B4D5F1A000ED694 /* PlantsNamesCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1902B4D5F1A000ED694 /* PlantsNamesCollectionTableViewCell.swift */; };
+		4669F1932B4D5F7A000ED694 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1922B4D5F7A000ED694 /* PlaceholderTextView.swift */; };
+		4669F1952B4D5FBD000ED694 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1942B4D5FBD000ED694 /* TextViewTableViewCell.swift */; };
+		4669F1972B4D6295000ED694 /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1962B4D6295000ED694 /* DatePickerTableViewCell.swift */; };
+		4669F19D2B4DA47D000ED694 /* SaveTaskButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F19C2B4DA47D000ED694 /* SaveTaskButtonTableViewCell.swift */; };
+		4669F1A12B4DB37B000ED694 /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1A02B4DB37B000ED694 /* TableViewModel.swift */; };
+		4669F1A32B4DBE13000ED694 /* TaskTypesCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1A22B4DBE13000ED694 /* TaskTypesCollectionTableViewCell.swift */; };
 		468883902B2B145500B8CA80 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688838F2B2B145500B8CA80 /* CustomImageView.swift */; };
 		468883922B2B22E400B8CA80 /* PlantObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468883912B2B22E400B8CA80 /* PlantObject.swift */; };
 		468883A02B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */; };
@@ -57,11 +71,20 @@
 		468883A22B2CD44900B8CA80 /* GardenInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839D2B2CD44900B8CA80 /* GardenInfoRouter.swift */; };
 		468883A32B2CD44900B8CA80 /* GardenInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839E2B2CD44900B8CA80 /* GardenInfoViewController.swift */; };
 		468883A42B2CD44900B8CA80 /* GardenInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839F2B2CD44900B8CA80 /* GardenInfoInteractor.swift */; };
+		468D43002B5060D9000DD621 /* AddPlantTableViewCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D42FF2B5060D9000DD621 /* AddPlantTableViewCellItem.swift */; };
+		468D43022B506139000DD621 /* PlantTaskTableViewCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D43012B506139000DD621 /* PlantTaskTableViewCellItem.swift */; };
+		468D43042B506158000DD621 /* PlantTaskTableViewItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D43032B506158000DD621 /* PlantTaskTableViewItemDelegate.swift */; };
+		468D43062B5581EA000DD621 /* AddTaskButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D43052B5581EA000DD621 /* AddTaskButtonTableViewCell.swift */; };
+		468D43082B558A70000DD621 /* UserPlantsTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D43072B558A70000DD621 /* UserPlantsTaskList.swift */; };
 		46CE46D02B38A60D0013BA95 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 46CE46CF2B38A60D0013BA95 /* Realm */; };
 		46CE46D22B38A60D0013BA95 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 46CE46D12B38A60D0013BA95 /* RealmSwift */; };
+		46FC70342B4E9FB3003DF99C /* StringCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC70332B4E9FB3003DF99C /* StringCollectionViewCell.swift */; };
+		46FC70382B4EA301003DF99C /* AddTaskTableViewItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC70372B4EA301003DF99C /* AddTaskTableViewItemDelegate.swift */; };
+		46FC703A2B4EB02B003DF99C /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC70392B4EB02B003DF99C /* TaskModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46059BEB2B505F4400C7E3BC /* DatePickerCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		4630C7572B2619B40008AE2C /* GardeningApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GardeningApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4630C75A2B2619B40008AE2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4630C75C2B2619B40008AE2C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +128,19 @@
 		464BCE3E2B359DC20016E126 /* PlantsTasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTasksViewController.swift; sourceTree = "<group>"; };
 		464BCE3F2B359DC20016E126 /* PlantsTasksInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsTasksInteractor.swift; sourceTree = "<group>"; };
 		4669F1112B444AEA000ED694 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		4669F14D2B4872D8000ED694 /* AddPlantTaskModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskModuleBuilder.swift; sourceTree = "<group>"; };
+		4669F14E2B4872D8000ED694 /* AddPlantTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskPresenter.swift; sourceTree = "<group>"; };
+		4669F14F2B4872D8000ED694 /* AddPlantTaskRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskRouter.swift; sourceTree = "<group>"; };
+		4669F1502B4872D8000ED694 /* AddPlantTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskViewController.swift; sourceTree = "<group>"; };
+		4669F1512B4872D8000ED694 /* AddPlantTaskInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskInteractor.swift; sourceTree = "<group>"; };
+		4669F1572B487FCD000ED694 /* TaskTypesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTypesCollectionViewCell.swift; sourceTree = "<group>"; };
+		4669F1902B4D5F1A000ED694 /* PlantsNamesCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsNamesCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		4669F1922B4D5F7A000ED694 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		4669F1942B4D5FBD000ED694 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
+		4669F1962B4D6295000ED694 /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
+		4669F19C2B4DA47D000ED694 /* SaveTaskButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTaskButtonTableViewCell.swift; sourceTree = "<group>"; };
+		4669F1A02B4DB37B000ED694 /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
+		4669F1A22B4DBE13000ED694 /* TaskTypesCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTypesCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		4688838F2B2B145500B8CA80 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		468883912B2B22E400B8CA80 /* PlantObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantObject.swift; sourceTree = "<group>"; };
 		4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoModuleBuilder.swift; sourceTree = "<group>"; };
@@ -112,6 +148,14 @@
 		4688839D2B2CD44900B8CA80 /* GardenInfoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoRouter.swift; sourceTree = "<group>"; };
 		4688839E2B2CD44900B8CA80 /* GardenInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoViewController.swift; sourceTree = "<group>"; };
 		4688839F2B2CD44900B8CA80 /* GardenInfoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoInteractor.swift; sourceTree = "<group>"; };
+		468D42FF2B5060D9000DD621 /* AddPlantTableViewCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTableViewCellItem.swift; sourceTree = "<group>"; };
+		468D43012B506139000DD621 /* PlantTaskTableViewCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantTaskTableViewCellItem.swift; sourceTree = "<group>"; };
+		468D43032B506158000DD621 /* PlantTaskTableViewItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantTaskTableViewItemDelegate.swift; sourceTree = "<group>"; };
+		468D43052B5581EA000DD621 /* AddTaskButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskButtonTableViewCell.swift; sourceTree = "<group>"; };
+		468D43072B558A70000DD621 /* UserPlantsTaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPlantsTaskList.swift; sourceTree = "<group>"; };
+		46FC70332B4E9FB3003DF99C /* StringCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCollectionViewCell.swift; sourceTree = "<group>"; };
+		46FC70372B4EA301003DF99C /* AddTaskTableViewItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTableViewItemDelegate.swift; sourceTree = "<group>"; };
+		46FC70392B4EB02B003DF99C /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +173,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46059BE92B505E5100C7E3BC /* PlantTaskCells */ = {
+			isa = PBXGroup;
+			children = (
+				468D43032B506158000DD621 /* PlantTaskTableViewItemDelegate.swift */,
+				468D43012B506139000DD621 /* PlantTaskTableViewCellItem.swift */,
+				46059BEA2B505F1200C7E3BC /* TableViewCells */,
+				464BCE842B3861F20016E126 /* CollectionViewCell */,
+			);
+			path = PlantTaskCells;
+			sourceTree = "<group>";
+		};
+		46059BEA2B505F1200C7E3BC /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				46059BEB2B505F4400C7E3BC /* DatePickerCollectionTableViewCell.swift */,
+				468D43052B5581EA000DD621 /* AddTaskButtonTableViewCell.swift */,
+				468D43072B558A70000DD621 /* UserPlantsTaskList.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
 		4630C74E2B2619B40008AE2C = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +246,7 @@
 		4630C7702B261A0A0008AE2C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				4669F14C2B48722E000ED694 /* AddPlantTask */,
 				464BCE3A2B359D7D0016E126 /* PlantsTasks */,
 				4630C7B52B28A1A70008AE2C /* CustomViews */,
 				4688839A2B2CD41C00B8CA80 /* GardenInfo */,
@@ -274,6 +340,8 @@
 				4630C79D2B276FBE0008AE2C /* WeatherData.swift */,
 				4630C7AC2B287EE20008AE2C /* PlantViewModel.swift */,
 				468883912B2B22E400B8CA80 /* PlantObject.swift */,
+				46FC70392B4EB02B003DF99C /* TaskModel.swift */,
+				4669F1A02B4DB37B000ED694 /* TableViewModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -295,6 +363,7 @@
 				4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */,
 				4630C7D72B28DFE90008AE2C /* CustomTextView.swift */,
 				4688838F2B2B145500B8CA80 /* CustomImageView.swift */,
+				4669F1922B4D5F7A000ED694 /* PlaceholderTextView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -314,7 +383,7 @@
 		464BCE3A2B359D7D0016E126 /* PlantsTasks */ = {
 			isa = PBXGroup;
 			children = (
-				464BCE842B3861F20016E126 /* Views */,
+				46059BE92B505E5100C7E3BC /* PlantTaskCells */,
 				464BCE3B2B359DC20016E126 /* PlantsTasksModuleBuilder.swift */,
 				464BCE3C2B359DC20016E126 /* PlantsTasksPresenter.swift */,
 				464BCE3D2B359DC20016E126 /* PlantsTasksRouter.swift */,
@@ -324,13 +393,38 @@
 			path = PlantsTasks;
 			sourceTree = "<group>";
 		};
-		464BCE842B3861F20016E126 /* Views */ = {
+		464BCE842B3861F20016E126 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				464369E62B3DB9B000C8ECA4 /* CalendarCell.swift */,
 				4669F1112B444AEA000ED694 /* TaskCell.swift */,
 			);
-			path = Views;
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		4669F14C2B48722E000ED694 /* AddPlantTask */ = {
+			isa = PBXGroup;
+			children = (
+				4669F1782B4C30A4000ED694 /* AddPlantTaskCells */,
+				4669F14D2B4872D8000ED694 /* AddPlantTaskModuleBuilder.swift */,
+				4669F14E2B4872D8000ED694 /* AddPlantTaskPresenter.swift */,
+				4669F14F2B4872D8000ED694 /* AddPlantTaskRouter.swift */,
+				4669F1502B4872D8000ED694 /* AddPlantTaskViewController.swift */,
+				4669F1512B4872D8000ED694 /* AddPlantTaskInteractor.swift */,
+				4669F1572B487FCD000ED694 /* TaskTypesCollectionViewCell.swift */,
+			);
+			path = AddPlantTask;
+			sourceTree = "<group>";
+		};
+		4669F1782B4C30A4000ED694 /* AddPlantTaskCells */ = {
+			isa = PBXGroup;
+			children = (
+				46FC70372B4EA301003DF99C /* AddTaskTableViewItemDelegate.swift */,
+				468D42FF2B5060D9000DD621 /* AddPlantTableViewCellItem.swift */,
+				46FC70352B4EA165003DF99C /* TableViewCells */,
+				46FC70362B4EA187003DF99C /* CollectionViewCells */,
+			);
+			path = AddPlantTaskCells;
 			sourceTree = "<group>";
 		};
 		4688839A2B2CD41C00B8CA80 /* GardenInfo */ = {
@@ -343,6 +437,26 @@
 				4688839F2B2CD44900B8CA80 /* GardenInfoInteractor.swift */,
 			);
 			path = GardenInfo;
+			sourceTree = "<group>";
+		};
+		46FC70352B4EA165003DF99C /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				4669F1902B4D5F1A000ED694 /* PlantsNamesCollectionTableViewCell.swift */,
+				4669F1A22B4DBE13000ED694 /* TaskTypesCollectionTableViewCell.swift */,
+				4669F1942B4D5FBD000ED694 /* TextViewTableViewCell.swift */,
+				4669F1962B4D6295000ED694 /* DatePickerTableViewCell.swift */,
+				4669F19C2B4DA47D000ED694 /* SaveTaskButtonTableViewCell.swift */,
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		46FC70362B4EA187003DF99C /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				46FC70332B4E9FB3003DF99C /* StringCollectionViewCell.swift */,
+			);
+			path = CollectionViewCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -426,37 +540,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				468D43042B506158000DD621 /* PlantTaskTableViewItemDelegate.swift in Sources */,
 				464369E72B3DB9B000C8ECA4 /* CalendarCell.swift in Sources */,
 				4630C7B92B28B1330008AE2C /* HomeModuleEventsDelegate.swift in Sources */,
+				468D43002B5060D9000DD621 /* AddPlantTableViewCellItem.swift in Sources */,
 				4630C7B72B28A2E90008AE2C /* WeatherInfoView.swift in Sources */,
+				4669F1932B4D5F7A000ED694 /* PlaceholderTextView.swift in Sources */,
 				4630C7B22B289F370008AE2C /* ShadowImageView.swift in Sources */,
 				468883A02B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift in Sources */,
 				4630C7B42B28A0C00008AE2C /* GreetingsView.swift in Sources */,
 				468883A22B2CD44900B8CA80 /* GardenInfoRouter.swift in Sources */,
 				464BCE402B359DC20016E126 /* PlantsTasksModuleBuilder.swift in Sources */,
 				4630C77F2B262A460008AE2C /* ImageProvider.swift in Sources */,
+				4669F1532B4872D8000ED694 /* AddPlantTaskPresenter.swift in Sources */,
+				46059BEC2B505F4400C7E3BC /* DatePickerCollectionTableViewCell.swift in Sources */,
 				4630C7772B2623FD0008AE2C /* HomeModuleBuilder.swift in Sources */,
 				464BCE432B359DC20016E126 /* PlantsTasksViewController.swift in Sources */,
+				46FC70382B4EA301003DF99C /* AddTaskTableViewItemDelegate.swift in Sources */,
 				4630C7792B2623FD0008AE2C /* HomeRouter.swift in Sources */,
+				4669F1A12B4DB37B000ED694 /* TableViewModel.swift in Sources */,
 				468883902B2B145500B8CA80 /* CustomImageView.swift in Sources */,
 				4630C7992B2767E50008AE2C /* Endpoints.swift in Sources */,
+				4669F1A32B4DBE13000ED694 /* TaskTypesCollectionTableViewCell.swift in Sources */,
 				4630C7AD2B287EE20008AE2C /* PlantViewModel.swift in Sources */,
+				46FC703A2B4EB02B003DF99C /* TaskModel.swift in Sources */,
 				468883A12B2CD44900B8CA80 /* GardenInfoPresenter.swift in Sources */,
 				4630C77B2B2623FD0008AE2C /* HomeInteractor.swift in Sources */,
+				468D43022B506139000DD621 /* PlantTaskTableViewCellItem.swift in Sources */,
+				46FC70342B4E9FB3003DF99C /* StringCollectionViewCell.swift in Sources */,
 				4630C7D82B28DFE90008AE2C /* CustomTextView.swift in Sources */,
+				4669F1522B4872D8000ED694 /* AddPlantTaskModuleBuilder.swift in Sources */,
+				468D43062B5581EA000DD621 /* AddTaskButtonTableViewCell.swift in Sources */,
 				4630C7CC2B28B7D00008AE2C /* NewPlantModuleBuilder.swift in Sources */,
 				4630C7CE2B28B7D00008AE2C /* NewPlantRouter.swift in Sources */,
 				4630C7D02B28B7D00008AE2C /* NewPlantInteractor.swift in Sources */,
 				4630C7AF2B289DD20008AE2C /* ButtonView.swift in Sources */,
 				4630C7D42B28CBA20008AE2C /* CustomTextField.swift in Sources */,
 				4630C75B2B2619B40008AE2C /* AppDelegate.swift in Sources */,
+				4669F1912B4D5F1A000ED694 /* PlantsNamesCollectionTableViewCell.swift in Sources */,
+				4669F19D2B4DA47D000ED694 /* SaveTaskButtonTableViewCell.swift in Sources */,
 				468883A42B2CD44900B8CA80 /* GardenInfoInteractor.swift in Sources */,
 				4630C79B2B276ED40008AE2C /* WeatherApiManager.swift in Sources */,
 				4630C7782B2623FD0008AE2C /* HomePresenter.swift in Sources */,
 				4630C77A2B2623FD0008AE2C /* HomeViewController.swift in Sources */,
+				468D43082B558A70000DD621 /* UserPlantsTaskList.swift in Sources */,
+				4669F1952B4D5FBD000ED694 /* TextViewTableViewCell.swift in Sources */,
 				4630C7A82B286CF50008AE2C /* GardenHeader.swift in Sources */,
+				4669F1542B4872D8000ED694 /* AddPlantTaskRouter.swift in Sources */,
 				4630C78F2B275A4F0008AE2C /* CustomImageButton.swift in Sources */,
 				464BCE442B359DC20016E126 /* PlantsTasksInteractor.swift in Sources */,
+				4669F1582B487FCD000ED694 /* TaskTypesCollectionViewCell.swift in Sources */,
+				4669F1552B4872D8000ED694 /* AddPlantTaskViewController.swift in Sources */,
 				4630C7912B275AB70008AE2C /* CustomLabel.swift in Sources */,
 				464BCE412B359DC20016E126 /* PlantsTasksPresenter.swift in Sources */,
 				4630C75D2B2619B40008AE2C /* SceneDelegate.swift in Sources */,
@@ -469,9 +603,11 @@
 				4630C7D62B28D1FD0008AE2C /* CustomTextButton.swift in Sources */,
 				464BCE422B359DC20016E126 /* PlantsTasksRouter.swift in Sources */,
 				4630C7932B27638B0008AE2C /* WeatherInfoSection.swift in Sources */,
+				4669F1562B4872D8000ED694 /* AddPlantTaskInteractor.swift in Sources */,
 				4630C7AB2B287A690008AE2C /* PlantCell.swift in Sources */,
 				4630C7882B2755F40008AE2C /* GreetingProvider.swift in Sources */,
 				4630C78D2B2757720008AE2C /* Extension+UIFont.swift in Sources */,
+				4669F1972B4D6295000ED694 /* DatePickerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

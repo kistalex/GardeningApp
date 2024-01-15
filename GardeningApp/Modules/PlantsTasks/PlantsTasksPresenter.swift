@@ -11,6 +11,8 @@ protocol PlantsTasksPresenterProtocol: AnyObject {
     func datesFetched(dates: [Date])
     func tasksFetched(tasks: [Int])
 
+    func plantsTasksFetched(tasks: [TaskRealmObject])
+
     func viewDidLoad()
     func setCurrentDate(date: Date)
     func didSelectDate(date: Date?)
@@ -34,7 +36,23 @@ extension PlantsTasksPresenter: PlantsTasksPresenterProtocol {
     func viewDidLoad() {
         interactor.fetchCurrentDate()
         interactor.fetchDates()
-        interactor.fetchTasks()
+        interactor.fetchPlantsTasks()
+    }
+    
+    func plantsTasksFetched(tasks: [TaskRealmObject]){
+        let taskModels = tasks.map { taskRealm in
+            let plantName = taskRealm.plant.first?.plantName ?? ""
+            return TaskModel(plantName: plantName, taskType: taskRealm.taskType, dueDate: taskRealm.dueDate, taskDescription: taskRealm.taskDescription)
+        }
+
+        view?.setTasks(tasks: taskModels)
+    }
+    
+    func formatToString(date: Date?) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateString = dateFormatter.string(from: date ?? Date())
+        return dateString
     }
 
     func datesFetched(dates: [Date]) {
@@ -42,7 +60,7 @@ extension PlantsTasksPresenter: PlantsTasksPresenterProtocol {
     }
 
     func tasksFetched(tasks: [Int]) {
-        view?.setTasks(tasks: tasks)
+//        view?.setTasks(tasks: tasks)
     }
 
     func setCurrentDate(date: Date){
@@ -63,6 +81,6 @@ extension PlantsTasksPresenter: PlantsTasksPresenterProtocol {
     }
 
     func addTaskButtonTapped() {
-        interactor.addTask()
+        router.openAddTaskVC()
     }
 }

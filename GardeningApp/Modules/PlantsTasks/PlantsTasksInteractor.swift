@@ -6,18 +6,60 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol PlantsTasksInteractorProtocol: AnyObject {
     func fetchDates()
     func fetchCurrentDate()
-    func fetchTasks()
-    func addTask()
+    func fetchPlantsTasks()
 }
 
 class PlantsTasksInteractor: PlantsTasksInteractorProtocol {
     weak var presenter: PlantsTasksPresenterProtocol?
-    
-    private var tasks: [Int] = []
+
+    private var realm: Realm?
+    private var notificationToken: NotificationToken?
+
+
+    init() {
+        do {
+            realm = try Realm()
+        } catch let error {
+            print("Failed to instantiate Realm: \(error.localizedDescription)")
+            realm = nil
+        }
+//        setupTaskChangeNotifications()
+    }
+
+    deinit {
+        notificationToken?.invalidate()
+    }
+
+
+    private func setupTaskChangeNotifications() {
+        guard let realm = realm else { return }
+        let tasks = realm.objects(TaskRealmObject.self)
+        notificationToken = tasks.observe { [weak self] (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial(let tasks):
+                print("Готовые таски: \(tasks)")
+                self?.presenter?.plantsTasksFetched(tasks: Array(tasks))
+            case .update(let tasks, _, _, _):
+                self?.presenter?.plantsTasksFetched(tasks: Array(tasks))
+                print("Обновленные таски: \(tasks)")
+            case .error(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+
+    func fetchPlantsTasks(){
+        let plantsTasks = realm?.objects(TaskRealmObject.self)
+        guard let tasks = plantsTasks else { return }
+        presenter?.plantsTasksFetched(tasks: Array(tasks))
+    }
+
+
 
     func fetchDates()  {
         var dates = [Date]()
@@ -52,16 +94,5 @@ class PlantsTasksInteractor: PlantsTasksInteractorProtocol {
     func fetchCurrentDate(){
         let selectedDate = Date()
         presenter?.setCurrentDate(date: selectedDate)
-    }
-
-    func fetchTasks(){
-
-        presenter?.tasksFetched(tasks: tasks)
-    }
-
-    func addTask() {
-        tasks.append(1)
-        print("tasks from interactor: \(tasks)")
-        presenter?.tasksFetched(tasks: tasks)
     }
 }

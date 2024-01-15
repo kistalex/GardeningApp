@@ -15,11 +15,4 @@ struct PlantViewModel {
     let name: String
     let age: String
     let description: String?
-
-    init(entity: PlantObject) {
-        self.image = entity.image
-        self.name = entity.plantName
-        self.age = entity.plantAge
-        self.description = entity.plantDescription
-    }
 }

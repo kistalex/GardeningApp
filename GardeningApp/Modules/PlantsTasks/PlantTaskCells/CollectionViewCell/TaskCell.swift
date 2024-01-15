@@ -11,10 +11,11 @@ import UIKit
 
 class TaskCell: UICollectionViewCell {
 
-    private let taskNameLabel = CustomLabel(fontName: .title(),text: "Some text" , textColor: .accentLight)
+    private let nameLabel = CustomLabel(fontName: .body(), textColor: .accentLight)
+    private let typeLabel = CustomLabel(fontName: .title(), textColor: .accentLight)
     private var statusButton = CustomImageButton(imageName: "circlebadge", configImagePointSize: 45, tintColor: .accentLight)
-    private let deadLineLabel = CustomLabel(fontName: .body(),text: "Some text" , textColor: .accentLight, textAlignment: .natural)
-    private let descriptionLabel = CustomLabel(fontName: .body(),text: "Some text Some text text Some text text Some text text Some text text Some text text Some text Some text text Some text text Some text text Some- " , textColor: .accentLight, textAlignment: .natural)
+    private let deadLineLabel = CustomLabel(fontName: .body(), textColor: .accentLight, textAlignment: .natural)
+    private let descriptionLabel = CustomLabel(fontName: .body(), textColor: .accentLight, textAlignment: .natural)
 
 
     override init(frame: CGRect) {
@@ -29,7 +30,7 @@ class TaskCell: UICollectionViewCell {
 
     private func setupViews(){
 
-        [taskNameLabel,statusButton, descriptionLabel, deadLineLabel].forEach { item in
+        [nameLabel, typeLabel, statusButton, descriptionLabel, deadLineLabel].forEach { item in
             contentView.addSubview(item)
         }
 
@@ -39,25 +40,42 @@ class TaskCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.accentLight.cgColor
         contentView.layer.borderWidth = 2
 
-        taskNameLabel.snp.makeConstraints { make in
+        typeLabel.snp.makeConstraints { make in
             make.top.equalTo(contentView).offset(10)
             make.leading.equalToSuperview().inset(10)
         }
 
         statusButton.snp.makeConstraints { make in
-            make.centerY.equalTo(taskNameLabel.snp.centerY)
+            make.centerY.equalTo(typeLabel.snp.centerY)
             make.trailing.equalToSuperview().inset(10)
         }
 
-        deadLineLabel.snp.makeConstraints { make in
+        nameLabel.snp.makeConstraints { make in
             make.top.equalTo(statusButton.snp.bottom).offset(10)
+            make.leading.equalTo(typeLabel)
+        }
+
+
+        deadLineLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(10)
         }
 
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(deadLineLabel.snp.bottom).offset(5)
             make.leading.trailing.equalToSuperview().inset(10)
-            make.bottom.equalToSuperview().inset(10)
         }
+    }
+
+    func configure(with model: TaskModel){
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM dd, yyyy"
+        let dueDateString = dateFormatter.string(from: model.dueDate ?? Date())
+        
+        nameLabel.text = "Plant Name: " + (model.plantName ?? "")
+        typeLabel.text = model.taskType
+        deadLineLabel.text = "Date: \(dueDateString)"
+        descriptionLabel.text = model.taskDescription
     }
 }

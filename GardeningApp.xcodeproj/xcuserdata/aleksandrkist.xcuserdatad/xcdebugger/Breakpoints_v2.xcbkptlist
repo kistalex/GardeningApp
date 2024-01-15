@@ -3,4 +3,165 @@
    uuid = "FEABCEB0-F257-43DA-A42F-60233C1BD19E"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "280C7311-AB49-444B-8F84-8A988121B49F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GardeningApp/Modules/AddPlantTask/AddPlantTaskViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BBAE63FC-03F3-4F63-B6E1-E8682905C18B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GardeningApp/Modules/PlantsTasks/PlantsTasksPresenter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3513C8B0-B464-4287-BCC7-0340FCC99AD4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GardeningApp/Modules/AddPlantTask/AddPlantTaskViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "buttonCellDidTapped(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3513C8B0-B464-4287-BCC7-0340FCC99AD4 - 861aa9cb33564365"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GardeningApp.AddPlantTaskViewController.buttonCellDidTapped(GardeningApp.ButtonTableViewCell) -&gt; ()"
+                  moduleName = "GardeningApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksandrkist/Desktop/Study/UIKit/GardeningApp/GardeningApp/Modules/AddPlantTask/AddPlantTaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "96">
+               </Location>
+               <Location
+                  uuid = "3513C8B0-B464-4287-BCC7-0340FCC99AD4 - 861aa9cb33564365"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GardeningApp.AddPlantTaskViewController.buttonCellDidTapped(GardeningApp.ButtonTableViewCell) -&gt; ()"
+                  moduleName = "GardeningApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksandrkist/Desktop/Study/UIKit/GardeningApp/GardeningApp/Modules/AddPlantTask/AddPlantTaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "3513C8B0-B464-4287-BCC7-0340FCC99AD4 - 65e48514354eb1d6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GardeningApp.AddPlantTaskViewController.buttonCellDidTapped(GardeningApp.SaveTaskButtonTableViewCell) -&gt; ()"
+                  moduleName = "GardeningApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksandrkist/Desktop/Study/UIKit/GardeningApp/GardeningApp/Modules/AddPlantTask/AddPlantTaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8920F63F-2851-4AF1-8413-2A4058B0577D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GardeningApp/Modules/PlantsTasks/PlantsTasksInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "setupTaskChangeNotifications()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8D89B6F8-93F1-4334-96F7-608406D89350"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GardeningApp/Modules/PlantsTasks/PlantsTasksInteractor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "setupTaskChangeNotifications()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8D89B6F8-93F1-4334-96F7-608406D89350 - 8aa82091825685c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (RealmSwift.RealmCollectionChange&lt;RealmSwift.Results&lt;GardeningApp.TaskRealmObject&gt;&gt;) -&gt; () in GardeningApp.PlantsTasksInteractor.setupTaskChangeNotifications() -&gt; ()"
+                  moduleName = "GardeningApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksandrkist/Desktop/Study/UIKit/GardeningApp/GardeningApp/Modules/PlantsTasks/PlantsTasksInteractor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "164">
+               </Location>
+               <Location
+                  uuid = "8D89B6F8-93F1-4334-96F7-608406D89350 - 8aa82091825685c6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (RealmSwift.RealmCollectionChange&lt;RealmSwift.Results&lt;GardeningApp.TaskRealmObject&gt;&gt;) -&gt; () in GardeningApp.PlantsTasksInteractor.setupTaskChangeNotifications() -&gt; ()"
+                  moduleName = "GardeningApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/aleksandrkist/Desktop/Study/UIKit/GardeningApp/GardeningApp/Modules/PlantsTasks/PlantsTasksInteractor.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "248">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
