@@ -8,7 +8,7 @@
 import UIKit
 
 protocol GardenInfoViewProtocol: AnyObject {
-    func showPlantInfo(plant: PlantObject)
+    func showPlantInfo(plant: PlantViewModel)
 }
 
 class GardenInfoViewController: UIViewController {
@@ -24,13 +24,13 @@ class GardenInfoViewController: UIViewController {
 
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .accentDark
+        view.backgroundColor = .light
         return view
     }()
 
-    private let plantNameLabel = CustomLabel(fontName: UIFont.largeTitle(), textColor: .accentLight, textAlignment: .left)
-    private let plantAgeLabel = CustomLabel(fontName: UIFont.body(), textColor: .accentLight.withAlphaComponent(0.6), textAlignment: .left)
-    private let plantDescription = CustomLabel(fontName: UIFont.body(),text: "Your observations and notes on flower care could have been here, but you didn't add them😔" ,textColor: .accentLight.withAlphaComponent(0.6), textAlignment: .left)
+    private let plantNameLabel = CustomLabel(fontName: UIFont.largeTitle(), textColor: .dark, textAlignment: .left)
+    private let plantAgeLabel = CustomLabel(fontName: UIFont.body(), textColor: .dark.withAlphaComponent(0.6), textAlignment: .left)
+    private let plantDescription = CustomLabel(fontName: UIFont.body(),text: "Your observations and notes on flower care could have been here, but you didn't add them😔" ,textColor: .dark.withAlphaComponent(0.6), textAlignment: .left)
     private let scrollView = UIScrollView()
     private let emptyView = UIView()
 
@@ -45,7 +45,7 @@ class GardenInfoViewController: UIViewController {
 // MARK: - Private functions
 private extension GardenInfoViewController {
     func initialize() {
-        view.backgroundColor = .accentDark
+        view.backgroundColor = .light
         setupViews()
     }
 
@@ -54,7 +54,7 @@ private extension GardenInfoViewController {
         [imageView, scrollView].forEach { item in
             view.addSubview(item)
         }
-       
+
         view.sendSubviewToBack(imageView)
 
         [emptyView, containerView].forEach { item in
@@ -99,18 +99,17 @@ private extension GardenInfoViewController {
         plantDescription.snp.makeConstraints { make in
             make.top.equalTo(plantAgeLabel.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(10)
         }
     }
 }
 
 // MARK: - GardenInfoViewProtocol
 extension GardenInfoViewController: GardenInfoViewProtocol {
-    func showPlantInfo(plant: PlantObject) {
-            self.imageView.image = plant.image
-            self.plantNameLabel.text = plant.plantName
-            self.plantAgeLabel.text = plant.plantAge
-            self.plantDescription.text = plant.plantDescription
-        }
-    
+    func showPlantInfo(plant: PlantViewModel) {
+        self.imageView.image = plant.image
+        self.plantNameLabel.text = plant.name
+        self.plantAgeLabel.text = plant.age
+        self.plantDescription.text = plant.description
+    }
 }

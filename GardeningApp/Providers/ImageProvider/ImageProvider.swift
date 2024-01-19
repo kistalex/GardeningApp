@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 
-class ImageProvider {
+final class ImageProvider {
 
     enum TimeOfDay: String {
         case morning = "morning"

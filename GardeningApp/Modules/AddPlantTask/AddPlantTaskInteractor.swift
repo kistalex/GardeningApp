@@ -28,45 +28,65 @@ class AddPlantTaskInteractor: AddPlantTaskInteractorProtocol {
     }
 
     func fetchCellData() {
-        let plantsNames = fetchPlantNames()
+        let (plantIds, plantsNames) = fetchPlantIdsAndNames()
         let taskTypes = fetchTaskTypes()
-        let data = TableViewModel(taskTypes: taskTypes, plantsName: plantsNames)
+        let data = AddTaskTableViewModel(taskTypes: taskTypes, plantsName: plantsNames, plantIds: plantIds)
         presenter?.didFetchData(data)
     }
 
     func saveTaskData(with data: TaskModel) {
-        guard let realm = realm, let plantName = data.plantName else { return }
+        guard let realm = realm,
+              let plantID = data.plantID,
+              let taskType = data.taskType,
+              let dueDate = data.dueDate
+        else {
+            informUserAboutMissingFields(data: data)
+            return
+        }
+
         let description = data.taskDescription?.isEmpty ?? true ?  "No description" : data.taskDescription
-        guard let taskType = data.taskType, let dueDate = data.dueDate else { return }
+
+        guard let objectID = try? ObjectId(string: plantID) else { return }
+
+
         try? realm.write {
-            if let plantID = realm.objects(PlantObject.self).filter("plantName == %@", plantName).first?.id {
-                if let plant = realm.object(ofType: PlantObject.self, forPrimaryKey: plantID) {
-                    let task = TaskRealmObject(taskType: taskType, dueDate: dueDate, taskDescription: description)
-                    plant.tasks.append(task)
-                }
+            if let plant = realm.object(ofType: PlantObject.self, forPrimaryKey: objectID) {
+                let task = TaskRealmObject(taskType: taskType, dueDate: dueDate, taskDescription: description)
+                plant.tasks.append(task)
             }
         }
     }
 
+    private func informUserAboutMissingFields(data: TaskModel) {
+        var missingFields = [String]()
 
-    func fetchPlantNames() -> [String] {
-        guard let realm = realm else {
-            return []
+        if data.plantID == nil {
+            missingFields.append("Plant name")
         }
-        let plants = realm.objects(PlantObject.self)
-        let plantsName = plants.map { $0.plantName}
-        return Array(plantsName)
+
+        if data.dueDate == nil {
+            missingFields.append("Due date")
+        }
+
+        if data.taskType == nil {
+            missingFields.append("Task type")
+        }
+
+        let missingFieldsString = missingFields.joined(separator: "\n")
+        let message = "Please fill in the following fields:\n\(missingFieldsString)"
+
+        presenter?.informUserAboutFields(with: message)
     }
 
-    private func fetchPlantNamesWithIDs() -> [String: ObjectId] {
+
+    func fetchPlantIdsAndNames() -> (ids: [String], names: [String]) {
         guard let realm = realm else {
-            return [:]
+            return ([], [])
         }
         let plants = realm.objects(PlantObject.self)
-        let plantNameIDMap = plants.reduce(into: [:]) { (result, plant) in
-            result[plant.plantName] = plant.id
-        }
-        return plantNameIDMap
+        let plantsNames = plants.map { $0.plantName }
+        let plantIds = plants.map { $0.id.stringValue }
+        return (ids: Array(plantIds), names: Array(plantsNames))
     }
 
     private func fetchTaskTypes() -> [String]{

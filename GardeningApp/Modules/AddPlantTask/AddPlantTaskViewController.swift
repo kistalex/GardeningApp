@@ -10,6 +10,8 @@ import SnapKit
 
 protocol AddPlantTaskViewProtocol: AnyObject {
     func setCells(with items: [TableViewCellItemModel])
+    func dismissVC()
+    func showError(with error: String)
 }
 
 class AddPlantTaskViewController: UITableViewController {
@@ -17,7 +19,8 @@ class AddPlantTaskViewController: UITableViewController {
     var presenter: AddPlantTaskPresenterProtocol?
 
     var items: [TableViewCellItemModel] = []
-    var taskData = TaskModel()
+    private var taskData = TaskModel()
+    private var activityIndicator = UIActivityIndicatorView()
 
     // MARK: - View lifecycle
     override func viewDidLoad() {
@@ -32,7 +35,7 @@ class AddPlantTaskViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: items[indexPath.row].identifier) as? AddPlantTableViewCellItem
+        let cell = tableView.dequeueReusableCell(withIdentifier: items[indexPath.row].identifier) as? AddTaskTableViewCellItem
         cell?.config(with: items[indexPath.row])
         cell?.delegate = self
         return cell as? UITableViewCell ?? UITableViewCell()
@@ -46,8 +49,28 @@ class AddPlantTaskViewController: UITableViewController {
 // MARK: - Private functions
 private extension AddPlantTaskViewController {
     func initialize() {
-        view.backgroundColor = .accentDark
+        view.backgroundColor = .light
         registerCells()
+        setupDismissKeyboardGesture()
+        setupView()
+    }
+    
+    private func setupViews(){
+        view.addSubview(activityIndicator)
+        activityIndicator.isHidden = true
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+    }
+
+    private func setupDismissKeyboardGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(tapGesture)
+    }
+
+    @objc private func dismissKeyboard() {
+        tableView.endEditing(true)
     }
 
     private func setupView(){
@@ -64,7 +87,7 @@ private extension AddPlantTaskViewController {
         tableView.register(PlantsNamesCollectionTableViewCell.self, forCellReuseIdentifier: "\(PlantsNamesCollectionTableViewCellModel.self)")
         tableView.register(SaveTaskButtonTableViewCell.self, forCellReuseIdentifier:  "\(SaveTaskButtonTableViewCellModel.self)")
         tableView.register(TaskTypesCollectionTableViewCell.self, forCellReuseIdentifier: "\(TaskTypesCollectionTableViewCellModel.self)")
-        tableView.register(DatePickerTableViewCell.self, forCellReuseIdentifier: "\( DatePickerTableViewCellModel.self)")
+        tableView.register(DueDatePickerTableViewCell.self, forCellReuseIdentifier: "\( DueDatePickerTableViewCellModel.self)")
         tableView.register(TextViewTableViewCell.self, forCellReuseIdentifier:"\( TextViewTableViewCellModel.self)")
     }
 }
@@ -75,18 +98,28 @@ extension AddPlantTaskViewController: AddPlantTaskViewProtocol {
         self.items = items
         tableView.reloadData()
     }
+
+    func dismissVC() {
+        presenter?.dismissVC()
+    }
+
+    func showError(with error: String) {
+        let errorAlert = UIAlertController(title: "Missing task content", message: error, preferredStyle: .alert)
+        errorAlert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(errorAlert, animated: true)
+    }
 }
 
 extension AddPlantTaskViewController: AddTaskTableViewItemDelegate {
-    func didSelectPlantName(_ cell: PlantsNamesCollectionTableViewCell, withName name: String) {
-        taskData.plantName = name
+    func didSelectPlant(_ cell: PlantsNamesCollectionTableViewCell, withId id: String) {
+        taskData.plantID = id
     }
     
     func didSelectTaskType(_ cell: TaskTypesCollectionTableViewCell, withType type: String) {
         taskData.taskType = type
     }
     
-    func didSelectDate(_ cell: DatePickerTableViewCell, withDate date: Date) {
+    func didSelectDate(_ cell: DueDatePickerTableViewCell, withDate date: Date) {
         taskData.dueDate = date
     }
     

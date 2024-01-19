@@ -7,12 +7,11 @@
 
 import CoreLocation
 import RealmSwift
+import UIKit
 
 protocol HomeInteractorProtocol: AnyObject {
-    func fetchCurrentTimeImage()
-    func fetchCurrentGreetings()
     func fetchCurrenLocationWeather()
-    func fetchUserPlants()
+    func fetchInitialData()
 }
 
 class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegate {
@@ -44,6 +43,15 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
         setupPlantChangeNotifications()
     }
 
+    func fetchInitialData(){
+        let greeting = fetchCurrentGreetings()
+        let currentImage = fetchCurrentTimeImage()
+        let userPlants = fetchUserPlants()
+        let data = HomeTableViewData(greeting: greeting, image: currentImage, userPlants: userPlants)
+        presenter?.didFetchInitialData(with: data)
+    }
+
+
 
     deinit {
         notificationToken?.invalidate()
@@ -64,20 +72,20 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
     }
 
 
-    func fetchCurrentTimeImage() {
+    private func fetchCurrentTimeImage() -> UIImage {
         let image = imageProvider.imageForCurrentTime()
-        presenter?.currentTimeImageFetched(with: image)
+        return image
     }
 
-    func fetchCurrentGreetings() {
+    private func fetchCurrentGreetings() -> String {
         let greeting = greetingProvider.greetingForCurrentTime()
-        presenter?.currentGreetingFetched(with: greeting)
+        return greeting
     }
 
-    func fetchUserPlants(){
+    private func fetchUserPlants() -> [PlantObject]{
         let plantsObjects = realm?.objects(PlantObject.self)
-        guard let plants = plantsObjects else { return }
-        presenter?.plantsFetched(with: Array(plants))
+        guard let plants = plantsObjects else { return [] }
+        return Array(plants)
     }
 
 
@@ -87,7 +95,7 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
         locationManager.startUpdatingLocation()
     }
 
-    func getCurrentWeather(location: CLLocation){
+    func getCurrentWeather(location: CLLocation) {
         let weatherApiManager = WeatherApiManager()
         weatherApiManager.fetchCurrentWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.latitude) { result in
             switch result {

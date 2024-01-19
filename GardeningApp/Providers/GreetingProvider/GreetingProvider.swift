@@ -9,7 +9,7 @@
 
 import Foundation
 
-class GreetingProvider {
+final class GreetingProvider {
     
     func greetingForCurrentTime() -> String {
         let hour = Calendar.current.component(.hour, from: Date())

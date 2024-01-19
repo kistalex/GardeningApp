@@ -10,8 +10,11 @@
 import Foundation
 
 struct TaskModel {
+    var id: String?
     var plantName: String?
+    var plantID: String?
     var taskType: String?
     var dueDate: Date?
     var taskDescription: String?
+    var isComplete: Bool?
 }

@@ -12,9 +12,9 @@ protocol GardenInfoInteractorProtocol: AnyObject {
 class GardenInfoInteractor: GardenInfoInteractorProtocol {
     weak var presenter: GardenInfoPresenterProtocol?
 
-    private var plant: PlantObject
+    private var plant: PlantViewModel
 
-    init(plant: PlantObject){
+    init(plant: PlantViewModel){
         self.plant = plant
     }
 

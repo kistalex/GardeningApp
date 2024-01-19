@@ -11,120 +11,118 @@ import SnapKit
 
 protocol NewPlantViewProtocol: AnyObject {
     func displayImage(_ image: UIImage)
+    func setCells(with items: [TableViewCellItemModel])
 }
 
-class NewPlantViewController: UIViewController {
+class NewPlantViewController: UITableViewController {
     // MARK: - Public
     var presenter: NewPlantPresenterProtocol?
-    private lazy var plantImageView = CustomImageView(imageName: "pickerPlaceholder")
-    private let nameTField = CustomTextField(tFieldType: .name)
-    private let ageTField = CustomTextField(tFieldType: .age)
-    private let recommendationLabel = CustomLabel(fontName: UIFont.body(), text: "If you want, you can add a description of your plant or some personal observations.", textColor: .accentLight)
-    private let descriptionTView = CustomTextView()
-    private let saveButton = CustomTextButton(text: "Save", bgColor: .accentLight)
-    private let contentView = UIView()
+
+    private var items = [TableViewCellItemModel]()
+    private var plantModel = PlantModel()
+
 
     // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialize()
+        presenter?.didFetchCells()
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: items[indexPath.row].identifier) as? AddPlantTableViewCellItem
+        cell?.config(with: items[indexPath.row])
+        cell?.delegate = self
+        return cell as? UITableViewCell ?? UITableViewCell()
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
     }
 }
 
 // MARK: - Private functions
 private extension NewPlantViewController {
     func initialize() {
-        view.backgroundColor = .accentDark
-        setupViews()
-        setupGesture()
+        view.backgroundColor = .light
+        registerCells()
+        setupDismissKeyboardGesture()
+        setupView()
     }
 
-    private func setupViews(){
+    private func setupView(){
 
-        view.addSubview(contentView)
-
-        [plantImageView, nameTField, recommendationLabel ,ageTField, descriptionTView, saveButton].forEach { item in
-            contentView.addSubview(item)
-        }
-
-        contentView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.keyboardLayoutGuide.snp.top).inset(20)
-        }
-
-        plantImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.centerX.equalToSuperview()
-            make.height.equalToSuperview().dividedBy(3.5)
-            make.width.equalTo(plantImageView.snp.height)
-        }
-
-        nameTField.snp.makeConstraints { make in
-            make.top.equalTo(plantImageView.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.height.equalToSuperview().dividedBy(15)
-        }
-
-        ageTField.snp.makeConstraints { make in
-            make.top.equalTo(nameTField.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.height.equalToSuperview().dividedBy(15)
-        }
-
-        recommendationLabel.snp.makeConstraints { make in
-            make.top.equalTo(ageTField.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(10)
-        }
-
-        descriptionTView.snp.makeConstraints { make in
-            make.top.equalTo(recommendationLabel.snp.bottom).offset(10)
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.height.equalToSuperview().dividedBy(5)
-        }
-
-        saveButton.snp.makeConstraints { make in
-            make.top.equalTo(descriptionTView.snp.bottom).offset(10)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(50)
-            make.width.equalTo(150)
-        }
-        saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        tableView.separatorInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        tableView.separatorStyle = .none
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.showsVerticalScrollIndicator = false
+        tableView.allowsSelection = false
     }
 
-    private func setupGesture(){
-        let tap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
-        plantImageView.isUserInteractionEnabled = true
-        plantImageView.addGestureRecognizer(tap)
+    private func setupDismissKeyboardGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(tapGesture)
     }
 
-    //MARK: - Selectors
+    @objc private func dismissKeyboard() {
+        tableView.endEditing(true)
+    }
 
-    @objc private func openImagePicker() {
+    private func registerCells(){
+        tableView.register(PlantImageTableViewCell.self, forCellReuseIdentifier: "\(PlantImageTableViewCellModel.self)")
+        tableView.register(PlantNameTableCell.self, forCellReuseIdentifier: "\(PlantNameTableCellModel.self)")
+        tableView.register(DatePlantCaringTableViewCell.self, forCellReuseIdentifier: "\(DatePlantCaringTableViewCellModel.self)")
+        tableView.register(PlantDescriptionTableViewCell.self, forCellReuseIdentifier: "\(PlantDescriptionTableViewCellModel.self)")
+        tableView.register(SavePlantButtonTableViewCell.self, forCellReuseIdentifier: "\(SavePlantButtonTableViewCellModel.self)")
+
+    }
+}
+extension NewPlantViewController: AddPlantTableViewItemDelegate {
+    func didTapOpenImagePicker(_ cell: PlantImageTableViewCell) {
         presenter?.didTapOpenImagePicker()
     }
     
-    @objc private func saveButtonTapped() {
-        guard  let image = plantImageView.image,
-               let name = nameTField.text, !name.isEmpty,
-               let age = ageTField.text, !age.isEmpty,
-               let description = descriptionTView.text else { return }
-        presenter?.didTapSavePlant(image: image, name: name, age: age, description: description)
+    func didInputPlantName(_ cell: PlantNameTableCell, with name: String) {
+        plantModel.name = name
+    }
+    
+    func didChoseStartCaringDate(_ cell: DatePlantCaringTableViewCell, with date: Date) {
+        plantModel.age = date
+    }
+    
+    func didWriteDescription(_ cell: PlantDescriptionTableViewCell, with text: String) {
+        plantModel.description = text
+    }
+    
+    func didTapSaveButton(_ cell: SavePlantButtonTableViewCell) {
+        presenter?.didTapSavePlant(for: plantModel)
     }
 }
 extension NewPlantViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        dismiss(animated: true, completion: nil)
         presenter?.didFinishPickingImage(results: results)
+        dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - NewPlantViewProtocol
 extension NewPlantViewController: NewPlantViewProtocol {
+    func setCells(with items: [TableViewCellItemModel]) {
+        self.items = items
+    }
+
     func displayImage(_ image: UIImage) {
-        DispatchQueue.main.async {
-            self.plantImageView.image = image
+        if let index = items.firstIndex(where: { $0 is PlantImageTableViewCellModel }) {
+            if let currentDateModel = items[index] as? PlantImageTableViewCellModel {
+                currentDateModel.placeholderImage = image
+                items[index] = currentDateModel
+                let indexPath = IndexPath(row: index, section: 0)
+                DispatchQueue.main.async {
+                    self.tableView.reloadRows(at: [indexPath], with: .fade)
+                }
+                plantModel.image = image
+            }
         }
     }
 }
-
-

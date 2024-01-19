@@ -24,10 +24,9 @@ class HomeModuleBuilder {
         router.viewController = viewController
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.prefersLargeTitles = false
-        navigationController.navigationBar.tintColor = .accentLight
-        navigationController.navigationBar.barTintColor = .accentDark
-        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.accentLight]
+        navigationController.navigationBar.tintColor = .dark
+        navigationController.navigationBar.barTintColor = .light
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.dark]
         return navigationController
-//        return viewController
     }
 }

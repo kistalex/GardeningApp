@@ -9,7 +9,9 @@ import UIKit
 protocol NewPlantPresenterProtocol: AnyObject {
     func didTapOpenImagePicker()
     func didFinishPickingImage(results: [PHPickerResult])
-    func didTapSavePlant(image: UIImage?, name: String, age: String, description: String?)
+    func didTapSavePlant(for plantModel: PlantModel)
+
+    func didFetchCells()
 }
 
 class NewPlantPresenter {
@@ -30,6 +32,11 @@ extension NewPlantPresenter: NewPlantPresenterProtocol {
         router.presentImagePicker(withConfig: config)
     }
 
+    func didFetchCells() {
+        let cellModels = createCellModels()
+        view?.setCells(with: cellModels)
+    }
+
     func didFinishPickingImage(results: [PHPickerResult]) {
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { (object, error) in
@@ -42,8 +49,20 @@ extension NewPlantPresenter: NewPlantPresenterProtocol {
         }
     }
 
-    func didTapSavePlant(image: UIImage?, name: String, age: String, description: String?) {
-        interactor.savePlantObject(image: image, name: name, age: age, description: description)
+    func didTapSavePlant(for plantModel: PlantModel) {
+        interactor.savePlantObject(with: plantModel)
         router.dismissViewController()
     }
+
+    private func createCellModels() -> [TableViewCellItemModel]{
+        guard let placeholderImage = UIImage(named: "pickerPlaceholder") else { return [] }
+        return [
+            PlantImageTableViewCellModel(placeholderImage: placeholderImage),
+                PlantNameTableCellModel(),
+                DatePlantCaringTableViewCellModel(labelText: "Choose a date to start caring for your plant"),
+                PlantDescriptionTableViewCellModel(placeholderText: "Input here", labelText: "If you want, you can add a description of your plant or some personal observations"),
+                SavePlantButtonTableViewCellModel(buttonTitle: "Save")
+        ]
+    }
 }
+

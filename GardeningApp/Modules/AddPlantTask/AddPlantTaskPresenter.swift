@@ -7,9 +7,10 @@
 
 protocol AddPlantTaskPresenterProtocol: AnyObject {
     func viewDidLoad()
-    func didFetchData(_ data: TableViewModel)
+    func didFetchData(_ data: AddTaskTableViewModel)
     func saveTaskData(with data: TaskModel)
     func dismissVC()
+    func informUserAboutFields(with message: String)
 }
 
 class AddPlantTaskPresenter {
@@ -33,15 +34,19 @@ extension AddPlantTaskPresenter: AddPlantTaskPresenterProtocol {
         interactor.saveTaskData(with: data)
     }
 
-    func didFetchData(_ data: TableViewModel) {
+    func didFetchData(_ data: AddTaskTableViewModel) {
         let cellModels = createCellModels(from: data)
         view?.setCells(with: cellModels)
     }
 
-    private func createCellModels(from data: TableViewModel) -> [TableViewCellItemModel]{
+    func informUserAboutFields(with message: String) {
+        view?.showError(with: message)
+    }
+
+    private func createCellModels(from data: AddTaskTableViewModel) -> [TableViewCellItemModel]{
         return [
-            PlantsNamesCollectionTableViewCellModel(plantsNames: data.plantsName, labelText: "Select the plant name"),
-            DatePickerTableViewCellModel(labelText: "Select the date of completion"),
+            PlantsNamesCollectionTableViewCellModel(plantIDs: data.plantIds, plantsNames: data.plantsName, labelText: "Select the plant name"),
+            DueDatePickerTableViewCellModel(labelText: "Select the date of completion"),
             TaskTypesCollectionTableViewCellModel(taskTypes: data.taskTypes, labelText: "Select the type of task"),
             TextViewTableViewCellModel(placeholderText: "Add an explanation, description or nuance of the process"),
             SaveTaskButtonTableViewCellModel(title: "Сохранить")
@@ -52,8 +57,4 @@ extension AddPlantTaskPresenter: AddPlantTaskPresenterProtocol {
         router.dismissViewController()
     }
 }
-//Select the plant name
-//Select the date of completion
-//Select the type of task
-//Add an explanation, description or nuance of the process
-//Save
+

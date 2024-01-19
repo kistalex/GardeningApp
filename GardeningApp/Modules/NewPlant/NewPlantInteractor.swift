@@ -10,7 +10,7 @@ import RealmSwift
 
 protocol NewPlantInteractorProtocol: AnyObject {
     func createPickerConfiguration() -> PHPickerConfiguration
-    func savePlantObject(image: UIImage?, name: String, age: String, description: String?)
+    func savePlantObject(with plantModel: PlantModel)
 }
 
 class NewPlantInteractor: NewPlantInteractorProtocol {
@@ -28,29 +28,19 @@ class NewPlantInteractor: NewPlantInteractorProtocol {
         }
     }
 
-    func createPickerConfiguration() -> PHPickerConfiguration {
-        var config = PHPickerConfiguration()
-        config.selectionLimit = 1
-        config.filter = .images
-        return config
-    }
+    func savePlantObject(with plantModel: PlantModel) {
+        guard let realm = realm,
+              let plantName = plantModel.name,
+              let plantAge = plantModel.age
+        else { return }
 
-    func savePlantObject(image: UIImage?, name: String, age: String, description: String?) {
-        guard let realm = self.realm else { return }
-
-        if realm.objects(PlantObject.self).filter("plantName == %@", name).first != nil {
-//            presenter?.showError("A plant with the same name already exists.")
-            print("Имя растения уже существует")
-            return
-        }
-
-        let userDescription = description?.isEmpty ?? true ? "Your observations and notes on flower care could have been here, but you didn't add them😔" : description
+        let plantDesc = plantModel.description?.isEmpty ?? true ? "Your observations and notes on flower care could have been here, but you didn't add them😔" : plantModel.description
 
         let plant = PlantObject(
-            imageData: image?.jpegData(compressionQuality: 1.0),
-            plantName: name,
-            plantAge: age,
-            plantDescription: userDescription
+            imageData: plantModel.image?.jpegData(compressionQuality: 1.0),
+            plantName: plantName,
+            plantAge: plantAge,
+            plantDescription: plantDesc
         )
 
         do {
@@ -58,8 +48,14 @@ class NewPlantInteractor: NewPlantInteractorProtocol {
                 realm.add(plant)
             }
         } catch {
-//            presenter?.showError(error.localizedDescription)
             print(error)
         }
+    }
+
+    func createPickerConfiguration() -> PHPickerConfiguration {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        config.filter = .images
+        return config
     }
 }

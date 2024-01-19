@@ -7,7 +7,7 @@
 import UIKit
 
 class GardenInfoModuleBuilder {
-    static func build(with plant: PlantObject) -> GardenInfoViewController {
+    static func build(with plant: PlantViewModel) -> GardenInfoViewController {
         let interactor = GardenInfoInteractor(plant: plant)
         let router = GardenInfoRouter()
         let presenter = GardenInfoPresenter(interactor: interactor, router: router)

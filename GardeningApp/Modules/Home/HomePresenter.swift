@@ -10,13 +10,12 @@ import RealmSwift
 
 protocol HomePresenterProtocol: AnyObject {
     func viewDidLoad()
-    func currentTimeImageFetched(with image: UIImage?)
-    func currentGreetingFetched(with text: String)
-    func currentWeatherFetched(with weatherData: WeatherData)
+    func currentWeatherFetched(with weatherData: WeatherModel)
     func plantsFetched(with plants: [PlantObject])
     func didTapAddNewPlant()
     func didTapTaskManagerButton()
-    func didTapOpenGardenInfo(with plant: PlantObject)
+    func didTapOpenGardenInfo(with plant: PlantViewModel)
+    func didFetchInitialData(with data: HomeTableViewData)
 }
 
 class HomePresenter {
@@ -32,17 +31,58 @@ class HomePresenter {
 
 extension HomePresenter: HomePresenterProtocol {
 
+    private enum Constants{
+        static let celsiusSign = " °C"
+        static let percentSign = " %"
+        static let speedSign = " m/s"
+        static let nilSign = "-/-"
+        static let searchIconName = "magnifyingglass"
+        static let notifyIconName = "bell"
+        static let imagePointSize: CGFloat = 18
+        static let introductionText = "Flora is Here, your personal garden manager!"
+        static let headerText = "My Garden"
+        static let buttonImageName = "plus.circle.fill"
+        static let buttonTitle = "Add new plant"
+        static let placeholderImage = "pickerPlaceholder"
+        static let dateFormat = "MMMM dd, yyyy"
+    }
+
     func viewDidLoad() {
-        interactor.fetchCurrentGreetings()
-        interactor.fetchCurrentTimeImage()
-        interactor.fetchUserPlants()
+        interactor.fetchInitialData()
+        interactor.fetchCurrenLocationWeather()
+    }
+
+    func didFetchInitialData(with data: HomeTableViewData){
+        let tableData = configureFetchedData(from: data)
+        let cellModels = setupCells(with: tableData)
+        view?.setCells(cellModels)
+    }
+
+    private func setupCells(with data: HomeTableViewModel) -> [TableViewCellItemModel] {
+        let initialWeatherData = WeatherViewModel(temp: Constants.nilSign, humidity: Constants.nilSign, windSpeed: Constants.nilSign)
+        return [
+            ButtonsTableViewCellModel(
+                searchIconName: Constants.searchIconName,
+                notifyIconName: Constants.notifyIconName,
+                imagePointSize: Constants.imagePointSize),
+            GreetingsTableViewCellModel(
+                greetingText: data.greeting,
+                introductionText: Constants.introductionText),
+            ImageTableViewCellModel(image: data.image),
+            WeatherInfoTableViewCellModel(weatherData: initialWeatherData),
+            GardenHeaderTableViewCellModel(
+                headerText: Constants.headerText,
+                buttonImageName: Constants.buttonImageName,
+                buttonTitle: Constants.buttonTitle),
+            UserPlantCollectionTableViewCellModel(plants: data.userPlants)
+        ]
     }
 
     func didTapAddNewPlant() {
         router.openNewPlantVC()
     }
 
-    func didTapOpenGardenInfo(with plant: PlantObject) {
+    func didTapOpenGardenInfo(with plant: PlantViewModel) {
         router.openGardenInfoVC(with: plant)
     }
 
@@ -51,18 +91,44 @@ extension HomePresenter: HomePresenterProtocol {
     }
 
     func plantsFetched(with plants: [PlantObject]) {
-        view?.setPlants(with: plants)
+        let plantsModels = getPlantsModels(plants: plants)
+        view?.setPlants(with: plantsModels)
     }
 
-    func currentGreetingFetched(with text: String) {
-        view?.showGreetingForCurrentTime(text: text)
+    func currentWeatherFetched(with weatherData: WeatherModel) {
+        let weatherDataModel = getWeatherDataModel(from: weatherData)
+        view?.showCurrentWeatherData(with: weatherDataModel)
     }
 
-    func currentTimeImageFetched(with image: UIImage?) {
-        view?.showImageForCurrentTime(image: image)
+    private func getWeatherDataModel(from weatherData: WeatherModel) -> WeatherViewModel {
+        return WeatherViewModel(
+            temp: "\(weatherData.current.temp)" + Constants.celsiusSign,
+            humidity: "\(weatherData.current.humidity)" + Constants.percentSign,
+            windSpeed: "\(weatherData.current.windSpeed)" + Constants.speedSign
+        )
     }
 
-    func currentWeatherFetched(with weatherData: WeatherData) {
-        view?.showCurrentWeatherData(with: weatherData)
+    private func configureFetchedData(from data: HomeTableViewData) -> HomeTableViewModel {
+        let homeViewModel = HomeTableViewModel(greeting: data.greeting, image: data.image, userPlants: getPlantsModels(plants: data.userPlants))
+        return homeViewModel
+    }
+
+    private func getPlantsModels(plants: [PlantObject]) -> [PlantViewModel]{
+        return plants.map { plant in
+            let age = convertDateToString(date: plant.plantAge)
+            let image = plant.image ?? UIImage(named: Constants.placeholderImage)
+            return PlantViewModel(
+                image: image,
+                name: plant.plantName,
+                age: age,
+                description: plant.plantDescription
+            )
+        }
+    }
+
+    private func convertDateToString(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = Constants.dateFormat
+        return formatter.string(from: date)
     }
 }

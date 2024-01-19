@@ -6,7 +6,7 @@
 //
 
 protocol GardenInfoPresenterProtocol: AnyObject {
-    func plantInfoFetched(plant: PlantObject)
+    func plantInfoFetched(plant: PlantViewModel)
     func viewDidLoad()
 }
 
@@ -22,7 +22,7 @@ class GardenInfoPresenter {
 }
 
 extension GardenInfoPresenter: GardenInfoPresenterProtocol {
-    func plantInfoFetched(plant: PlantObject) {
+    func plantInfoFetched(plant: PlantViewModel) {
         view?.showPlantInfo(plant: plant)
     }
     func viewDidLoad() {
