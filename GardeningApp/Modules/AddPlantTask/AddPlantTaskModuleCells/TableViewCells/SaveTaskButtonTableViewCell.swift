@@ -23,7 +23,13 @@ final class SaveTaskButtonTableViewCell: UITableViewCell, AddTaskTableViewCellIt
 
     weak var delegate: AddTaskTableViewItemDelegate?
     
-    private let actionButton = UIButton(type: .system)
+    func config(with data: Any) {
+        guard let data = data as? SaveTaskButtonTableViewCellModel else { return }
+        contentView.backgroundColor = Constants.contentViewBgColor
+        actionButton.titleLabel?.font = Constants.actionButtonTitleFont
+        actionButton.setTitle(data.buttonTitle, for: .normal)
+        actionButton.setTitleColor(Constants.actionButtonTitleColor, for: .normal)
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,18 +41,30 @@ final class SaveTaskButtonTableViewCell: UITableViewCell, AddTaskTableViewCellIt
         setupButton()
     }
 
+    private enum Constants {
+        static let actionButtonHeight: CGFloat = 50
+        static let actionButtonWidth: CGFloat = 150
+        static let cornerRadiusDivider: CGFloat = 2
+        static let actionButtonTopInset: CGFloat = 10
+        static let actionButtonBottomInset: CGFloat = 10
+        static let contentViewBgColor: UIColor = .light
+        static let actionButtonTitleColor: UIColor = .light
+        static let actionButtonTitleFont = UIFont.body()
+        static let actionButtonBgColor: UIColor = .dark
+    }
+
+    private let actionButton = UIButton(type: .system)
+
     private func setupButton() {
         contentView.addSubview(actionButton)
-        actionButton.setTitleColor(.light, for: .normal)
-        actionButton.backgroundColor = .dark
+        actionButton.backgroundColor = Constants.actionButtonBgColor
         actionButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().inset(10)
+            make.top.equalToSuperview().offset(Constants.actionButtonTopInset)
+            make.bottom.equalToSuperview().inset(Constants.actionButtonBottomInset)
             make.centerX.equalToSuperview()
-            make.width.equalTo(150)
-            make.height.equalTo(50)
+            make.width.equalTo(Constants.actionButtonWidth)
+            make.height.equalTo(Constants.actionButtonHeight)
         }
-
         actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
 
@@ -54,16 +72,8 @@ final class SaveTaskButtonTableViewCell: UITableViewCell, AddTaskTableViewCellIt
         delegate?.buttonCellDidTapped(self)
     }
 
-
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        actionButton.layer.cornerRadius = actionButton.frame.size.height / 2
-    }
-
-    func config(with data: Any) {
-        guard let data = data as? SaveTaskButtonTableViewCellModel else { return }
-        contentView.backgroundColor = .light
-        actionButton.titleLabel?.font = .body()
-        actionButton.setTitle(data.buttonTitle, for: .normal)
+        actionButton.layer.cornerRadius = actionButton.frame.size.height / Constants.cornerRadiusDivider
     }
 }

@@ -27,7 +27,13 @@ final class AddTaskButtonTableViewCell: UITableViewCell, TaskTableViewCellItem {
 
     weak var delegate: TaskTableViewItemDelegate?
 
-    private let actionButton = UIButton(type: .system)
+    func config(with data: Any) {
+        guard let data = data as? AddTaskButtonTableViewCellModel else { return }
+        let configuration = UIImage.SymbolConfiguration(pointSize: data.imagePointSize)
+        contentView.backgroundColor = Constants.contentViewBgColor
+        actionButton.setImage(UIImage(systemName: data.buttonImageName, withConfiguration: configuration), for: .normal)
+        actionButton.tintColor = Constants.actionButtonTintColor
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -39,16 +45,23 @@ final class AddTaskButtonTableViewCell: UITableViewCell, TaskTableViewCellItem {
         setupButton()
     }
 
+    private enum Constants {
+        static let actionButtonSize: CGFloat = 45
+        static let verticalInsets: CGFloat = 10
+        static let cornerRadiusDivider: CGFloat = 2
+        static let contentViewBgColor: UIColor = .light
+        static let actionButtonTintColor: UIColor = .dark
+    }
+
+    private let actionButton = UIButton(type: .system)
+
     private func setupButton() {
         contentView.addSubview(actionButton)
-        actionButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
-        actionButton.tintColor = .dark
         actionButton.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(contentView).inset(10)
+            make.verticalEdges.equalTo(contentView).inset(Constants.verticalInsets)
             make.centerX.equalTo(contentView)
-            make.size.equalTo(45)
+            make.size.equalTo(Constants.actionButtonSize)
         }
-
         actionButton.addTarget(self, action: #selector(actionButtonTapped), for: .touchUpInside)
     }
 
@@ -56,17 +69,9 @@ final class AddTaskButtonTableViewCell: UITableViewCell, TaskTableViewCellItem {
         delegate?.buttonCellDidTap(self)
     }
 
-
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        actionButton.layer.cornerRadius = actionButton.frame.size.height / 2
-    }
-
-    func config(with data: Any) {
-        guard let data = data as? AddTaskButtonTableViewCellModel else { return }
-        let configuration = UIImage.SymbolConfiguration(pointSize: data.imagePointSize)
-        contentView.backgroundColor = .light
-        actionButton.setImage(UIImage(systemName: data.buttonImageName, withConfiguration: configuration), for: .normal)
+        actionButton.layer.cornerRadius = actionButton.frame.size.height / Constants.cornerRadiusDivider
     }
 }
 

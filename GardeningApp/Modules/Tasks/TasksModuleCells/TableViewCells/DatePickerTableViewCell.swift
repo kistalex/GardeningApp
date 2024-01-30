@@ -25,13 +25,14 @@ class DatePickerTableViewCellModel: NSObject, TableViewCellItemModel {
 class DatePickerTableViewCell: UITableViewCell, TaskTableViewCellItem {
 
     weak var delegate: TaskTableViewItemDelegate?
-    typealias DateTuple = (dayOfWeek: String, dayOfMonth: String)
 
-    private var datePickerCollectionView: UICollectionView!
-    private var cellData: [Date] = []
-    private var cellStringData: [DateTuple] = []
-    private var selectedDate: Date?
-    private var selectedStringDate: DateTuple?
+    func config(with data: Any) {
+        guard let data = data as? DatePickerTableViewCellModel else { return }
+        contentView.backgroundColor = Constants.contentViewBgColor
+        selectedDate = data.selectedDate
+        cellData = data.dates
+        datePickerCollectionView.reloadData()
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -43,25 +44,44 @@ class DatePickerTableViewCell: UITableViewCell, TaskTableViewCellItem {
         setupCollectionView()
     }
 
-    override func layoutIfNeeded() {
-        super.layoutIfNeeded()
-        datePickerCollectionView.layer.cornerRadius = datePickerCollectionView.frame.size.height / 12
-        datePickerCollectionView.layer.borderWidth = 1
-        datePickerCollectionView.layer.borderColor = UIColor.dark.cgColor
+    private enum Constants {
+        static let sectionTopInset: CGFloat = 10
+        static let sectionBottomInset: CGFloat = 10
+        static let sectionLeftInset: CGFloat = 0
+        static let sectionRightInset: CGFloat = 0
+        static let verticalInsets: CGFloat = 10
+        static let horizontalInsets: CGFloat = 10
+        static let collectionHeightConstraint: CGFloat = 150
+        static let itemWidthDivider: CGFloat = 1.5
+        static let cornerRadiusDivider: CGFloat = 12
+        static let borderWidth: CGFloat = 1
+        static let borderColor: CGColor = UIColor.dark.cgColor
+        static let contentViewBgColor: UIColor = .light
     }
 
-    func config(with data: Any) {
-        guard let data = data as? DatePickerTableViewCellModel else { return }
-        contentView.backgroundColor = .light
-        selectedDate = data.selectedDate
-        cellData = data.dates
-        datePickerCollectionView.reloadData()
+    private var datePickerCollectionView: UICollectionView!
+    private var cellData: [Date] = []
+    private var selectedDate: Date?
+
+
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        datePickerCollectionView.layer.cornerRadius = datePickerCollectionView.frame.size.height / Constants.cornerRadiusDivider
+        datePickerCollectionView.layer.borderWidth = Constants.borderWidth
+        datePickerCollectionView.layer.borderColor = Constants.borderColor
     }
 
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        
+        layout.sectionInset = UIEdgeInsets(
+            top: Constants.sectionTopInset,
+            left: Constants.sectionLeftInset,
+            bottom: Constants.sectionBottomInset,
+            right: Constants.sectionRightInset
+        )
+
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         datePickerCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -74,17 +94,14 @@ class DatePickerTableViewCell: UITableViewCell, TaskTableViewCellItem {
         datePickerCollectionView.isPagingEnabled = true
         datePickerCollectionView.backgroundColor = .dark
 
-
         contentView.addSubview(datePickerCollectionView)
 
-
         datePickerCollectionView.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(contentView).inset(10)
-            make.horizontalEdges.equalTo(contentView).inset(10)
-            make.height.equalTo(150)
+            make.verticalEdges.equalTo(contentView).inset(Constants.verticalInsets)
+            make.horizontalEdges.equalTo(contentView).inset(Constants.horizontalInsets)
+            make.height.equalTo(Constants.collectionHeightConstraint)
         }
     }
-
 
     //MARK: - Selectors
     @objc private func todayButtonTapped(){

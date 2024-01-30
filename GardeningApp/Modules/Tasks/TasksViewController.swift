@@ -52,7 +52,6 @@ private extension TasksViewController {
 
     private func setupView(){
         title = "Task List"
-
         tableView.separatorStyle = .none
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.showsVerticalScrollIndicator = false

@@ -24,10 +24,6 @@ final class TextViewTableViewCell: UITableViewCell, AddTaskTableViewCellItem {
     weak var delegate: AddTaskTableViewItemDelegate?
 
     private let textView = PlaceholderTextView()
-    private var lastReturnKeyPress: Date?
-
-
-    private var inputText = ""
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -40,30 +36,39 @@ final class TextViewTableViewCell: UITableViewCell, AddTaskTableViewCellItem {
         setupTextView()
     }
 
+    private enum Constants {
+        static let textViewEdgesInsets: CGFloat = 10
+        static let textViewMinimumTextViewHeight: CGFloat = 150
+        static let textViewCornerRadiusDivider: CGFloat = 12
+        static let textViewBorderWidth: CGFloat = 1
+        static let textViewBorderColor: CGColor = UIColor.dark.cgColor
+        static let contentViewColor: UIColor = .light
+        static let textViewColor: UIColor = .light
+        static let textColor: UIColor = .dark
+    }
+
     private func setupTextView() {
         textView.delegate = self
         contentView.addSubview(textView)
         textView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(10)
-            make.horizontalEdges.equalToSuperview().inset(10)
-            make.height.greaterThanOrEqualTo(150)
+            make.edges.equalToSuperview().inset(Constants.textViewEdgesInsets)
+            make.height.greaterThanOrEqualTo(Constants.textViewMinimumTextViewHeight)
         }
     }
 
 
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        textView.layer.cornerRadius = textView.frame.size.height / 12
-        textView.layer.borderColor = UIColor.dark.cgColor
-        textView.layer.borderWidth = 1
-        textView.backgroundColor = .light
-        textView.textColor = .dark
+        textView.layer.cornerRadius = textView.frame.size.height / Constants.textViewCornerRadiusDivider
+        textView.layer.borderColor = Constants.textViewBorderColor
+        textView.layer.borderWidth = Constants.textViewBorderWidth
+        textView.backgroundColor = Constants.textViewColor
+        textView.textColor = Constants.textColor
     }
 
     func config(with data: Any) {
         guard let data = data as? TextViewTableViewCellModel else { return }
-        contentView.backgroundColor = .light
-
+        contentView.backgroundColor = Constants.contentViewColor
         textView.placeholder = data.placeholderText
     }
 }

@@ -22,12 +22,23 @@ class UserPlantCollectionTableViewCellModel: NSObject, TableViewCellItemModel {
 
 class UserPlantCollectionTableViewCell: UITableViewCell, HomeTableViewCellItem {
 
+    private enum Constants {
+        static let sectionTopInset: CGFloat = 0
+        static let sectionBottomInset: CGFloat = 0
+        static let sectionLeftInset: CGFloat = 20
+        static let sectionRightInset: CGFloat = 20
+        static let verticalInsets: CGFloat = 10
+        static let heightConstraint: CGFloat = 250
+        static let itemWidthDivider: CGFloat = 1.5
+        static let contentViewBgColor: UIColor = .light
+    }
+
     weak var delegate: HomeTableViewCellItemDelegate?
     private var cellData: [PlantViewModel] = []
 
     func config(with data: Any) {
         guard let data = data as? UserPlantCollectionTableViewCellModel else { return }
-        contentView.backgroundColor = .light
+        contentView.backgroundColor = Constants.contentViewBgColor
         cellData = data.plants
         gardenCollectionView.reloadData()
     }
@@ -47,7 +58,12 @@ class UserPlantCollectionTableViewCell: UITableViewCell, HomeTableViewCellItem {
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+        layout.sectionInset = UIEdgeInsets(
+            top: Constants.sectionTopInset,
+            left: Constants.sectionLeftInset,
+            bottom: Constants.sectionBottomInset,
+            right: Constants.sectionRightInset
+        )
         gardenCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         gardenCollectionView.register(PlantCell.self, forCellWithReuseIdentifier: "\(PlantCell.self)")
         gardenCollectionView.backgroundColor = .light
@@ -60,9 +76,9 @@ class UserPlantCollectionTableViewCell: UITableViewCell, HomeTableViewCellItem {
         contentView.addSubview(gardenCollectionView)
 
         gardenCollectionView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(10)
+            make.verticalEdges.equalToSuperview().inset(Constants.verticalInsets)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(250)
+            make.height.equalTo(Constants.heightConstraint)
         }
     }
 }
@@ -97,7 +113,7 @@ extension UserPlantCollectionTableViewCell: UICollectionViewDelegateFlowLayout {
         let totalVerticalInset = topInset + bottomInset
 
         let availableWidth = collectionView.bounds.width - totalHorizontalInset
-        let widthPerItem = availableWidth / 1.5
+        let widthPerItem = availableWidth / Constants.itemWidthDivider
         let heightPerItem = collectionView.bounds.height - totalVerticalInset
         return CGSize(width: widthPerItem, height: heightPerItem)
     }

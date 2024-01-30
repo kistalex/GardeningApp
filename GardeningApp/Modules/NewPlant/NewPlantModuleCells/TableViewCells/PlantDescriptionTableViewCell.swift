@@ -26,13 +26,14 @@ final class PlantDescriptionTableViewCell: UITableViewCell, AddPlantTableViewCel
 
 
     weak var delegate: AddPlantTableViewItemDelegate?
-    private var recommendationLabel = CustomLabel(fontName: .body(), textColor: .dark, textAlignment: .natural)
-    private let textView = PlaceholderTextView()
-    private var lastReturnKeyPress: Date?
 
+    func config(with data: Any) {
+        guard let data = data as? PlantDescriptionTableViewCellModel else { return }
+        contentView.backgroundColor = Constants.contentViewColor
 
-    private var inputText = ""
-
+        textView.placeholder = data.placeholderText
+        recommendationLabel.text = data.labelText
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -44,40 +45,47 @@ final class PlantDescriptionTableViewCell: UITableViewCell, AddPlantTableViewCel
         setupTextView()
     }
 
+    private enum Constants {
+        static let topInset: CGFloat = 10
+        static let horizontalInset: CGFloat = 10
+        static let textViewBottomInset: CGFloat = 10
+        static let minimumTextViewHeight: CGFloat = 150
+        static let cornerRadiusDivider: CGFloat = 12
+        static let borderWidth: CGFloat = 1
+        static let fontName: UIFont = .body()
+        static let contentViewColor: UIColor = .light
+        static let textColor: UIColor = .dark
+    }
+
+    private var recommendationLabel = CustomLabel(fontName: Constants.fontName, textColor: Constants.textColor, textAlignment: .natural)
+
+    private let textView = PlaceholderTextView()
+
     private func setupTextView() {
         textView.delegate = self
         contentView.addSubview(textView)
         contentView.addSubview(recommendationLabel)
 
         recommendationLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.horizontalEdges.equalToSuperview().inset(10)
+            make.top.equalToSuperview().offset(Constants.topInset)
+            make.horizontalEdges.equalToSuperview().inset(Constants.horizontalInset)
         }
 
         textView.snp.makeConstraints { make in
-            make.top.equalTo(recommendationLabel.snp.bottom).offset(10)
-            make.bottom.equalToSuperview().inset(10)
-            make.horizontalEdges.equalToSuperview().inset(10)
-            make.height.greaterThanOrEqualTo(150)
+            make.top.equalTo(recommendationLabel.snp.bottom).offset(Constants.topInset)
+            make.bottom.equalToSuperview().inset(Constants.textViewBottomInset)
+            make.horizontalEdges.equalToSuperview().inset(Constants.horizontalInset)
+            make.height.greaterThanOrEqualTo(Constants.minimumTextViewHeight)
         }
     }
 
-
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        textView.layer.cornerRadius = textView.frame.size.height / 12
+        textView.layer.cornerRadius = textView.frame.size.height / Constants.cornerRadiusDivider
         textView.layer.borderColor = UIColor.dark.cgColor
-        textView.layer.borderWidth = 1
-        textView.backgroundColor = .light
-        textView.textColor = .dark
-    }
-
-    func config(with data: Any) {
-        guard let data = data as? PlantDescriptionTableViewCellModel else { return }
-        contentView.backgroundColor = .light
-
-        textView.placeholder = data.placeholderText
-        recommendationLabel.text = data.labelText
+        textView.layer.borderWidth = Constants.borderWidth
+        textView.backgroundColor = Constants.contentViewColor
+        textView.textColor = Constants.textColor
     }
 }
 
@@ -91,3 +99,4 @@ extension PlantDescriptionTableViewCell: UITextViewDelegate  {
     }
 }
 
+//        static let contentViewBgColor: UIColor = .light

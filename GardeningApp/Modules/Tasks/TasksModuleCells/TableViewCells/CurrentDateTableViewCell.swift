@@ -14,11 +14,11 @@ class CurrentDateTableViewCellModel: NSObject, TableViewCellItemModel {
     var identifier: String = String(describing: CurrentDateTableViewCellModel.self)
 
     var labelText: String
-    var buttonTitle: String
+    var todayButtonTitle: String
 
-    init(labelText: String, buttonTitle: String) {
+    init(labelText: String, todayButtonTitle: String) {
         self.labelText = labelText
-        self.buttonTitle = buttonTitle
+        self.todayButtonTitle = todayButtonTitle
     }
 }
 
@@ -28,23 +28,33 @@ class CurrentDateTableViewCell: UITableViewCell, TaskTableViewCellItem {
 
     func config(with data: Any) {
         guard let data = data as? CurrentDateTableViewCellModel else { return }
-        contentView.backgroundColor = .light
-
+        contentView.backgroundColor = Constants.contentViewBgColor
         dateLabel.text = data.labelText
-        todayButton.setTitle(data.buttonTitle, for: .normal)
+        todayButton.setTitle(data.todayButtonTitle, for: .normal)
     }
-    
-    private let dateLabel = CustomLabel(fontName: .body(), textColor: .dark)
-    private let todayButton = CustomTextButton(text: "", bgColor: .dark)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+
+    private enum Constants {
+        static let verticalInsets: CGFloat = 10
+        static let horizontalInsets: CGFloat = 10
+        static let buttonWidthConstraint: CGFloat = 80
+        static let textFont = UIFont.body()
+        static let textColor: UIColor = .dark
+        static let buttonBgColor: UIColor = .dark
+        static let contentViewBgColor: UIColor = .light
+    }
+
+    private let dateLabel = CustomLabel(fontName: Constants.textFont, textColor: Constants.textColor)
+
+    private let todayButton = CustomTextButton(text: "", bgColor: Constants.buttonBgColor)
     
     private func setupViews(){
         [dateLabel, todayButton].forEach { item in
@@ -52,14 +62,14 @@ class CurrentDateTableViewCell: UITableViewCell, TaskTableViewCellItem {
         }
 
         dateLabel.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(10)
+            make.verticalEdges.equalToSuperview().inset(Constants.verticalInsets)
             make.centerX.equalToSuperview()
         }
 
         todayButton.snp.makeConstraints { make in
             make.centerY.equalTo(dateLabel.snp.centerY)
-            make.leading.equalTo(dateLabel.snp.trailing).offset(10)
-            make.width.equalTo(80)
+            make.leading.equalTo(dateLabel.snp.trailing).offset(Constants.horizontalInsets)
+            make.width.equalTo(Constants.buttonWidthConstraint)
         }
 
         todayButton.addTarget(self, action: #selector(todayButtonTapped), for: .touchUpInside)

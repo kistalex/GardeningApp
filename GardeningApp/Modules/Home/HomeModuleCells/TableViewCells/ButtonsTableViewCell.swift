@@ -31,9 +31,16 @@ class ButtonsTableViewCell: UITableViewCell, HomeTableViewCellItem {
     func config(with data: Any) {
         guard let data = data as? ButtonsTableViewCellModel else { return }
         let configuration = UIImage.SymbolConfiguration(pointSize: data.imagePointSize)
-        contentView.backgroundColor = .light
+        contentView.backgroundColor = Constants.contentViewBgColor
         searchButton.setImage(UIImage(systemName: data.searchIconName, withConfiguration: configuration), for: .normal)
         notificationButton.setImage(UIImage(systemName: data.notifyIconName, withConfiguration: configuration), for: .normal)
+    }
+
+    private enum Constants {
+        static let greetingTextFont = UIFont.title()
+        static let stackHorizontalInsets: CGFloat = 20
+        static let stackBottomInset: CGFloat = 10
+        static let contentViewBgColor: UIColor = .light
     }
 
     private let searchButton = UIButton(type: .system)
@@ -63,8 +70,8 @@ class ButtonsTableViewCell: UITableViewCell, HomeTableViewCellItem {
 
         buttonStack.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.horizontalEdges.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(10)
+            make.horizontalEdges.equalToSuperview().inset(Constants.stackHorizontalInsets)
+            make.bottom.equalToSuperview().inset(Constants.stackBottomInset)
         }
 
         searchButton.addTarget(self, action: #selector(handleSearchButtonTap), for: .touchUpInside)

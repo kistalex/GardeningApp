@@ -26,9 +26,15 @@ final class TaskTypesCollectionTableViewCell: UITableViewCell, AddTaskTableViewC
 
     weak var delegate: AddTaskTableViewItemDelegate?
 
-    private let label = UILabel()
-    private var collectionView: UICollectionView!
-    private var cellData: [String] = []
+    func config(with data: Any) {
+        guard let data = data as? TaskTypesCollectionTableViewCellModel else { return }
+        contentView.backgroundColor = Constants.contentViewBgColor
+        label.text = data.labelText
+        label.textColor = Constants.textColor
+        label.numberOfLines = 0
+        cellData = data.taskTypes
+        collectionView.reloadData()
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,13 +46,31 @@ final class TaskTypesCollectionTableViewCell: UITableViewCell, AddTaskTableViewC
         setupCollectionView()
     }
 
+    private enum Constants {
+        static let textFont = UIFont.body()
+        static let textColor: UIColor = .dark
+        static let collectionViewBgColor: UIColor = .clear
+        static let labelTopInset: CGFloat = 16
+        static let labelHorizontalInset: CGFloat = 10
+        static let collectionTopInset: CGFloat = 10
+        static let collectionHeightConstraint: CGFloat = 50
+        static let collectionSectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        static let collectionItemInternalHorizontalMargin: CGFloat = 30
+        static let collectionItemInternalVerticalMargin: CGFloat = 10
+        static let contentViewBgColor: UIColor = .light
+    }
+
+    private let label = UILabel()
+    private var collectionView: UICollectionView!
+    private var cellData: [String] = []
+    
     private func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 
         collectionView.register(TaskTypeCollectionCell.self, forCellWithReuseIdentifier: "\(TaskTypeCollectionCell.self)")
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = Constants.collectionViewBgColor
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -54,27 +78,19 @@ final class TaskTypesCollectionTableViewCell: UITableViewCell, AddTaskTableViewC
         contentView.addSubview(label)
         contentView.addSubview(collectionView)
 
-        label.numberOfLines = 0
 
         label.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(16)
-            make.horizontalEdges.equalToSuperview().inset(10)
+            make.top.equalToSuperview().offset(Constants.labelTopInset)
+            make.horizontalEdges.equalToSuperview().inset(Constants.labelHorizontalInset)
         }
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(label.snp.bottom).offset(10)
-            make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(50)
+            make.top.equalTo(label.snp.bottom).offset(Constants.collectionTopInset)
+            make.horizontalEdges.bottom.equalToSuperview()
+            make.height.equalTo(Constants.collectionHeightConstraint)
         }
     }
 
-    func config(with data: Any) {
-        guard let data = data as? TaskTypesCollectionTableViewCellModel else { return }
-        contentView.backgroundColor = .light
-        label.text = data.labelText
-        label.textColor = .dark
-        cellData = data.taskTypes
-        collectionView.reloadData()
-    }
+
 }
 extension TaskTypesCollectionTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,13 +116,16 @@ extension TaskTypesCollectionTableViewCell: UICollectionViewDelegate {
 extension TaskTypesCollectionTableViewCell: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = collectionView.frame
-        let categoryFont = UIFont.body()
+        let categoryFont = Constants.textFont
         let categoryAttributes = [NSAttributedString.Key.font: categoryFont as Any]
         let categoryWidth = cellData[indexPath.item].size(withAttributes: categoryAttributes).width
-        return CGSize(width: categoryWidth + 30 , height: size.height - 10)
+        return CGSize(
+            width: categoryWidth + Constants.collectionItemInternalHorizontalMargin,
+            height: size.height - Constants.collectionItemInternalVerticalMargin
+        )
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        return Constants.collectionSectionInset
     }
 }

@@ -9,14 +9,13 @@ import RealmSwift
 
 protocol AddPlantTaskInteractorProtocol: AnyObject {
     func fetchCellData()
-    func saveTaskData(with data: TaskModel)
+    func saveTaskData(with data: TaskModel, completion: @escaping (Result<Void, Error>) -> Void)
 }
 
 class AddPlantTaskInteractor: AddPlantTaskInteractorProtocol {
     weak var presenter: AddPlantTaskPresenterProtocol?
     
     private let realm: Realm?
-    private var items = [TableViewCellItemModel]()
 
     init() {
         do {
@@ -27,6 +26,37 @@ class AddPlantTaskInteractor: AddPlantTaskInteractorProtocol {
         }
     }
 
+    private enum Constants {
+        static let emptyDescriptionText = "No description"
+        static let plantNameField = "Plant name "
+        static let dueDateField = "Due date "
+        static let taskTypesField = "Task types "
+        static let textSeparator = "\n"
+        static let message = "Please fill in the following fields:"
+    }
+
+    private enum TaskSaveError: Error {
+        case missingFields(fields: [String])
+        case invalidObjectId
+        case realmWriteError(error: Error)
+        case plantNotFound
+    }
+
+    enum TaskType: String, CaseIterable {
+        case watering = "Watering"
+        case lighting = "Lighting"
+        case temperatureControl = "Temperature Control"
+        case feeding = "Feeding"
+        case pruning = "Pruning"
+        case repotting = "Repotting"
+        case pestControl = "Pest Control"
+        case soilAeration = "Soil Aeration"
+
+        static func allValues() -> [String] {
+            return TaskType.allCases.map { $0.rawValue }
+        }
+    }
+
     func fetchCellData() {
         let (plantIds, plantsNames) = fetchPlantIdsAndNames()
         let taskTypes = fetchTaskTypes()
@@ -34,7 +64,7 @@ class AddPlantTaskInteractor: AddPlantTaskInteractorProtocol {
         presenter?.didFetchData(data)
     }
 
-    func saveTaskData(with data: TaskModel) {
+    func saveTaskData(with data: TaskModel, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let realm = realm,
               let plantID = data.plantID,
               let taskType = data.taskType,
@@ -44,16 +74,25 @@ class AddPlantTaskInteractor: AddPlantTaskInteractorProtocol {
             return
         }
 
-        let description = data.taskDescription?.isEmpty ?? true ?  "No description" : data.taskDescription
+        let description = data.taskDescription?.isEmpty ?? true ? Constants.emptyDescriptionText : data.taskDescription
 
-        guard let objectID = try? ObjectId(string: plantID) else { return }
+        guard let objectID = try? ObjectId(string: plantID) else {
+            completion(.failure(TaskSaveError.invalidObjectId))
+            return
+        }
 
-
-        try? realm.write {
-            if let plant = realm.object(ofType: PlantObject.self, forPrimaryKey: objectID) {
-                let task = TaskRealmObject(taskType: taskType, dueDate: dueDate, taskDescription: description)
-                plant.tasks.append(task)
+        do {
+            try realm.write {
+                if let plant = realm.object(ofType: PlantObject.self, forPrimaryKey: objectID) {
+                    let task = TaskRealmObject(taskType: taskType, dueDate: dueDate, taskDescription: description)
+                    plant.tasks.append(task)
+                    completion(.success(()))
+                } else {
+                    completion(.failure(TaskSaveError.plantNotFound))
+                }
             }
+        } catch let error {
+            completion(.failure(TaskSaveError.realmWriteError(error: error)))
         }
     }
 
@@ -61,23 +100,22 @@ class AddPlantTaskInteractor: AddPlantTaskInteractorProtocol {
         var missingFields = [String]()
 
         if data.plantID == nil {
-            missingFields.append("Plant name")
+            missingFields.append(Constants.plantNameField)
         }
 
         if data.dueDate == nil {
-            missingFields.append("Due date")
+            missingFields.append(Constants.dueDateField)
         }
 
         if data.taskType == nil {
-            missingFields.append("Task type")
+            missingFields.append(Constants.taskTypesField)
         }
 
-        let missingFieldsString = missingFields.joined(separator: "\n")
-        let message = "Please fill in the following fields:\n\(missingFieldsString)"
+        let missingFieldsString = missingFields.joined(separator: Constants.textSeparator)
+        let message = Constants.message + Constants.textSeparator + "\(missingFieldsString)"
 
         presenter?.informUserAboutFields(with: message)
     }
-
 
     func fetchPlantIdsAndNames() -> (ids: [String], names: [String]) {
         guard let realm = realm else {
@@ -90,7 +128,6 @@ class AddPlantTaskInteractor: AddPlantTaskInteractorProtocol {
     }
 
     private func fetchTaskTypes() -> [String]{
-        let taskTypes = ["Watering","Lighting","Temperature Control","Feeding","Pruning","Repotting","Pest Control","Soil Aeration"]
-        return taskTypes
+        return TaskType.allValues()
     }
 }

@@ -11,11 +11,22 @@ import UIKit
 
 final class TaskTypeCollectionCell: UICollectionViewCell {
 
+    private enum Constants {
+        static let textFont = UIFont.body()
+        static let textColor: UIColor = .dark
+        static let selectedColor: UIColor = .dark
+        static let unselectedColor: UIColor = .light
+        static let labelEdgeInsets = UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
+        static let cornerRadiusDivider: CGFloat = 2
+        static let borderWidth: CGFloat = 1
+        static let borderColor: CGColor = UIColor.dark.cgColor
+    }
+
     private let typeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = .body()
-        label.textColor = .dark
+        label.font = Constants.textFont
+        label.textColor = Constants.textColor
         return label
     }()
 
@@ -31,9 +42,8 @@ final class TaskTypeCollectionCell: UICollectionViewCell {
 
     private func setupLabel() {
         contentView.addSubview(typeLabel)
-        typeLabel.font = .body()
         typeLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
+            make.edges.equalToSuperview().inset(Constants.labelEdgeInsets)
         }
     }
 
@@ -46,16 +56,16 @@ final class TaskTypeCollectionCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = bounds.height / 2
+        layer.cornerRadius = bounds.height / Constants.cornerRadiusDivider
         layer.masksToBounds = true
-        layer.borderWidth = 1
-        layer.borderColor = UIColor.dark.cgColor
+        layer.borderWidth = Constants.borderWidth
+        layer.borderColor = Constants.borderColor
     }
 
     override var isSelected: Bool {
         didSet {
-            backgroundColor = self.isSelected ? .dark : .light
-            typeLabel.textColor = self.isSelected ? .light : .dark
+            backgroundColor = self.isSelected ? Constants.selectedColor : Constants.unselectedColor
+            typeLabel.textColor = self.isSelected ? Constants.unselectedColor : Constants.selectedColor
         }
     }
 

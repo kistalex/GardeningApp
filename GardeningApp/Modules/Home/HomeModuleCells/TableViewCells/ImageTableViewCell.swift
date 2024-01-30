@@ -27,29 +27,8 @@ class ImageTableViewCell: UITableViewCell, HomeTableViewCellItem {
     func config(with data: Any) {
         guard let data = data as? ImageTableViewCellModel else { return }
         iconImageView.image = data.image
-        contentView.backgroundColor = .light
+        contentView.backgroundColor = Constants.contentViewBgColor
     }
-    
-    private let shadowView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        return view
-    }()
-
-
-    private let iconImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleAspectFit
-        iv.layer.cornerRadius = 10
-        iv.layer.masksToBounds = true
-        return iv
-    }()
-    
-
-    private let taskManagerButton = CustomImageButton(imageName: "", configImagePointSize: 40, bgColor: .dark)
-
-    private var widthConstraint: Constraint?
-
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -61,16 +40,51 @@ class ImageTableViewCell: UITableViewCell, HomeTableViewCellItem {
         super.init(coder: coder)
     }
 
+    private enum Constants {
+        static let shadowViewTopInset: CGFloat = 10
+        static let shadowViewBottomInset: CGFloat = 10
+        static let shadowViewSize: CGFloat = 200
+        static let shadowViewShadowOpacity: Float = 0.8
+        static let shadowViewShadowRadius: CGFloat = 10
+        static let shadowViewShadowOffset: CGSize = CGSize(width: 0, height: 5)
+        static let shadowPathCornerRadius: CGFloat = 5
+        static let taskButtonWidthConstraint: CGFloat = 35
+        static let taskButtonHeightConstraint: CGFloat = 35
+        static let taskButtonMinWidthConstraint: CGFloat = 30
+        static let taskButtonMaxWidthConstraint: CGFloat = 150
+        static let iconImageViewCornerRadius: CGFloat = 10
+        static let contentViewBgColor: UIColor = .light
+    }
+
+    private let shadowView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+
+    private let iconImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.layer.cornerRadius = Constants.iconImageViewCornerRadius
+        iv.layer.masksToBounds = true
+        return iv
+    }()
+    
+
+    private let taskManagerButton = CustomImageButton(imageName: "", configImagePointSize: 40, bgColor: .dark)
+
+    private var widthConstraint: Constraint?
+
     private func setupViews(){
         contentView.addSubview(taskManagerButton)
         contentView.addSubview(shadowView)
         shadowView.addSubview(iconImageView)
 
         shadowView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(Constants.shadowViewTopInset)
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().inset(10)
-            make.size.equalTo(200)
+            make.bottom.equalToSuperview().inset(Constants.shadowViewBottomInset)
+            make.size.equalTo(Constants.shadowViewSize)
         }
 
         iconImageView.snp.makeConstraints { make in
@@ -80,8 +94,8 @@ class ImageTableViewCell: UITableViewCell, HomeTableViewCellItem {
         taskManagerButton.snp.makeConstraints { make in
             make.centerY.equalTo(shadowView.snp.centerY)
             make.trailing.equalToSuperview()
-            widthConstraint = make.width.equalTo(35).constraint
-            make.height.equalTo(35)
+            widthConstraint = make.width.equalTo(Constants.taskButtonWidthConstraint).constraint
+            make.height.equalTo(Constants.taskButtonHeightConstraint)
         }
     }
 
@@ -99,8 +113,8 @@ class ImageTableViewCell: UITableViewCell, HomeTableViewCellItem {
         switch gesture.state {
         case .changed:
             let translation = gesture.translation(in: taskManagerButton)
-            let minWidth: CGFloat = 30
-            let maxWidth: CGFloat = 150
+            let minWidth: CGFloat = Constants.taskButtonMinWidthConstraint
+            let maxWidth: CGFloat = Constants.taskButtonMaxWidthConstraint
             if let currentWidth = widthConstraint?.layoutConstraints.first?.constant {
                 let newWidth = min(maxWidth, max(minWidth, currentWidth - translation.x))
                 widthConstraint?.update(offset: newWidth)
@@ -108,7 +122,7 @@ class ImageTableViewCell: UITableViewCell, HomeTableViewCellItem {
             }
             gesture.setTranslation(.zero, in: taskManagerButton)
         case .ended, .cancelled:
-            widthConstraint?.update(offset: 35)
+            widthConstraint?.update(offset: Constants.taskButtonWidthConstraint)
             UIView.animate(withDuration: 0.3, animations: {
                 self.contentView.layoutIfNeeded()
             })
@@ -119,12 +133,12 @@ class ImageTableViewCell: UITableViewCell, HomeTableViewCellItem {
 
     private func setupShadow(){
         shadowView.layer.shadowColor = UIColor.dark.cgColor
+        shadowView.layer.cornerRadius = Constants.shadowPathCornerRadius
+        shadowView.layer.shadowOpacity = Constants.shadowViewShadowOpacity
+        shadowView.layer.shadowRadius = Constants.shadowViewShadowRadius
+        shadowView.layer.shadowOffset = Constants.shadowViewShadowOffset
 
-        shadowView.layer.shadowOpacity = 0.8
-        shadowView.layer.shadowRadius = 10
-        shadowView.layer.shadowOffset = CGSize(width: 0, height: 5)
-
-        let cornerRadius: CGFloat = 5
+        let cornerRadius: CGFloat = Constants.shadowPathCornerRadius
         let shadowPath = UIBezierPath(roundedRect: shadowView.bounds, cornerRadius: cornerRadius)
 
         shadowView.layer.shadowPath = shadowPath.cgPath
@@ -136,8 +150,7 @@ class ImageTableViewCell: UITableViewCell, HomeTableViewCellItem {
     override func layoutSubviews() {
         super.layoutSubviews()
         setupShadow()
-        shadowView.layer.cornerRadius = 10
-        iconImageView.layer.cornerRadius = 10
+        iconImageView.layer.cornerRadius = Constants.iconImageViewCornerRadius
     }
 }
 

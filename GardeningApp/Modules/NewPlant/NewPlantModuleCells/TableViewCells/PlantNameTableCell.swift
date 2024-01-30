@@ -18,10 +18,8 @@ class PlantNameTableCell: UITableViewCell, AddPlantTableViewCellItem  {
 
     weak var delegate: AddPlantTableViewItemDelegate?
 
-    private let nameTField = CustomTextField(tFieldType: .name)
-
     func config(with data: Any) {
-        contentView.backgroundColor = .light
+        contentView.backgroundColor = Constants.contentViewColor
         nameTField.delegate = self
     }
 
@@ -29,18 +27,27 @@ class PlantNameTableCell: UITableViewCell, AddPlantTableViewCellItem  {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+
+    private enum Constants {
+        static let verticalInsets: CGFloat = 10
+        static let horizontalInset: CGFloat = 10
+        static let tFieldHeightConstraint: CGFloat = 50
+        static let contentViewColor: UIColor = .light
+    }
+    
+    private let nameTField = CustomTextField(tFieldType: .name)
 
     private func setupView(){
         contentView.addSubview(nameTField)
 
         nameTField.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(10)
-            make.horizontalEdges.equalToSuperview().inset(10)
-            make.height.equalTo(50)
+            make.verticalEdges.equalToSuperview().inset(Constants.verticalInsets)
+            make.horizontalEdges.equalToSuperview().inset(Constants.horizontalInset)
+            make.height.equalTo(Constants.tFieldHeightConstraint)
         }
     }
 }

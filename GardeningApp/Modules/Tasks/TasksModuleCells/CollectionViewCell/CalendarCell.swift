@@ -13,9 +13,21 @@ import UIKit
 
 class CalendarCell: UICollectionViewCell {
 
-    private let dayLabel = CustomLabel(fontName: UIFont.body(), textColor: .dark)
-    private let dateLabel = CustomLabel(fontName: UIFont.body(), textColor: .dark)
+    private enum Constants {
+        static let textFont = UIFont.body()
+        static let accentColor: UIColor = .dark
+        static let contentViewAccentColor: UIColor = .light
+        static let contentViewUnselectedColor: UIColor = .clear
+        static let unselectedColor: UIColor = .light
+        static let stackSpacing: CGFloat = 10
+        static let stackEdgeInset: CGFloat = 5
+        static let dayNameFormat = "EEE"
+        static let dayDateFormat = "dd"
+        static let contentViewDivider: CGFloat = 5
+    }
 
+    private let dayLabel = CustomLabel(fontName: Constants.textFont, textColor: Constants.accentColor)
+    private let dateLabel = CustomLabel(fontName: Constants.textFont, textColor: Constants.accentColor)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,11 +44,11 @@ class CalendarCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.alignment = .center
         stackView.distribution = .fillEqually
-        stackView.spacing = 10
-        
+        stackView.spacing = Constants.stackSpacing
+
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(5)
+            make.edges.equalToSuperview().inset(Constants.stackEdgeInset)
         }
     }
 
@@ -49,25 +61,25 @@ class CalendarCell: UICollectionViewCell {
 
     func configure(with date: Date, isSelected: Bool) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEE"
+        dateFormatter.dateFormat = Constants.dayNameFormat
         dayLabel.text = dateFormatter.string(from: date)
-        dateFormatter.dateFormat = "dd"
+        dateFormatter.dateFormat = Constants.dayDateFormat
         dateLabel.text = dateFormatter.string(from: date)
 
         if isSelected {
             DispatchQueue.main.async {
                 UIView.animate(withDuration: 0.4) {
-                    self.contentView.backgroundColor = .light
-                    self.dayLabel.textColor = .dark
-                    self.dateLabel.textColor = .dark
+                    self.contentView.backgroundColor = Constants.contentViewAccentColor
+                    self.dayLabel.textColor = Constants.accentColor
+                    self.dateLabel.textColor = Constants.accentColor
                 }
             }
         } else {
-            contentView.backgroundColor = .clear
-            dayLabel.textColor = .light
-            dateLabel.textColor = .light
+            contentView.backgroundColor = Constants.contentViewUnselectedColor
+            dayLabel.textColor = Constants.unselectedColor
+            dateLabel.textColor = Constants.unselectedColor
         }
         
-        contentView.layer.cornerRadius = isSelected ? contentView.frame.size.height / 5 : 0
+        contentView.layer.cornerRadius = isSelected ? contentView.frame.size.height / Constants.contentViewDivider : 0
     }
 }

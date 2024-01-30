@@ -23,19 +23,27 @@ class WeatherInfoTableViewCellModel: NSObject, TableViewCellItemModel {
 class WeatherInfoTableViewCell: UITableViewCell, HomeTableViewCellItem {
     weak var delegate: HomeTableViewCellItemDelegate?
 
-    private let tempInfo = WeatherInfoView(imageName: "thermometer.medium")
-    private let humidityInfo = WeatherInfoView(imageName: "humidity.fill")
-    private let windInfo = WeatherInfoView(imageName: "wind")
+    private enum Constants {
+        static let tempInfoImageName = "thermometer.medium"
+        static let humidityInfoImageName = "humidity.fill"
+        static let windInfoImageName = "wind"
+        static let weatherStackVerticalInsets: CGFloat = 10
+        static let weatherStackHorizontalInset: CGFloat = 20
+        static let contentViewBgColor: UIColor = .light
+    }
+
+    private let tempInfo = WeatherInfoView(imageName: Constants.tempInfoImageName)
+    private let humidityInfo = WeatherInfoView(imageName: Constants.humidityInfoImageName)
+    private let windInfo = WeatherInfoView(imageName: Constants.windInfoImageName)
     private let weatherInfoStack = UIStackView()
 
     func config(with data: Any) {
         guard let data = data as? WeatherInfoTableViewCellModel else { return }
-        contentView.backgroundColor = .light
+        contentView.backgroundColor = Constants.contentViewBgColor
         tempInfo.label.text = data.weatherData.temp
         humidityInfo.label.text = data.weatherData.humidity
         windInfo.label.text = data.weatherData.windSpeed
     }
-
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -57,8 +65,8 @@ class WeatherInfoTableViewCell: UITableViewCell, HomeTableViewCellItem {
         contentView.addSubview(weatherInfoStack)
 
         weatherInfoStack.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview().inset(10)
-            make.horizontalEdges.equalToSuperview().inset(20)
+            make.verticalEdges.equalToSuperview().inset(Constants.weatherStackVerticalInsets)
+            make.horizontalEdges.equalToSuperview().inset(Constants.weatherStackHorizontalInset)
         }
     }
 }

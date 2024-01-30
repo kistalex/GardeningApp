@@ -129,6 +129,5 @@ extension AddPlantTaskViewController: AddTaskTableViewItemDelegate {
 
     func buttonCellDidTapped(_ cell: SaveTaskButtonTableViewCell) {
         presenter?.saveTaskData(with: taskData)
-        presenter?.dismissVC()
     }
 }

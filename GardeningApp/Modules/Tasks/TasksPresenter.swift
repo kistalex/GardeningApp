@@ -31,13 +31,19 @@ class TasksPresenter {
 
 extension TasksPresenter: TasksPresenterProtocol {
 
+    private enum Constants{
+        static let imagePointSize: CGFloat = 40
+        static let addTaskButtonImageName = "plus.circle"
+        static let todayButtonTitle = "Today"
+        static let dateFormat = "MMMM dd, yyyy"
+    }
+
     func viewDidLoad() {
         interactor.fetchInitialData()
     }
 
     func didFetchData(with data: TaskListTableViewData) {
         let tableData = configureFetchedData(from: data)
-
         let cellModels = setupCells(from: tableData)
         view?.setCells(with: cellModels)
     }
@@ -45,20 +51,11 @@ extension TasksPresenter: TasksPresenterProtocol {
     func todayButtonTapped() {
         interactor.setCurrentDate()
         let today = interactor.loadCurrentDate()
-        
         view?.scrollDatePickerToToday(with: today)
-
     }
+
     func addTaskButtonTapped() {
         router.openAddTaskVC()
-    }
-
-    private func configureFetchedData(from data: TaskListTableViewData) -> TaskListTableViewModel {
-        return TaskListTableViewModel(
-            currentDate: convertDateToString(date: data.currentDate),
-            dates: data.dates,
-            tasks: getTasksModels(tasks: data.tasks)
-        )
     }
 
     func completeButtonTapped(forTaskId id: String) {
@@ -70,7 +67,6 @@ extension TasksPresenter: TasksPresenterProtocol {
         let cellModel = getTaskCellModel(task: taskVM)
         view?.updateTask(forId: id, withModel: cellModel)
     }
-
 
     func didSelectDate(with date: Date) {
         let selectedDate = convertDateToString(date: date)
@@ -98,6 +94,14 @@ extension TasksPresenter: TasksPresenterProtocol {
         )
     }
 
+    private func configureFetchedData(from data: TaskListTableViewData) -> TaskListTableViewModel {
+        return TaskListTableViewModel(
+            currentDate: convertDateToString(date: data.currentDate),
+            dates: data.dates,
+            tasks: getTasksModels(tasks: data.tasks)
+        )
+    }
+
     private func getTaskCellModel(task: TaskViewModel) -> TaskTableViewCellModel {
         return TaskTableViewCellModel(task: task)
     }
@@ -122,15 +126,15 @@ extension TasksPresenter: TasksPresenterProtocol {
 
     private func convertDateToString(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, yyyy"
+        formatter.dateFormat = Constants.dateFormat
         return formatter.string(from: date)
     }
 
     private func setupCells(from data: TaskListTableViewModel) -> [TableViewCellItemModel] {
         var cellModels: [TableViewCellItemModel] = [
-            CurrentDateTableViewCellModel(labelText: data.currentDate, buttonTitle: "Today"),
+            CurrentDateTableViewCellModel(labelText: data.currentDate, todayButtonTitle: Constants.todayButtonTitle),
             DatePickerTableViewCellModel(dates: data.dates, selectedDate: Date()),
-            AddTaskButtonTableViewCellModel(imageName: "plus.circle", imagePointSize: 40)
+            AddTaskButtonTableViewCellModel(imageName: Constants.addTaskButtonImageName, imagePointSize: Constants.imagePointSize)
         ]
 
         for task in data.tasks {

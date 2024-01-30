@@ -28,14 +28,10 @@ class GreetingsTableViewCell: UITableViewCell, HomeTableViewCellItem {
 
     func config(with data: Any) {
         guard let data = data as? GreetingsTableViewCellModel else { return }
-        contentView.backgroundColor = .light
+        contentView.backgroundColor = Constants.contentViewBgColor
         greetingLabel.text = data.greetingText
         introductionLabel.text = data.introductionText
     }
-
-    private let greetingLabel = CustomLabel(fontName: UIFont.title(), textColor: .dark)
-    private let introductionLabel = CustomLabel(fontName: UIFont.body(), textColor: .dark)
-    private let textStack = UIStackView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -46,20 +42,36 @@ class GreetingsTableViewCell: UITableViewCell, HomeTableViewCellItem {
         super.init(coder: coder)
     }
 
+    private enum Constants {
+        static let greetingTextFont = UIFont.title()
+        static let introductionTextFont = UIFont.body()
+        static let textAssetColor: UIColor = .dark
+        static let stackSpacing: CGFloat = 10
+        static let stackHorizontalInset: CGFloat = 20
+        static let stackBottomInset: CGFloat = 10
+        static let contentViewBgColor: UIColor = .light
+    }
+
+    private let greetingLabel = CustomLabel(fontName: Constants.greetingTextFont, textColor: Constants.textAssetColor)
+    private let introductionLabel = CustomLabel(fontName: Constants.introductionTextFont, textColor: Constants.textAssetColor)
+    private let textStack = UIStackView()
+
+
+
     private func setupViews(){
 
         [greetingLabel, introductionLabel].forEach { item  in
             textStack.addArrangedSubview(item)}
 
         textStack.axis = .vertical
-        textStack.spacing = 10
+        textStack.spacing = Constants.stackSpacing
 
         contentView.addSubview(textStack)
 
         textStack.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.horizontalEdges.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().inset(10)
+            make.horizontalEdges.equalToSuperview().inset(Constants.stackHorizontalInset)
+            make.bottom.equalToSuperview().inset(Constants.stackBottomInset)
         }
     }
 
