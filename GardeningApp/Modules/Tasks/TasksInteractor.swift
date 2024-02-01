@@ -14,7 +14,7 @@ protocol TasksInteractorProtocol: AnyObject {
     func loadCurrentDate()-> Date
     func fetchPlantsTaskForChosenDate(for date: Date)
     func fetchPlantsTasksForToday() -> [TaskRealmObject]
-    func fetchPlantsTasks(for date: Date) -> [TaskRealmObject]
+    //    func fetchPlantsTasks(for date: Date) -> [TaskRealmObject]
     func updatePlantTaskStatus(with id: String)
 }
 
@@ -27,18 +27,14 @@ class TasksInteractor: TasksInteractorProtocol {
     private var currentDate = Date()
     private var notificationToken: NotificationToken?
 
+    private let realmManager: RealmManager<TaskRealmObject>
 
     private enum Constants {
         static var realmDateFilter: String = "dueDate >= %@ AND dueDate <= %@"
     }
 
-    init(){
-        do {
-            realm = try Realm()
-        } catch let error {
-            print("Failed to instantiate Realm: \(error.localizedDescription)")
-            realm = nil
-        }
+    init(realmManager: RealmManager<TaskRealmObject>){
+        self.realmManager = realmManager
         setupTaskChangeNotifications()
     }
 
@@ -57,17 +53,13 @@ class TasksInteractor: TasksInteractorProtocol {
     }
 
     func updatePlantTaskStatus(with id: String) {
-        guard let realm = realm else { return }
-        guard let objectID = try? ObjectId(string: id) else { return }
-        guard let task = realm.object(ofType: TaskRealmObject.self, forPrimaryKey: objectID) else { return }
-
-        do {
-            try realm.write {
-                task.isComplete.toggle()
-                presenter?.taskStatusChanged(forTaskID: task.id.stringValue, for: task)
+        realmManager.updateTaskStatus(taskId: id) { [weak self] result in
+            switch result {
+            case .success(let task):
+                self?.presenter?.taskStatusChanged(forTaskID: task.id.stringValue, for: task)
+            case .failure(let error):
+                print("Failed to complete task: \(error.localizedDescription)")
             }
-        } catch {
-            print("Failed to complete task: \(error.localizedDescription)")
         }
     }
 
@@ -76,7 +68,7 @@ class TasksInteractor: TasksInteractorProtocol {
         return tasks
     }
 
-    func loadCurrentDate()->Date {
+    func loadCurrentDate() -> Date {
         let today = Date()
         return today
     }
@@ -86,20 +78,10 @@ class TasksInteractor: TasksInteractorProtocol {
         presenter?.didFetchTasksForDate(tasks)
     }
 
-    func fetchPlantsTasks(for date: Date) -> [TaskRealmObject]{
-        let startOfDay = Calendar.current.startOfDay(for: date)
-        let endOfDay: Date = {
-            let components = DateComponents(day: 1, second: -1)
-            return Calendar.current.date(byAdding: components, to: startOfDay)!
-        }()
-
-        let predicate = NSPredicate(format: Constants.realmDateFilter, startOfDay as NSDate, endOfDay as NSDate)
-        let plantsTasks = realm?.objects(TaskRealmObject.self).filter(predicate)
-
-        guard let tasks = plantsTasks else { return [] }
-        return Array(tasks)
+    private func fetchPlantsTasks(for date: Date) -> [TaskRealmObject]{
+        let tasks = realmManager.fetchObjects(for: date, with: Constants.realmDateFilter)
+        return tasks
     }
-
 
     private func countDates() -> [Date] {
         var dates = [Date]()
@@ -109,22 +91,19 @@ class TasksInteractor: TasksInteractorProtocol {
         let today = Date()
 
         if let currentWeekdayComponent = calendar.dateComponents([.weekday], from: today).weekday,
-           let startOfThisWeek = calendar.date(byAdding: .day, value: -(currentWeekdayComponent - calendar.firstWeekday + 7) % 7, to: today) {
+           let startOfThisWeek = calendar.date(byAdding: .day, value: -(currentWeekdayComponent - calendar.firstWeekday + 7) % 7, to: today),
+           let endOfNextMonth = calendar.date(byAdding: .month, value: 2, to: today),
+           let lastDayOfNextMonth = calendar.date(byAdding: .day, value: -1, to: endOfNextMonth),
+           let weekdayComponent = calendar.dateComponents([.weekday], from: lastDayOfNextMonth).weekday,
+           let endOfCalendar = calendar.date(byAdding: .day, value: (7 - weekdayComponent + calendar.firstWeekday) % 7, to: lastDayOfNextMonth) {
 
-            if let nextMonth = calendar.date(byAdding: .month, value: 1, to: today),
-               let endOfNextMonth = calendar.date(byAdding: .month, value: 1, to: nextMonth),
-               let lastDayOfNextMonth = calendar.date(byAdding: .day, value: -1, to: endOfNextMonth),
-               let weekdayComponent = calendar.dateComponents([.weekday], from: lastDayOfNextMonth).weekday,
-               let endOfCalendar = calendar.date(byAdding: .day, value: (7 - weekdayComponent + calendar.firstWeekday) % 7, to: lastDayOfNextMonth) {
-
-                var currentDate = startOfThisWeek
-                while currentDate <= endOfCalendar {
-                    dates.append(currentDate)
-                    if let newDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
-                        currentDate = newDate
-                    } else {
-                        break
-                    }
+            var currentDate = startOfThisWeek
+            while currentDate <= endOfCalendar {
+                dates.append(currentDate)
+                if let newDate = calendar.date(byAdding: .day, value: 1, to: currentDate) {
+                    currentDate = newDate
+                } else {
+                    break
                 }
             }
         }
@@ -132,24 +111,20 @@ class TasksInteractor: TasksInteractorProtocol {
     }
 
     private func setupTaskChangeNotifications() {
-        guard let realm = realm else { return }
-        let tasks = realm.objects(TaskRealmObject.self)
-        notificationToken = tasks.observe { [weak self] (changes: RealmCollectionChange) in
-            guard let self = self else { return }
-            switch changes {
-            case .initial:
-                break
-            case .update(_, _, let insertions, _):
-                for index in insertions {
-                    if let addedTask = self.realm?.object(ofType: TaskRealmObject.self, forPrimaryKey: tasks[index].id) {
-                        let date = addedTask.dueDate
-                        presenter?.didSelectDate(with: date)
+        notificationToken = realmManager.setupChangeNotifications(
+            onUpdate: { [weak self] (updatedTasks, changes) in
+                guard let self = self else { return }
+                switch changes {
+                case .update(_, _, let insertions, _):
+                    insertions.forEach { index in
+                        let task = updatedTasks[index]
+                        let date = task.dueDate
+                        self.presenter?.didSelectDate(with: date)
                     }
+                default:
+                    break
                 }
-                break
-            case .error(let error):
-                print(error.localizedDescription)
             }
-        }
+        )
     }
 }

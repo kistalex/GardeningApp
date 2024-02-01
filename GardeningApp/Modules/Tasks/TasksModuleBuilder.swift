@@ -8,7 +8,8 @@ import UIKit
 
 class TasksModuleBuilder {
     static func build() -> TasksViewController {
-        let interactor = TasksInteractor()
+        let realmManager = RealmManager<TaskRealmObject>()
+        let interactor = TasksInteractor(realmManager: realmManager)
         let router = TasksRouter()
         let presenter = TasksPresenter(interactor: interactor, router: router)
         let viewController = TasksViewController()

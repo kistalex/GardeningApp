@@ -23,71 +23,45 @@ class HomeInteractor: NSObject, HomeInteractorProtocol, CLLocationManagerDelegat
 
     private let weatherManager: WeatherApiManager
     private let locationManager: CLLocationManager
-    
-    private let realm: Realm?
+    private let realmManager: RealmManager<PlantObject>
+
     private var notificationToken: NotificationToken?
 
-    init(imageProvider: ImageProvider,greetingProvider: GreetingProvider, locationManager: CLLocationManager, weatherManager: WeatherApiManager) {
+    init(imageProvider: ImageProvider,
+         greetingProvider: GreetingProvider,
+         locationManager: CLLocationManager,
+         weatherManager: WeatherApiManager,
+         realmManager: RealmManager<PlantObject>
+    ) {
         self.imageProvider = imageProvider
         self.greetingProvider = greetingProvider
         self.locationManager = locationManager
         self.weatherManager = weatherManager
-        
-        do {
-            realm = try Realm()
-        } catch let error {
-            print("Failed to instantiate Realm: \(error.localizedDescription)")
-            realm = nil
-        }
+        self.realmManager = realmManager
         super.init()
         setupPlantChangeNotifications()
     }
 
     func fetchInitialData(){
-        let greeting = fetchCurrentGreetings()
-        let currentImage = fetchCurrentTimeImage()
-        let userPlants = fetchUserPlants()
+        let greeting = greetingProvider.greetingForCurrentTime()
+        let currentImage = imageProvider.imageForCurrentTime()
+        let userPlants = realmManager.fetchObjects()
         let data = HomeTableViewData(greeting: greeting, image: currentImage, userPlants: userPlants)
         presenter?.didFetchInitialData(with: data)
     }
-
-
 
     deinit {
         notificationToken?.invalidate()
     }
 
     func setupPlantChangeNotifications() {
-        let plants = realm?.objects(PlantObject.self)
-        notificationToken = plants?.observe { [weak self] (changes: RealmCollectionChange) in
-            switch changes {
-            case .initial(let plants):
-                self?.presenter?.plantsFetched(with: Array(plants))
-            case .update(let plants, _, _, _):
-                self?.presenter?.plantsFetched(with: Array(plants))
-            case .error(let error):
-                print(error.localizedDescription)
-            }
-        }
+        notificationToken = realmManager.setupChangeNotifications(
+            onInitial: { [weak self] plants in
+            self?.presenter?.plantsFetched(with: plants)
+        }, onUpdate: { [weak self] plants, _ in
+            self?.presenter?.plantsFetched(with: plants)
+        })
     }
-
-
-    private func fetchCurrentTimeImage() -> UIImage {
-        let image = imageProvider.imageForCurrentTime()
-        return image
-    }
-
-    private func fetchCurrentGreetings() -> String {
-        let greeting = greetingProvider.greetingForCurrentTime()
-        return greeting
-    }
-
-    private func fetchUserPlants() -> [PlantObject]{
-        let plantsObjects = realm?.objects(PlantObject.self)
-        guard let plants = plantsObjects else { return [] }
-        return Array(plants)
-    }
-
 
     func fetchCurrenLocationWeather() {
         locationManager.requestWhenInUseAuthorization()

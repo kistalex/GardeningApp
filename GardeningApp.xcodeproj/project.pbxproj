@@ -94,6 +94,7 @@
 		468D435A2B56BA27000DD621 /* TasksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D43542B56BA27000DD621 /* TasksPresenter.swift */; };
 		468D435B2B56BA27000DD621 /* TasksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D43552B56BA27000DD621 /* TasksRouter.swift */; };
 		468D435D2B56DA83000DD621 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D435C2B56DA83000DD621 /* TaskTableViewCell.swift */; };
+		46C172E62B6BE08E0073B58F /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C172E52B6BE08E0073B58F /* RealmManager.swift */; };
 		46CE46D02B38A60D0013BA95 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 46CE46CF2B38A60D0013BA95 /* Realm */; };
 		46CE46D22B38A60D0013BA95 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 46CE46D12B38A60D0013BA95 /* RealmSwift */; };
 		46FC70382B4EA301003DF99C /* AddTaskTableViewItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FC70372B4EA301003DF99C /* AddTaskTableViewItemDelegate.swift */; };
@@ -188,6 +189,7 @@
 		468D43542B56BA27000DD621 /* TasksPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksPresenter.swift; sourceTree = "<group>"; };
 		468D43552B56BA27000DD621 /* TasksRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TasksRouter.swift; sourceTree = "<group>"; };
 		468D435C2B56DA83000DD621 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
+		46C172E52B6BE08E0073B58F /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		46FC70372B4EA301003DF99C /* AddTaskTableViewItemDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskTableViewItemDelegate.swift; sourceTree = "<group>"; };
 		46FC70392B4EB02B003DF99C /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -309,6 +311,7 @@
 				4630C7942B2767320008AE2C /* Api */,
 				4630C7892B2757220008AE2C /* Extensions */,
 				4630C7852B2755580008AE2C /* Providers */,
+				46C172E32B6BE0740073B58F /* Managers */,
 				4630C76F2B2619FE0008AE2C /* Application */,
 				4630C7B52B28A1A70008AE2C /* CustomViews */,
 				4630C7702B261A0A0008AE2C /* Modules */,
@@ -529,6 +532,14 @@
 			path = Tasks;
 			sourceTree = "<group>";
 		};
+		46C172E32B6BE0740073B58F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				46C172E52B6BE08E0073B58F /* RealmManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		46FC70352B4EA165003DF99C /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -650,6 +661,7 @@
 				461927F02B5FEA7D0049D5C2 /* GreetingsTableViewCell.swift in Sources */,
 				461928152B61652D0049D5C2 /* HomeTableViewData.swift in Sources */,
 				4630C7792B2623FD0008AE2C /* HomeRouter.swift in Sources */,
+				46C172E62B6BE08E0073B58F /* RealmManager.swift in Sources */,
 				4669F1A12B4DB37B000ED694 /* AddTaskTableViewModel.swift in Sources */,
 				461928012B615F7A0049D5C2 /* TaskViewModel.swift in Sources */,
 				461927F62B5FF65D0049D5C2 /* GardenHeaderTableViewCell.swift in Sources */,
