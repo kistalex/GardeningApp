@@ -42,7 +42,7 @@ class AddPlantTaskInteractor: AddPlantTaskInteractorProtocol {
         case plantNotFound
     }
 
-    enum TaskType: String, CaseIterable {
+    private enum TaskType: String, CaseIterable {
         case watering = "Watering"
         case lighting = "Lighting"
         case temperatureControl = "Temperature Control"
