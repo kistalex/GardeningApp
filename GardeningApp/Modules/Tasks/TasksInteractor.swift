@@ -14,7 +14,6 @@ protocol TasksInteractorProtocol: AnyObject {
     func loadCurrentDate()-> Date
     func fetchPlantsTaskForChosenDate(for date: Date)
     func fetchPlantsTasksForToday() -> [TaskRealmObject]
-    //    func fetchPlantsTasks(for date: Date) -> [TaskRealmObject]
     func updatePlantTaskStatus(with id: String)
 }
 
@@ -37,7 +36,6 @@ class TasksInteractor: TasksInteractorProtocol {
         self.realmManager = realmManager
         setupTaskChangeNotifications()
     }
-
 
     func setCurrentDate() {
         let currentDate = loadCurrentDate()

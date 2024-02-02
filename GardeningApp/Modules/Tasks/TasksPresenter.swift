@@ -91,7 +91,7 @@ extension TasksPresenter: TasksPresenterProtocol {
                              dueDate: convertDateToString(date: task.dueDate),
                              taskDescription: task.taskDescription,
                              isComplete: task.isComplete
-        )
+        ) 
     }
 
     private func configureFetchedData(from data: TaskListTableViewData) -> TaskListTableViewModel {
@@ -143,5 +143,4 @@ extension TasksPresenter: TasksPresenterProtocol {
         }
         return cellModels
     }
-
 }

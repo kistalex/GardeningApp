@@ -17,6 +17,7 @@ protocol RealmManagerProtocol {
         onInitial: (([ObjectType]) -> Void)?,
         onUpdate: (([ObjectType], RealmCollectionChange<Any>) -> Void)?
     ) -> NotificationToken?
+    func updateTaskStatus(taskId: String, completion: @escaping (Result<TaskRealmObject, Error>) -> Void)
 }
 
 final class RealmManager<ObjectType: Object>: RealmManagerProtocol {

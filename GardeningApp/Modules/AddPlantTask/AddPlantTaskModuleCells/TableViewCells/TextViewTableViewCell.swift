@@ -23,8 +23,7 @@ final class TextViewTableViewCell: UITableViewCell, AddTaskTableViewCellItem {
 
     weak var delegate: AddTaskTableViewItemDelegate?
 
-    private let textView = PlaceholderTextView()
-
+    private let textView = CustomTextView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

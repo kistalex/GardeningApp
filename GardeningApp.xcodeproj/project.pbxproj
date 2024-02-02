@@ -53,7 +53,6 @@
 		4630C7D02B28B7D00008AE2C /* NewPlantInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7CB2B28B7D00008AE2C /* NewPlantInteractor.swift */; };
 		4630C7D42B28CBA20008AE2C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D32B28CBA20008AE2C /* CustomTextField.swift */; };
 		4630C7D62B28D1FD0008AE2C /* CustomTextButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */; };
-		4630C7D82B28DFE90008AE2C /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4630C7D72B28DFE90008AE2C /* CustomTextView.swift */; };
 		464369E72B3DB9B000C8ECA4 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464369E62B3DB9B000C8ECA4 /* CalendarCell.swift */; };
 		4669F1522B4872D8000ED694 /* AddPlantTaskModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F14D2B4872D8000ED694 /* AddPlantTaskModuleBuilder.swift */; };
 		4669F1532B4872D8000ED694 /* AddPlantTaskPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F14E2B4872D8000ED694 /* AddPlantTaskPresenter.swift */; };
@@ -61,7 +60,7 @@
 		4669F1552B4872D8000ED694 /* AddPlantTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1502B4872D8000ED694 /* AddPlantTaskViewController.swift */; };
 		4669F1562B4872D8000ED694 /* AddPlantTaskInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1512B4872D8000ED694 /* AddPlantTaskInteractor.swift */; };
 		4669F1912B4D5F1A000ED694 /* PlantsNamesCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1902B4D5F1A000ED694 /* PlantsNamesCollectionTableViewCell.swift */; };
-		4669F1932B4D5F7A000ED694 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1922B4D5F7A000ED694 /* PlaceholderTextView.swift */; };
+		4669F1932B4D5F7A000ED694 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1922B4D5F7A000ED694 /* CustomTextView.swift */; };
 		4669F1952B4D5FBD000ED694 /* TextViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1942B4D5FBD000ED694 /* TextViewTableViewCell.swift */; };
 		4669F1972B4D6295000ED694 /* DueDatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F1962B4D6295000ED694 /* DueDatePickerTableViewCell.swift */; };
 		4669F19D2B4DA47D000ED694 /* SaveTaskButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4669F19C2B4DA47D000ED694 /* SaveTaskButtonTableViewCell.swift */; };
@@ -148,7 +147,6 @@
 		4630C7CB2B28B7D00008AE2C /* NewPlantInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPlantInteractor.swift; sourceTree = "<group>"; };
 		4630C7D32B28CBA20008AE2C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextButton.swift; sourceTree = "<group>"; };
-		4630C7D72B28DFE90008AE2C /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		464369E62B3DB9B000C8ECA4 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		4669F14D2B4872D8000ED694 /* AddPlantTaskModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskModuleBuilder.swift; sourceTree = "<group>"; };
 		4669F14E2B4872D8000ED694 /* AddPlantTaskPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskPresenter.swift; sourceTree = "<group>"; };
@@ -156,7 +154,7 @@
 		4669F1502B4872D8000ED694 /* AddPlantTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskViewController.swift; sourceTree = "<group>"; };
 		4669F1512B4872D8000ED694 /* AddPlantTaskInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlantTaskInteractor.swift; sourceTree = "<group>"; };
 		4669F1902B4D5F1A000ED694 /* PlantsNamesCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantsNamesCollectionTableViewCell.swift; sourceTree = "<group>"; };
-		4669F1922B4D5F7A000ED694 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		4669F1922B4D5F7A000ED694 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		4669F1942B4D5FBD000ED694 /* TextViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewTableViewCell.swift; sourceTree = "<group>"; };
 		4669F1962B4D6295000ED694 /* DueDatePickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DueDatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		4669F19C2B4DA47D000ED694 /* SaveTaskButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveTaskButtonTableViewCell.swift; sourceTree = "<group>"; };
@@ -443,9 +441,8 @@
 				4630C78E2B275A4F0008AE2C /* CustomImageButton.swift */,
 				4630C7902B275AB70008AE2C /* CustomLabel.swift */,
 				4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */,
-				4630C7D72B28DFE90008AE2C /* CustomTextView.swift */,
 				4688838F2B2B145500B8CA80 /* CustomImageView.swift */,
-				4669F1922B4D5F7A000ED694 /* PlaceholderTextView.swift */,
+				4669F1922B4D5F7A000ED694 /* CustomTextView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -646,7 +643,7 @@
 				4630C7B92B28B1330008AE2C /* HomeTableViewCellItemDelegate.swift in Sources */,
 				468D43002B5060D9000DD621 /* AddTaskTableViewCellItem.swift in Sources */,
 				467C77062B5D9153003AAD98 /* AddPlantTableViewCellItem.swift in Sources */,
-				4669F1932B4D5F7A000ED694 /* PlaceholderTextView.swift in Sources */,
+				4669F1932B4D5F7A000ED694 /* CustomTextView.swift in Sources */,
 				468D43582B56BA27000DD621 /* TaskListData.swift in Sources */,
 				468883A02B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift in Sources */,
 				468883A22B2CD44900B8CA80 /* GardenInfoRouter.swift in Sources */,
@@ -673,7 +670,6 @@
 				468883A12B2CD44900B8CA80 /* GardenInfoPresenter.swift in Sources */,
 				467C770A2B5D9263003AAD98 /* AddPlantTableViewItemDelegate.swift in Sources */,
 				4630C77B2B2623FD0008AE2C /* HomeInteractor.swift in Sources */,
-				4630C7D82B28DFE90008AE2C /* CustomTextView.swift in Sources */,
 				461927EB2B5FE5950049D5C2 /* ButtonsTableViewCell.swift in Sources */,
 				461927F22B5FEDC00049D5C2 /* ImageTableViewCell.swift in Sources */,
 				468D43562B56BA27000DD621 /* TasksViewController.swift in Sources */,

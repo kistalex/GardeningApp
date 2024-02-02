@@ -59,7 +59,7 @@ final class PlantDescriptionTableViewCell: UITableViewCell, AddPlantTableViewCel
 
     private var recommendationLabel = CustomLabel(fontName: Constants.fontName, textColor: Constants.textColor, textAlignment: .natural)
 
-    private let textView = PlaceholderTextView()
+    private let textView = CustomTextView()
 
     private func setupTextView() {
         textView.delegate = self
