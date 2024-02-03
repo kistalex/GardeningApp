@@ -51,7 +51,9 @@ extension TasksPresenter: TasksPresenterProtocol {
     func todayButtonTapped() {
         interactor.setCurrentDate()
         let today = interactor.loadCurrentDate()
-        view?.scrollDatePickerToToday(with: today)
+        DispatchQueue.main.async {
+            self.view?.scrollDatePickerToToday(with: today)
+        }
     }
 
     func addTaskButtonTapped() {
@@ -65,7 +67,9 @@ extension TasksPresenter: TasksPresenterProtocol {
     func taskStatusChanged(forTaskID id: String, for task: TaskRealmObject) {
         let taskVM = convertToTaskViewModel(task: task)
         let cellModel = getTaskCellModel(task: taskVM)
-        view?.updateTask(forId: id, withModel: cellModel)
+        DispatchQueue.main.async {
+            self.view?.updateTask(forId: id, withModel: cellModel)
+        }
     }
 
     func didSelectDate(with date: Date) {

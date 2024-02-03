@@ -77,7 +77,6 @@
 		467C77102B5DA3B2003AAD98 /* SavePlantButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C770F2B5DA3B2003AAD98 /* SavePlantButtonTableViewCell.swift */; };
 		467C77132B5DA7EA003AAD98 /* PlantImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C77122B5DA7EA003AAD98 /* PlantImageTableViewCell.swift */; };
 		467C77152B5EC3CA003AAD98 /* PlantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C77142B5EC3CA003AAD98 /* PlantViewModel.swift */; };
-		468883902B2B145500B8CA80 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688838F2B2B145500B8CA80 /* CustomImageView.swift */; };
 		468883922B2B22E400B8CA80 /* PlantObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468883912B2B22E400B8CA80 /* PlantObject.swift */; };
 		468883A02B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */; };
 		468883A12B2CD44900B8CA80 /* GardenInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4688839C2B2CD44900B8CA80 /* GardenInfoPresenter.swift */; };
@@ -171,7 +170,6 @@
 		467C770F2B5DA3B2003AAD98 /* SavePlantButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePlantButtonTableViewCell.swift; sourceTree = "<group>"; };
 		467C77122B5DA7EA003AAD98 /* PlantImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantImageTableViewCell.swift; sourceTree = "<group>"; };
 		467C77142B5EC3CA003AAD98 /* PlantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantViewModel.swift; sourceTree = "<group>"; };
-		4688838F2B2B145500B8CA80 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		468883912B2B22E400B8CA80 /* PlantObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlantObject.swift; sourceTree = "<group>"; };
 		4688839B2B2CD44900B8CA80 /* GardenInfoModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoModuleBuilder.swift; sourceTree = "<group>"; };
 		4688839C2B2CD44900B8CA80 /* GardenInfoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoPresenter.swift; sourceTree = "<group>"; };
@@ -441,7 +439,6 @@
 				4630C78E2B275A4F0008AE2C /* CustomImageButton.swift */,
 				4630C7902B275AB70008AE2C /* CustomLabel.swift */,
 				4630C7D52B28D1FD0008AE2C /* CustomTextButton.swift */,
-				4688838F2B2B145500B8CA80 /* CustomImageView.swift */,
 				4669F1922B4D5F7A000ED694 /* CustomTextView.swift */,
 			);
 			path = CustomViews;
@@ -662,7 +659,6 @@
 				4669F1A12B4DB37B000ED694 /* AddTaskTableViewModel.swift in Sources */,
 				461928012B615F7A0049D5C2 /* TaskViewModel.swift in Sources */,
 				461927F62B5FF65D0049D5C2 /* GardenHeaderTableViewCell.swift in Sources */,
-				468883902B2B145500B8CA80 /* CustomImageView.swift in Sources */,
 				4630C7992B2767E50008AE2C /* Endpoints.swift in Sources */,
 				4669F1A32B4DBE13000ED694 /* TaskTypesCollectionTableViewCell.swift in Sources */,
 				4630C7AD2B287EE20008AE2C /* PlantModel.swift in Sources */,

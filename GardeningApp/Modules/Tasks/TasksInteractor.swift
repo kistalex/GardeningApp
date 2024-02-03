@@ -21,8 +21,6 @@ class TasksInteractor: TasksInteractorProtocol {
 
     weak var presenter: TasksPresenterProtocol?
 
-    private var realm: Realm?
-
     private var currentDate = Date()
     private var notificationToken: NotificationToken?
 

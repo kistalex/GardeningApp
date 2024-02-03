@@ -20,7 +20,6 @@ class AddPlantTaskViewController: UITableViewController {
 
     var items: [TableViewCellItemModel] = []
     private var taskData = TaskModel()
-    private var activityIndicator = UIActivityIndicatorView()
 
     // MARK: - View lifecycle
     override func viewDidLoad() {
@@ -53,14 +52,6 @@ private extension AddPlantTaskViewController {
         registerCells()
         setupDismissKeyboardGesture()
         setupView()
-    }
-    
-    private func setupViews(){
-        view.addSubview(activityIndicator)
-        activityIndicator.isHidden = true
-        activityIndicator.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
     }
 
     private func setupDismissKeyboardGesture() {
@@ -114,15 +105,15 @@ extension AddPlantTaskViewController: AddTaskTableViewItemDelegate {
     func didSelectPlant(_ cell: PlantsNamesCollectionTableViewCell, withId id: String) {
         taskData.plantID = id
     }
-    
+
     func didSelectTaskType(_ cell: TaskTypesCollectionTableViewCell, withType type: String) {
         taskData.taskType = type
     }
-    
+
     func didSelectDate(_ cell: DueDatePickerTableViewCell, withDate date: Date) {
         taskData.dueDate = date
     }
-    
+
     func didWriteDescription(_ cell: TextViewTableViewCell, withText text: String) {
         taskData.taskDescription = text
     }
